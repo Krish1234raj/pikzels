@@ -3,158 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pikzels Network - Premium Minecraft Server | BedWars, Lifesteal SMP, Survival</title>
-    <meta name="description" content="Join Pikzels Network - the ultimate Minecraft server experience with BedWars, Lifesteal SMP, and Survival modes. Premium ranks, custom features, and an amazing community await!">
-    <meta name="keywords" content="minecraft server, bedwars, lifesteal smp, survival, minecraft multiplayer, pikzels network, minecraft ranks, minecraft store">
-    <meta name="author" content="OG_KRISH2011">
-    <link rel="canonical" href="https://pikzels.netlify.app">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Pikzels Network - Premium Minecraft Server">
-    <meta property="og:description" content="Join the ultimate Minecraft server experience with BedWars, Lifesteal SMP, and Survival modes!">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://pikzels.netlify.app">
-    
-    <!-- CDN Links -->
+    <title>Pikzels Network - Premium Minecraft Server</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        .site-header{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:12px 20px; background:#0d1220; /* dark header */
-}
-.site-header .brand img{ display:block; }
-.site-header .main-nav a{
-  color:#fff; text-decoration:none; margin-left:16px; font-weight:600;
-}
-.site-header .main-nav a:hover{ opacity:.85; }
-
-        :root {
-            --primary-cyan: #00D4FF;
-            --secondary-cyan: #0099CC;
-            --dark-bg: #0A0A0F;
-            --card-bg: #1A1A2E;
-            --accent-purple: #6366F1;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--dark-bg);
-            color: #FFFFFF;
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f3a 50%, #2d1b4e 100%);
+            color: white;
             overflow-x: hidden;
         }
-
-        .orbitron {
+        
+        .logo-font {
             font-family: 'Orbitron', monospace;
         }
-
-        /* Loading Screen */
-        #loading-screen {
-            position: fixed;
+        
+        .glow {
+            text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 40px #ffd700;
+        }
+        
+        .glow-blue {
+            text-shadow: 0 0 10px #3b82f6, 0 0 20px #3b82f6, 0 0 40px #3b82f6;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .particles {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #0A0A0F 0%, #1A1A2E 100%);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        .loading-logo {
-            font-size: 4rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--primary-cyan), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 2rem;
-            animation: pulse 2s infinite;
-        }
-
-        .loading-bar {
-            width: 300px;
-            height: 6px;
-            background: rgba(0, 212, 255, 0.2);
-            border-radius: 3px;
             overflow: hidden;
-            position: relative;
+            pointer-events: none;
         }
-
-        .loading-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-cyan), var(--accent-purple));
-            width: 0%;
-            border-radius: 3px;
-            animation: loading 3s ease-in-out;
-        }
-
-        .minecraft-blocks {
+        
+        .particle {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0.1;
+            background: #ffd700;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
         }
-
-        .block {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--primary-cyan);
-            animation: float 3s ease-in-out infinite;
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            50% { transform: translateY(-100px) rotate(180deg); opacity: 1; }
         }
-
-        /* Particle Background */
-        #particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        /* Navigation */
-        .nav-glass {
-            background: rgba(26, 26, 46, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
-        }
-
-        /* Neon Button */
-        .neon-btn {
-            background: linear-gradient(45deg, var(--primary-cyan), var(--accent-purple));
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            color: white;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
+        
+        .btn-glow {
             transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
             position: relative;
             overflow: hidden;
         }
-
-        .neon-btn:hover {
+        
+        .btn-glow:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.5);
         }
-
-        .neon-btn:before {
+        
+        .btn-glow::before {
             content: '';
             position: absolute;
             top: 0;
@@ -164,160 +85,67 @@
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.5s;
         }
-
-        .neon-btn:hover:before {
+        
+        .btn-glow:hover::before {
             left: 100%;
         }
-
-        /* Game Mode Cards */
-        .game-card {
-            background: rgba(26, 26, 46, 0.8);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 16px;
-            padding: 2rem;
+        
+        .card-hover {
             transition: all 0.3s ease;
-            backdrop-filter: blur(20px);
+            transform-style: preserve-3d;
         }
-
-        .game-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-cyan);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        
+        .card-hover:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
-
-        /* Glowing Text */
-        .glow-text {
-            text-shadow: 0 0 10px var(--primary-cyan);
-        }
-
-        /* Animations */
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        @keyframes loading {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes glowPulse {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(0, 212, 255, 0.8);
-            }
-        }
-
-        .slide-up {
-            animation: slideInUp 0.6s ease-out;
-        }
-
-        .slide-down {
-            animation: slideInDown 0.6s ease-out;
-        }
-
-        .glow-pulse {
-            animation: glowPulse 2s infinite;
-        }
-
-        /* Server Status */
-        .status-online {
-            background: #10B981;
-            animation: pulse 2s infinite;
-        }
-
-        .status-offline {
-            background: #EF4444;
-        }
-
-        /* Store Items */
-        .store-item {
-            background: rgba(26, 26, 46, 0.8);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .store-item:hover {
-            border-color: var(--primary-cyan);
-            transform: translateY(-5px);
-        }
-
-        /* Form Styling */
-        .form-input {
-            background: rgba(26, 26, 46, 0.8);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 8px;
-            padding: 12px 16px;
-            color: white;
+        
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            transition: border-color 0.3s ease;
+            height: 100%;
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f3a 50%, #2d1b4e 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
         }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary-cyan);
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        
+        .loading-text {
+            font-size: 2rem;
+            font-weight: bold;
+            animation: pulse 1.5s ease-in-out infinite;
         }
-
-        .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
-
-        .form-input.error {
-            border-color: #EF4444;
-            box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+        
+        .progress-bar {
+            width: 300px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 20px;
         }
-
-        .form-input.success {
-            border-color: #10B981;
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #ffd700);
+            width: 0%;
+            border-radius: 3px;
+            animation: loading 3s ease-out forwards;
         }
-
-        .validation-message {
-            font-size: 0.8rem;
-            margin-top: 0.5rem;
+        
+        @keyframes loading {
+            to { width: 100%; }
         }
-
-        .validation-message.error {
-            color: #EF4444;
-        }
-
-        .validation-message.success {
-            color: #10B981;
-        }
-
-        /* Modal */
+        
         .modal {
             display: none;
             position: fixed;
@@ -327,910 +155,773 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            animation: fadeIn 0.3s ease-in-out;
+            backdrop-filter: blur(5px);
         }
-
+        
         .modal-content {
-            background: var(--card-bg);
+            position: relative;
             margin: 5% auto;
-            padding: 2rem;
-            border-radius: 16px;
+            padding: 0;
             width: 90%;
             max-width: 500px;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            animation: slideInDown 0.4s ease-out;
-            position: relative;
-            overflow: hidden;
+            max-height: 90vh;
+            overflow-y: auto;
         }
-
-        .modal-content:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary-cyan), var(--accent-purple));
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px;
         }
-
-        /* Microsoft Login Special Modal */
-        .microsoft-modal {
-            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        
+        .close:hover {
+            color: #fff;
         }
-
-        .microsoft-btn {
-            background: linear-gradient(135deg, #0078D4, #106EBE);
-            border: none;
+        
+        .payment-option {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .payment-option:hover, .payment-option.active {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+        }
+        
+        .cart-item {
+            transition: all 0.3s ease;
+        }
+        
+        .cart-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
             padding: 15px 20px;
             border-radius: 8px;
             color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 120, 212, 0.4);
+            z-index: 1001;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
         }
-
-        .microsoft-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 120, 212, 0.6);
+        
+        .notification.show {
+            transform: translateX(0);
         }
-
-        /* Payment Methods */
-        .payment-method {
-            border: 2px solid rgba(0, 212, 255, 0.2);
-            border-radius: 8px;
-            padding: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
+        
+        .notification.success {
+            background: rgba(34, 197, 94, 0.9);
         }
-
-        .payment-method:hover,
-        .payment-method.selected {
-            border-color: var(--primary-cyan);
-            background: rgba(0, 212, 255, 0.1);
-            transform: scale(1.05);
+        
+        .notification.error {
+            background: rgba(239, 68, 68, 0.9);
         }
-
-        /* Responsive */
+        
         @media (max-width: 768px) {
-            .loading-logo {
+            .hero-title {
                 font-size: 2.5rem;
             }
             
-            .loading-bar {
-                width: 250px;
-            }
-
             .modal-content {
                 width: 95%;
                 margin: 10% auto;
             }
+            
+            .grid-responsive {
+                grid-template-columns: 1fr;
+            }
         }
-
-        /* Hidden class */
-        .hidden {
-            display: none !important;
+        
+        .navbar-mobile {
+            display: none;
         }
-
-        /* Card animations */
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        
+        @media (max-width: 768px) {
+            .navbar-desktop {
+                display: none;
+            }
+            
+            .navbar-mobile {
+                display: block;
+            }
         }
-
-        .card-hover:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
-        }
-
-        /* Particle effects */
-        .particle {
+        
+        .mobile-menu {
+            display: none;
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--primary-cyan);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: particleFloat 4s linear infinite;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Loading spinner */
-        .spinner {
-            border: 2px solid rgba(0, 212, 255, 0.2);
-            border-top: 2px solid var(--primary-cyan);
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-            margin-right: 8px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        
+        .mobile-menu.active {
+            display: block;
         }
     </style>
 </head>
 <body>
     <!-- Loading Screen -->
-    <div id="loading-screen">
-        <div class="minecraft-blocks">
-            <div class="block" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
-            <div class="block" style="top: 30%; left: 80%; animation-delay: 0.5s;"></div>
-            <div class="block" style="top: 60%; left: 20%; animation-delay: 1s;"></div>
-            <div class="block" style="top: 70%; left: 70%; animation-delay: 1.5s;"></div>
+    <div id="loadingScreen" class="loading-screen">
+        <div class="text-center">
+            <div class="loading-text logo-font glow">PIKZELS NETWORK</div>
+            <div class="text-lg mt-4">Loading the ultimate Minecraft experience...</div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
         </div>
-        <div class="loading-logo orbitron">PIKZELS</div>
-        <div class="loading-bar">
-            <div class="loading-progress"></div>
-        </div>
-        <p class="mt-4 text-gray-400">Loading the ultimate Minecraft experience...</p>
     </div>
 
-    <!-- Particle Background -->
-    <canvas id="particles"></canvas>
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
 
     <!-- Navigation -->
-    <nav class="nav-glass fixed w-full top-0 z-50 transition-all duration-300">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold orbitron glow-text">PIKZELS</div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="hover:text-cyan-400 transition-colors">Home</a>
-                    <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
-                    <a href="#gamemodes" class="hover:text-cyan-400 transition-colors">Game Modes</a>
-                    <a href="#leaderboards" class="hover:text-cyan-400 transition-colors">Leaderboards</a>
-                    <a href="#store" class="hover:text-cyan-400 transition-colors">Store</a>
-                    <a href="#downloads" class="hover:text-cyan-400 transition-colors">Downloads</a>
-                    <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+    <nav class="fixed top-0 w-full z-50 glass">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="logo-font text-2xl font-bold glow">PIKZELS</div>
+                
+                <!-- Desktop Menu -->
+                <div class="navbar-desktop hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-yellow-400 transition-colors">Home</a>
+                    <a href="#store" class="hover:text-yellow-400 transition-colors">Store</a>
+                    <a href="#vote" class="hover:text-yellow-400 transition-colors">Vote</a>
+                    <a href="#forum" class="hover:text-yellow-400 transition-colors">Forum</a>
+                    <a href="#discord" class="hover:text-yellow-400 transition-colors">Discord</a>
                 </div>
-                <div class="flex space-x-4">
-                    <button onclick="openLoginModal()" class="neon-btn text-sm">Login</button>
-                    <button class="md:hidden" onclick="toggleMobileMenu()">
-                        <i class="fas fa-bars text-xl"></i>
+                
+                <!-- Mobile Menu Button -->
+                <div class="navbar-mobile md:hidden">
+                    <button id="mobileMenuBtn" class="text-2xl">
+                        <i class="fas fa-bars"></i>
                     </button>
+                </div>
+                
+                <!-- Desktop Auth Buttons -->
+                <div class="navbar-desktop hidden md:flex space-x-4">
+                    <button onclick="openLoginModal()" class="bg-blue-600 px-4 py-2 rounded hover:bg-blue-700 transition-colors">Login</button>
+                    <button onclick="openRegisterModal()" class="bg-yellow-600 px-4 py-2 rounded hover:bg-yellow-700 transition-colors">Register</button>
+                    <button onclick="openCartModal()" class="bg-green-600 px-4 py-2 rounded hover:bg-green-700 transition-colors relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-xs rounded-full px-2 py-1">0</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="mobile-menu">
+                <div class="py-4 space-y-4">
+                    <a href="#home" class="block px-4 py-2 hover:bg-blue-600">Home</a>
+                    <a href="#store" class="block px-4 py-2 hover:bg-blue-600">Store</a>
+                    <a href="#vote" class="block px-4 py-2 hover:bg-blue-600">Vote</a>
+                    <a href="#forum" class="block px-4 py-2 hover:bg-blue-600">Forum</a>
+                    <a href="#discord" class="block px-4 py-2 hover:bg-blue-600">Discord</a>
+                    <div class="px-4 py-2 space-y-2">
+                        <button onclick="openLoginModal()" class="w-full bg-blue-600 px-4 py-2 rounded">Login</button>
+                        <button onclick="openRegisterModal()" class="w-full bg-yellow-600 px-4 py-2 rounded">Register</button>
+                        <button onclick="openCartModal()" class="w-full bg-green-600 px-4 py-2 rounded relative">
+                            Cart (<span id="cartCountMobile">0</span>)
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden fixed top-16 left-0 w-full bg-black bg-opacity-90 z-40">
-        <div class="flex flex-col space-y-4 p-6">
-            <a href="#home" class="hover:text-cyan-400 transition-colors">Home</a>
-            <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
-            <a href="#gamemodes" class="hover:text-cyan-400 transition-colors">Game Modes</a>
-            <a href="#leaderboards" class="hover:text-cyan-400 transition-colors">Leaderboards</a>
-            <a href="#store" class="hover:text-cyan-400 transition-colors">Store</a>
-            <a href="#downloads" class="hover:text-cyan-400 transition-colors">Downloads</a>
-            <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <main id="main-content" class="hidden">
-        <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center justify-center relative pt-20">
-            <div class="text-center z-10">
-                <h1 class="text-6xl md:text-8xl font-black orbitron glow-text mb-6 slide-up">PIKZELS</h1>
-                <h2 class="text-2xl md:text-4xl mb-8 slide-up">The Ultimate Minecraft Experience</h2>
-                <div class="bg-black bg-opacity-50 rounded-lg p-6 mb-8 inline-block slide-up">
-                    <p class="text-lg mb-2">Server IP:</p>
-                    <div class="flex items-center justify-center space-x-4">
-                        <code class="text-2xl text-cyan-400 font-mono bg-gray-800 px-4 py-2 rounded">playpikzels.fun</code>
-                        <button onclick="copyIP()" class="neon-btn text-sm">
-                            <i class="fas fa-copy"></i> Copy
-                        </button>
-                    </div>
-                </div>
-                <div class="mb-8 slide-up">
-                    <div class="flex items-center justify-center space-x-4 mb-4">
-                        <div class="flex items-center">
-                            <div class="w-3 h-3 bg-green-500 rounded-full mr-2 status-online"></div>
-                            <span>Online</span>
-                        </div>
-                        <div class="text-cyan-400 font-bold" id="player-count">0/100 Players</div>
-                    </div>
-                </div>
-                <button onclick="joinServer()" class="neon-btn text-xl px-8 py-4 slide-up glow-pulse">
-                    <i class="fas fa-play mr-2"></i> JOIN NOW
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative">
+        <div class="text-center z-10">
+            <h1 class="hero-title text-6xl font-bold logo-font glow mb-4">PIKZELS NETWORK</h1>
+            <p class="text-xl mb-8 glow-blue">The Ultimate Minecraft Gaming Experience</p>
+            <div class="space-x-4">
+                <button class="btn-glow bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg font-bold text-lg">
+                    <i class="fas fa-play mr-2"></i>PLAY NOW
+                </button>
+                <button onclick="document.getElementById('store').scrollIntoView({behavior: 'smooth'})" class="btn-glow bg-yellow-600 hover:bg-yellow-700 px-8 py-4 rounded-lg font-bold text-lg">
+                    <i class="fas fa-shopping-bag mr-2"></i>STORE
                 </button>
             </div>
-        </section>
+            <p class="mt-8 text-lg">Server IP: <span class="glow font-bold">play.pikzels.net</span></p>
+        </div>
+    </section>
 
-        <!-- About Section -->
-        <section id="about" class="py-20 px-6">
-            <div class="container mx-auto">
-                <script async="async" data-cfasync="false" src="//pl27427901.profitableratecpm.com/d4d1912b522fc344e6fbb2210b3890a7/invoke.js"></script>
-<div id="container-d4d1912b522fc344e6fbb2210b3890a7"></div>
-                <h2 class="text-4xl font-bold orbitron text-center mb-12 glow-text">About Pikzels Network</h2>
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="slide-up">
-                        <p class="text-lg mb-6">
-                            Welcome to Pikzels Network, where pixels meet perfection! Our server offers an unparalleled Minecraft experience with custom features, dedicated staff, and a thriving community.
-                        </p>
-                        <p class="text-lg mb-6">
-                            Founded with a vision to create the ultimate multiplayer experience, we've built a network that combines classic gameplay with innovative features that keep you engaged for hours.
-                        </p>
-                        <div class="bg-gray-800 rounded-lg p-6 card-hover">
-                            <h3 class="text-xl font-bold mb-4 text-cyan-400">Our Mission</h3>
-                            <p>To provide the most engaging, fair, and fun Minecraft server experience while building a strong community of passionate players.</p>
-                        </div>
-                    </div>
-                    <div class="slide-up">
-                        <div class="bg-gray-800 rounded-lg p-6 card-hover">
-                            <h3 class="text-xl font-bold mb-4 text-cyan-400">Meet Our Team</h3>
-                            <div class="space-y-4">
-                                <div class="flex items-center">
-                                    <div class="w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mr-4">
-                                        <i class="fas fa-crown text-white"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-bold">OG_KRISH2011</p>
-                                        <p class="text-sm text-gray-400">Owner & Developer</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center">
-                                    <div class="w-12 h-12 bg-gradient-to-r from-red-400 to-pink-500 rounded-full flex items-center justify-center mr-4">
-                                        <i class="fas fa-shield-alt text-white"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-bold">Oggy4illuX</p>
-                                        <p class="text-sm text-gray-400">Administrator</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center">
-                                        <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center mr-4">
-                                            <i class="fas fa-user-plus text-white"></i>
-                                        </div>
-                                        <div>
-                                            <p class="font-bold">Moderator Positions</p>
-                                            <p class="text-sm text-gray-400">Applications Open!</p>
-                                        </div>
-                                    </div>
-                                    <button onclick="openModeratorApplication()" class="neon-btn text-sm">
-                                        Apply Now
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <!-- About Section -->
+    <section class="py-20 container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold glow mb-4">About Pikzels Network</h2>
+            <p class="text-xl text-gray-300">Premium Minecraft gaming with cutting-edge features</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass p-6 rounded-lg card-hover text-center">
+                <i class="fas fa-users text-4xl text-yellow-400 mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Community Focused</h3>
+                <p class="text-gray-300">Join thousands of players in our welcoming community</p>
+            </div>
+            
+            <div class="glass p-6 rounded-lg card-hover text-center">
+                <i class="fas fa-server text-4xl text-blue-400 mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Premium Performance</h3>
+                <p class="text-gray-300">High-end servers ensuring lag-free gameplay</p>
+            </div>
+            
+            <div class="glass p-6 rounded-lg card-hover text-center">
+                <i class="fas fa-trophy text-4xl text-green-400 mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Unique Content</h3>
+                <p class="text-gray-300">Custom plugins and exclusive game modes</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Modes Section -->
+    <section class="py-20 bg-black bg-opacity-30">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold glow mb-4">Game Modes</h2>
+                <p class="text-xl text-gray-300">Discover our exciting game modes</p>
+            </div>
+            
+            <div class="grid grid-responsive md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass p-6 rounded-lg card-hover text-center">
+                    <i class="fas fa-sword text-4xl text-red-400 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Survival</h3>
+                    <p class="text-gray-300">Classic survival with custom features</p>
+                </div>
+                
+                <div class="glass p-6 rounded-lg card-hover text-center">
+                    <i class="fas fa-crown text-4xl text-yellow-400 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Skyblock</h3>
+                    <p class="text-gray-300">Build your island empire</p>
+                </div>
+                
+                <div class="glass p-6 rounded-lg card-hover text-center">
+                    <i class="fas fa-fist-raised text-4xl text-purple-400 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">PvP Arena</h3>
+                    <p class="text-gray-300">Intense player vs player combat</p>
+                </div>
+                
+                <div class="glass p-6 rounded-lg card-hover text-center">
+                    <i class="fas fa-hammer text-4xl text-blue-400 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Creative</h3>
+                    <p class="text-gray-300">Unlimited building possibilities</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Game Modes Section -->
-        <section id="gamemodes" class="py-20 px-6 bg-gray-900">
-            <div class="container mx-auto">
-                <h2 class="text-4xl font-bold orbitron text-center mb-12 glow-text">Game Modes</h2>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="game-card slide-up card-hover">
-                        <div class="text-center">
-                            <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4 glow-pulse">
-                                <i class="fas fa-bed text-2xl text-white"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-4 text-red-400">BedWars</h3>
-                            <p class="text-gray-300 mb-6">
-                                Protect your bed and destroy others! Team up with friends in this fast-paced strategic game mode with custom maps and unique features.
-                            </p>
-                            <button onclick="selectGameMode('bedwars')" class="neon-btn w-full">Play BedWars</button>
-                        </div>
-                    </div>
-                    <div class="game-card slide-up card-hover">
-                        <div class="text-center">
-                            <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 glow-pulse">
-                                <i class="fas fa-heart text-2xl text-white"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-4 text-purple-400">Lifesteal SMP</h3>
-                            <p class="text-gray-300 mb-6">
-                                Steal hearts from your enemies! A unique survival experience where PvP has consequences. Build, survive, and dominate!
-                            </p>
-                            <button onclick="selectGameMode('lifesteal')" class="neon-btn w-full">Join Lifesteal</button>
-                        </div>
-                    </div>
-                    <div class="game-card slide-up card-hover">
-                        <div class="text-center">
-                            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 glow-pulse">
-                                <i class="fas fa-tree text-2xl text-white"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-4 text-green-400">Survival</h3>
-                            <p class="text-gray-300 mb-6">
-                                Classic survival with a twist! Custom features, land claiming, economy system, and much more in our enhanced survival world.
-                            </p>
-                            <button onclick="selectGameMode('survival')" class="neon-btn w-full">Play Survival</button>
-                        </div>
-                    </div>
+    <!-- Store Section -->
+    <section id="store" class="py-20 container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold glow mb-4">Pikzels Store</h2>
+            <p class="text-xl text-gray-300">Get premium items and ranks</p>
+        </div>
+        
+        <div class="grid grid-responsive md:grid-cols-2 lg:grid-cols-3 gap-8" id="storeItems">
+            <!-- Store items will be populated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="py-20 bg-black bg-opacity-30">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold glow mb-8">Join Our Community</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="glass p-8 rounded-lg">
+                    <i class="fab fa-discord text-6xl text-blue-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4">Discord Server</h3>
+                    <p class="text-gray-300 mb-6">Chat with players and get support</p>
+                    <button class="btn-glow bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg">Join Discord</button>
+                </div>
+                
+                <div class="glass p-8 rounded-lg">
+                    <i class="fas fa-chart-line text-6xl text-green-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4">Live Stats</h3>
+                    <div class="text-3xl font-bold glow mb-2" id="playerCount">1,247</div>
+                    <p class="text-gray-300">Players Online</p>
                 </div>
             </div>
-        </section>
-
-        <!-- Leaderboards Section -->
-        <section id="leaderboards" class="py-20 px-6">
-            <div class="container mx-auto">
-                <h2 class="text-4xl font-bold orbitron text-center mb-12 glow-text">Leaderboards</h2>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-gray-800 rounded-lg p-6 slide-up card-hover">
-                        <h3 class="text-2xl font-bold mb-6 text-red-400 flex items-center">
-                            <i class="fas fa-bed mr-3"></i>BedWars Champions
-                        </h3>
-                        <div style="height: 300px;">
-                            <canvas id="bedwarsChart"></canvas>
-                        </div>
-                        <div class="mt-4 space-y-2">
-                            <div class="flex justify-between items-center p-2 bg-gray-700 rounded">
-                                <span class="flex items-center">
-                                    <span class="text-yellow-400 mr-2">🥇</span>
-                                    <span>ProGamer123</span>
-                                </span>
-                                <span class="text-cyan-400">2,547 Wins</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-gray-700 rounded">
-                                <span class="flex items-center">
-                                    <span class="text-gray-400 mr-2">🥈</span>
-                                    <span>BedDestroyer</span>
-                                </span>
-                                <span class="text-cyan-400">2,103 Wins</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-gray-700 rounded">
-                                <span class="flex items-center">
-                                    <span class="text-orange-400 mr-2">🥉</span>
-                                    <span>SkyWarrior</span>
-                                </span>
-                                <span class="text-cyan-400">1,892 Wins</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-gray-800 rounded-lg p-6 slide-up card-hover">
-                        <h3 class="text-2xl font-bold mb-6 text-purple-400 flex items-center">
-                            <i class="fas fa-heart mr-3"></i>Lifesteal Legends
-                        </h3>
-                        <div style="height: 300px;">
-                            <canvas id="lifesteaChart"></canvas>
-                        </div>
-                        <div class="mt-4 space-y-2">
-                            <div class="flex justify-between items-center p-2 bg-gray-700 rounded">
-                                <span class="flex items-center">
-                                    <span class="text-yellow-400 mr-2">🥇</span>
-                                    <span>HeartThief</span>
-                                </span>
-                                <span class="text-cyan-400">❤️ × 15</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-gray-700 rounded">
-                                <span class="flex items-center">
-                                    <span class="text-gray-400 mr-2">🥈</span>
-                                    <span>LifeSteal_Pro</span>
-                                </span>
-                                <span class="text-cyan-400">❤️ × 12</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-gray-700 rounded">
-                                <span class="flex items-center">
-                                    <span class="text-orange-400 mr-2">🥉</span>
-                                    <span>PvPMaster</span>
-                                </span>
-                                <span class="text-cyan-400">❤️ × 11</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Store Section -->
-        <section id="store" class="py-20 px-6 bg-gray-900">
-            <div class="container mx-auto">
-                <h2 class="text-4xl font-bold orbitron text-center mb-12 glow-text">Server Store</h2>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Ranks -->
-                    <div class="store-item slide-up card-hover">
-                        <div class="text-center">
-                            <div class="w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 glow-pulse">
-                                <i class="fas fa-star text-2xl text-white"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2 text-yellow-400">VIP Rank</h3>
-                            <p class="text-3xl font-bold mb-4 text-cyan-400">$9.99</p>
-                            <ul class="text-sm text-gray-300 mb-6 space-y-2">
-                                <li>✓ Colored Chat</li>
-                                <li>✓ VIP Tag</li>
-                                <li>✓ 2 Home Points</li>
-                                <li>✓ Priority Queue</li>
-                            </ul>
-                            <button onclick="purchaseItem('vip', 9.99)" class="neon-btn w-full">Purchase VIP</button>
-                        </div>
-                    </div>
-                    <div class="store-item slide-up card-hover">
-                        <div class="text-center">
-                            <div class="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 glow-pulse">
-                                <i class="fas fa-gem text-2xl text-white"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2 text-cyan-400">MVP Rank</h3>
-                            <p class="text-3xl font-bold mb-4 text-cyan-400">$19.99</p>
-                            <ul class="text-sm text-gray-300 mb-6 space-y-2">
-                                <li>✓ All VIP Features</li>
-                                <li>✓ MVP Tag & Colors</li>
-                                <li>✓ 5 Home Points</li>
-                                <li>✓ Fly Permission</li>
-                                <li>✓ Kit MVP</li>
-                            </ul>
-                            <button onclick="purchaseItem('mvp', 19.99)" class="neon-btn w-full">Purchase MVP</button>
-                        </div>
-                    </div>
-                    <div class="store-item slide-up card-hover">
-                        <div class="text-center">
-                            <div class="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 glow-pulse">
-                                <i class="fas fa-crown text-2xl text-white"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2 text-purple-400">MVP+ Rank</h3>
-                            <p class="text-3xl font-bold mb-4 text-cyan-400">$39.99</p>
-                            <ul class="text-sm text-gray-300 mb-6 space-y-2">
-                                <li>✓ All MVP Features</li>
-                                <li>✓ MVP+ Tag & Glow</li>
-                                <li>✓ 10 Home Points</li>
-                                <li>✓ WorldEdit Access</li>
-                                <li>✓ Exclusive Cosmetics</li>
-                            </ul>
-                            <button onclick="purchaseItem('mvp_plus', 39.99)" class="neon-btn w-full">Purchase MVP+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Additional Items -->
-                <div class="mt-12">
-                    <h3 class="text-2xl font-bold text-center mb-8 text-cyan-400">Additional Items</h3>
-                    <div class="grid md:grid-cols-4 gap-6">
-                        <div class="store-item text-center card-hover">
-                            <i class="fas fa-box text-3xl text-yellow-400 mb-4"></i>
-                            <h4 class="font-bold mb-2">Mystery Crate Key</h4>
-                            <p class="text-cyan-400 text-xl font-bold mb-4">$4.99</p>
-                            <button onclick="purchaseItem('crate_key', 4.99)" class="neon-btn text-sm w-full">Buy Key</button>
-                        </div>
-                        <div class="store-item text-center card-hover">
-                            <i class="fas fa-tshirt text-3xl text-pink-400 mb-4"></i>
-                            <h4 class="font-bold mb-2">Cosmetic Pack</h4>
-                            <p class="text-cyan-400 text-xl font-bold mb-4">$7.99</p>
-                            <button onclick="purchaseItem('cosmetic_pack', 7.99)" class="neon-btn text-sm w-full">Buy Pack</button>
-                        </div>
-                        <div class="store-item text-center card-hover">
-                            <i class="fas fa-coins text-3xl text-green-400 mb-4"></i>
-                            <h4 class="font-bold mb-2">1000 Coins</h4>
-                            <p class="text-cyan-400 text-xl font-bold mb-4">$2.99</p>
-                            <button onclick="purchaseItem('coins_1000', 2.99)" class="neon-btn text-sm w-full">Buy Coins</button>
-                        </div>
-                        <div class="store-item text-center card-hover">
-                            <i class="fas fa-shield-alt text-3xl text-blue-400 mb-4"></i>
-                            <h4 class="font-bold mb-2">Protection Boost</h4>
-                            <p class="text-cyan-400 text-xl font-bold mb-4">$1.99</p>
-                            <button onclick="purchaseItem('protection_boost', 1.99)" class="neon-btn text-sm w-full">Buy Boost</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Downloads Section -->
-        <section id="downloads" class="py-20 px-6">
-            <div class="container mx-auto">
-                <h2 class="text-4xl font-bold orbitron text-center mb-12 glow-text">Downloads</h2>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-gray-800 rounded-lg p-8 slide-up card-hover">
-                        <div class="text-center">
-                            <div class="w-20 h-20 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 glow-pulse">
-                                <i class="fas fa-cube text-3xl text-white"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-4 text-green-400">Resource Packs</h3>
-                            <p class="text-gray-300 mb-6">
-                                Get our custom resource packs to enhance your gameplay experience with unique textures and sounds.
-                            </p>
-                            <button onclick="downloadResource('resource_pack')" class="neon-btn w-full">
-                                <i class="fas fa-download mr-2"></i>Download Pack
-                            </button>
-                        </div>
-                    </div>
-                    <div class="bg-gray-800 rounded-lg p-8 slide-up card-hover">
-                        <div class="text-center">
-                            <div class="w-20 h-20 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6 glow-pulse">
-                                <i class="fas fa-cogs text-3xl text-white"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-4 text-purple-400">OG MODPACK</h3>
-                            <p class="text-gray-300 mb-6">
-                                Our exclusive modpack featuring custom mods and optimizations designed specifically for Pikzels Network.
-                            </p>
-                            <button onclick="downloadResource('og_modpack')" class="neon-btn w-full">
-                                <i class="fas fa-download mr-2"></i>Download Modpack
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Additional Downloads -->
-                <div class="mt-12">
-                    <h3 class="text-2xl font-bold text-center mb-8 text-cyan-400">Additional Tools</h3>
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <div class="bg-gray-800 rounded-lg p-6 text-center card-hover">
-                            <i class="fas fa-map text-3xl text-blue-400 mb-4"></i>
-                            <h4 class="font-bold mb-2">World Maps</h4>
-                            <p class="text-sm text-gray-400 mb-4">Download offline versions of our server worlds</p>
-                            <button onclick="downloadResource('world_maps')" class="neon-btn text-sm w-full">Download</button>
-                        </div>
-                        <div class="bg-gray-800 rounded-lg p-6 text-center card-hover">
-                            <i class="fas fa-palette text-3xl text-pink-400 mb-4"></i>
-                            <h4 class="font-bold mb-2">Custom Skins</h4>
-                            <p class="text-sm text-gray-400 mb-4">Exclusive skins for Pikzels Network players</p>
-                            <button onclick="downloadResource('custom_skins')" class="neon-btn text-sm w-full">Download</button>
-                        </div>
-                        <div class="bg-gray-800 rounded-lg p-6 text-center card-hover">
-                            <i class="fas fa-book text-3xl text-yellow-400 mb-4"></i>
-                            <h4 class="font-bold mb-2">Guides & Tutorials</h4>
-                            <p class="text-sm text-gray-400 mb-4">Complete guides for all our game modes</p>
-                            <button onclick="downloadResource('guides')" class="neon-btn text-sm w-full">Download</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 px-6 bg-gray-900">
-            <div class="container mx-auto">
-                <h2 class="text-4xl font-bold orbitron text-center mb-12 glow-text">Contact & Support</h2>
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div class="slide-up">
-                        <h3 class="text-2xl font-bold mb-6 text-cyan-400">Get in Touch</h3>
-                        <form id="contact-form" class="space-y-6">
-                            <div>
-                                <label class="block text-sm font-bold mb-2">Name *</label>
-                                <input type="text" id="contact-name" class="form-input" placeholder="Your Name" required>
-                                <div id="name-validation" class="validation-message"></div>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold mb-2">Email *</label>
-                                <input type="email" id="contact-email" class="form-input" placeholder="your@email.com" required>
-                                <div id="email-validation" class="validation-message"></div>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold mb-2">Subject *</label>
-                                <select id="contact-subject" class="form-input" required>
-                                    <option value="">Select Subject</option>
-                                    <option value="general">General Inquiry</option>
-                                    <option value="moderator">Moderator Application</option>
-                                    <option value="support">Technical Support</option>
-                                    <option value="report">Report a Player</option>
-                                    <option value="suggestion">Server Suggestion</option>
-                                </select>
-                                <div id="subject-validation" class="validation-message"></div>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold mb-2">Message *</label>
-                                <textarea id="contact-message" class="form-input h-32" placeholder="Your message here..." required></textarea>
-                                <div id="message-validation" class="validation-message"></div>
-                            </div>
-                            <button type="submit" id="contact-submit" class="neon-btn w-full">
-                                <i class="fas fa-paper-plane mr-2"></i>Send Message
-                            </button>
-                        </form>
-                    </div>
-                    
-                    <div class="slide-up">
-                        <h3 class="text-2xl font-bold mb-6 text-cyan-400">Connect With Us</h3>
-                        <div class="space-y-6">
-                            <div class="bg-gray-800 rounded-lg p-6 card-hover">
-                                <h4 class="font-bold mb-4 flex items-center">
-                                    <i class="fas fa-envelope mr-3 text-cyan-400"></i>Email Support
-                                </h4>
-                                <p class="text-gray-300">For general inquiries and support</p>
-                                <a href="mailto:Pikzelsnetwork@gmail.com" class="text-cyan-400 hover:text-cyan-300">Pikzelsnetwork@gmail.com</a>
-                            </div>
-                            
-                            <div class="bg-gray-800 rounded-lg p-6 card-hover">
-                                <h4 class="font-bold mb-4 flex items-center">
-                                    <i class="fab fa-discord mr-3 text-purple-400"></i>Discord Server
-                                </h4>
-                                <p class="text-gray-300 mb-3">Join our community discord server</p>
-                                <p class="text-yellow-400 font-bold">Coming Soon!</p>
-                            </div>
-
-                            <div class="bg-gray-800 rounded-lg p-6 card-hover">
-                                <h4 class="font-bold mb-4 flex items-center">
-                                    <i class="fas fa-user-shield mr-3 text-green-400"></i>Staff Applications
-                                </h4>
-                                <p class="text-gray-300 mb-3">Interested in becoming a moderator?</p>
-                                <p class="text-sm text-gray-400 mb-4">Email us at Pikzelsnetwork@gmail.com with your application!</p>
-                                <button onclick="openModeratorApplication()" class="neon-btn text-sm w-full">
-                                    Apply Now
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- FAQ Section -->
-                        <div class="mt-8">
-                            <h3 class="text-2xl font-bold mb-6 text-cyan-400">Frequently Asked Questions</h3>
-                            <div class="space-y-4">
-                                <div class="bg-gray-800 rounded-lg p-4 card-hover">
-                                    <button class="w-full text-left font-bold flex justify-between items-center" onclick="toggleFAQ(1)">
-                                        How do I join the server?
-                                        <i class="fas fa-chevron-down" id="faq-icon-1"></i>
-                                    </button>
-                                    <div id="faq-answer-1" class="hidden mt-3 text-gray-300">
-                                        Use the server IP: playpikzels.fun to connect to our server. Make sure you're using Minecraft version 1.8-1.20.x
-                                    </div>
-                                </div>
-                                <div class="bg-gray-800 rounded-lg p-4 card-hover">
-                                    <button class="w-full text-left font-bold flex justify-between items-center" onclick="toggleFAQ(2)">
-                                        What Minecraft version is supported?
-                                        <i class="fas fa-chevron-down" id="faq-icon-2"></i>
-                                    </button>
-                                    <div id="faq-answer-2" class="hidden mt-3 text-gray-300">
-                                        We support Minecraft versions 1.8 to 1.20.x with optimal performance on 1.19+
-                                    </div>
-                                </div>
-                                <div class="bg-gray-800 rounded-lg p-4 card-hover">
-                                    <button class="w-full text-left font-bold flex justify-between items-center" onclick="toggleFAQ(3)">
-                                        How do I apply for staff?
-                                        <i class="fas fa-chevron-down" id="faq-icon-3"></i>
-                                    </button>
-                                    <div id="faq-answer-3" class="hidden mt-3 text-gray-300">
-                                        Send your application via email to Pikzelsnetwork@gmail.com with your experience and why you want to be part of our team.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-black py-12 px-6">
-        <div class="container mx-auto">
-            <div class="grid md:grid-cols-4 gap-8">
+    <footer class="py-12 bg-black bg-opacity-50">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold orbitron glow-text mb-4">PIKZELS</h3>
-                    <p class="text-gray-400">The ultimate Minecraft server experience with custom features and an amazing community.</p>
+                    <h3 class="logo-font text-2xl font-bold glow mb-4">PIKZELS NETWORK</h3>
+                    <p class="text-gray-400">The ultimate Minecraft gaming experience</p>
                 </div>
+                
                 <div>
-                    <h4 class="font-bold mb-4 text-cyan-400">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#home" class="hover:text-cyan-400">Home</a></li>
-                        <li><a href="#gamemodes" class="hover:text-cyan-400">Game Modes</a></li>
-                        <li><a href="#store" class="hover:text-cyan-400">Store</a></li>
-                        <li><a href="#downloads" class="hover:text-cyan-400">Downloads</a></li>
-                    </ul>
+                    <h4 class="text-xl font-bold mb-4">Quick Links</h4>
+                    <div class="space-y-2">
+                        <a href="#" class="block text-gray-400 hover:text-white">Rules</a>
+                        <a href="#" class="block text-gray-400 hover:text-white">Support</a>
+                        <a href="#" class="block text-gray-400 hover:text-white">Vote</a>
+                        <a href="#" class="block text-gray-400 hover:text-white">Staff</a>
+                    </div>
                 </div>
+                
                 <div>
-                    <h4 class="font-bold mb-4 text-cyan-400">Support</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#contact" class="hover:text-cyan-400">Contact Us</a></li>
-                        <li><a href="mailto:Pikzelsnetwork@gmail.com" class="hover:text-cyan-400">Email Support</a></li>
-                        <li><span class="text-yellow-400">Discord - Coming Soon</span></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4 text-cyan-400">Server Info</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li>IP: playpikzels.fun</li>
-                        <li>Version: 1.8-1.20.x</li>
-                        <li>Max Players: 100</li>
-                        <li>Uptime: 99.9%</li>
-                    </ul>
+                    <h4 class="text-xl font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl text-gray-400 hover:text-blue-400"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="text-2xl text-gray-400 hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-2xl text-gray-400 hover:text-red-400"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-2xl text-gray-400 hover:text-pink-400"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 Pikzels Network. All rights reserved. | Created by OG_KRISH2011</p>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2024 Pikzels Network. All rights reserved. | Server IP: play.pikzels.net</p>
             </div>
         </div>
     </footer>
 
     <!-- Login Modal -->
-    <div id="login-modal" class="modal">
-        <div class="modal-content microsoft-modal">
-            <span class="close float-right text-2xl cursor-pointer" onclick="closeLoginModal()">&times;</span>
-            <h2 class="text-2xl font-bold mb-6 text-center orbitron glow-text">Player Login</h2>
-            
-            <!-- Microsoft Login -->
-            <button id="microsoft-login-btn" class="microsoft-btn w-full mb-4">
-                <i class="fab fa-microsoft mr-2"></i>Login with Microsoft
-            </button>
-            
-            <div class="text-center my-4">
-                <span class="text-gray-400">or</span>
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="glass rounded-lg p-6">
+                <span class="close" onclick="closeModal('loginModal')">&times;</span>
+                <h2 class="text-2xl font-bold glow mb-6 text-center">Login to Pikzels</h2>
+                <form id="loginForm">
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2">Username/Email</label>
+                        <input type="text" class="w-full p-3 rounded bg-gray-800 border border-gray-600 focus:border-blue-500 focus:outline-none" required>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-bold mb-2">Password</label>
+                        <input type="password" class="w-full p-3 rounded bg-gray-800 border border-gray-600 focus:border-blue-500 focus:outline-none" required>
+                    </div>
+                    <button type="submit" class="w-full btn-glow bg-blue-600 hover:bg-blue-700 py-3 rounded font-bold">Login</button>
+                </form>
+                <p class="text-center mt-4">Don't have an account? <a href="#" onclick="closeModal('loginModal'); openRegisterModal()" class="text-yellow-400 hover:underline">Register here</a></p>
             </div>
-            
-            <!-- Username Login -->
-            <form id="login-form" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-bold mb-2">Minecraft Username</label>
-                    <input type="text" id="login-username" class="form-input" placeholder="Enter your Minecraft username" required>
-                    <div id="username-validation" class="validation-message"></div>
-                </div>
-                <button type="submit" class="neon-btn w-full">
-                    <i class="fas fa-sign-in-alt mr-2"></i>Login
-                </button>
-            </form>
-            
-            <p class="text-sm text-gray-400 mt-4 text-center">
-                Don't have an account? Just enter your Minecraft username to get started!
-            </p>
         </div>
     </div>
 
-    <!-- Payment Modal -->
-    <div id="payment-modal" class="modal">
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
         <div class="modal-content">
-            <span class="close float-right text-2xl cursor-pointer" onclick="closePaymentModal()">&times;</span>
-            <h2 class="text-2xl font-bold mb-6 text-center orbitron glow-text">Complete Purchase</h2>
-            
-            <div id="payment-item-info" class="bg-gray-700 rounded-lg p-4 mb-6">
-                <!-- Payment item details will be inserted here -->
+            <div class="glass rounded-lg p-6">
+                <span class="close" onclick="closeModal('registerModal')">&times;</span>
+                <h2 class="text-2xl font-bold glow mb-6 text-center">Join Pikzels Network</h2>
+                <form id="registerForm">
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2">Username</label>
+                        <input type="text" class="w-full p-3 rounded bg-gray-800 border border-gray-600 focus:border-blue-500 focus:outline-none" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2">Email</label>
+                        <input type="email" class="w-full p-3 rounded bg-gray-800 border border-gray-600 focus:border-blue-500 focus:outline-none" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2">Password</label>
+                        <input type="password" class="w-full p-3 rounded bg-gray-800 border border-gray-600 focus:border-blue-500 focus:outline-none" required>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-bold mb-2">Confirm Password</label>
+                        <input type="password" class="w-full p-3 rounded bg-gray-800 border border-gray-600 focus:border-blue-500 focus:outline-none" required>
+                    </div>
+                    <button type="submit" class="w-full btn-glow bg-yellow-600 hover:bg-yellow-700 py-3 rounded font-bold">Create Account</button>
+                </form>
+                <p class="text-center mt-4">Already have an account? <a href="#" onclick="closeModal('registerModal'); openLoginModal()" class="text-blue-400 hover:underline">Login here</a></p>
             </div>
+        </div>
+    </div>
 
-            <div class="mb-6">
-                <label class="block text-sm font-bold mb-2">Select Payment Method</label>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="payment-method" data-method="stripe">
-                        <i class="fas fa-credit-card mr-2"></i>Credit Card
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="glass rounded-lg p-6">
+                <span class="close" onclick="closeModal('cartModal')">&times;</span>
+                <h2 class="text-2xl font-bold glow mb-6 text-center">Shopping Cart</h2>
+                
+                <div id="cartItems" class="space-y-4 mb-6">
+                    <!-- Cart items will be populated by JavaScript -->
+                </div>
+                
+                <div class="border-t border-gray-600 pt-4">
+                    <div class="flex justify-between items-center text-xl font-bold mb-4">
+                        <span>Total:</span>
+                        <span id="cartTotal" class="glow">$0.00</span>
                     </div>
-                    <div class="payment-method" data-method="paypal">
-                        <i class="fab fa-paypal mr-2"></i>PayPal
-                    </div>
-                    <div class="payment-method" data-method="razorpay">
-                        <i class="fas fa-wallet mr-2"></i>Razorpay/UPI
-                    </div>
-                    <div class="payment-method" data-method="crypto">
-                        <i class="fab fa-bitcoin mr-2"></i>Crypto
-                    </div>
+                    <button onclick="proceedToCheckout()" class="w-full btn-glow bg-green-600 hover:bg-green-700 py-3 rounded font-bold">
+                        <i class="fas fa-credit-card mr-2"></i>Proceed to Checkout
+                    </button>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- Payment Forms -->
-            <div id="stripe-form" class="payment-form hidden">
-                <form class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-bold mb-2">Card Number *</label>
-                        <input type="text" id="card-number" class="form-input" placeholder="1234 5678 9012 3456" maxlength="19">
-                        <div id="card-validation" class="validation-message"></div>
-                    </div>
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <div class="glass rounded-lg p-6">
+                <span class="close" onclick="closeModal('checkoutModal')">&times;</span>
+                <h2 class="text-2xl font-bold glow mb-6 text-center">Checkout</h2>
+                
+                <!-- Payment Methods -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-bold mb-4">Select Payment Method</h3>
                     <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-bold mb-2">Expiry Date *</label>
-                            <input type="text" id="card-expiry" class="form-input" placeholder="MM/YY" maxlength="5">
-                            <div id="expiry-validation" class="validation-message"></div>
+                        <div class="payment-option glass p-4 rounded-lg cursor-pointer" data-method="card">
+                            <i class="fas fa-credit-card text-2xl mb-2"></i>
+                            <p class="font-bold">Credit/Debit Card</p>
                         </div>
-                        <div>
-                            <label class="block text-sm font-bold mb-2">CVV *</label>
-                            <input type="text" id="card-cvv" class="form-input" placeholder="123" maxlength="4">
-                            <div id="cvv-validation" class="validation-message"></div>
+                        <div class="payment-option glass p-4 rounded-lg cursor-pointer" data-method="upi">
+                            <i class="fas fa-mobile-alt text-2xl mb-2"></i>
+                            <p class="font-bold">UPI Payment</p>
                         </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold mb-2">Cardholder Name *</label>
-                        <input type="text" id="card-name" class="form-input" placeholder="John Doe">
-                        <div id="cardholder-validation" class="validation-message"></div>
+                </div>
+                
+                <!-- Card Payment Form -->
+                <div id="cardPayment" class="payment-form" style="display: none;">
+                    <h4 class="text-lg font-bold mb-4">Card Details</h4>
+                    <form id="cardForm">
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold mb-2">Card Number</label>
+                            <input type="text" id="cardNumber" class="w-full p-3 rounded bg-gray-800 border border-gray-600 focus:border-blue-500 focus:outline-none" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                            <div id="cardError" class="text-red-400 text-sm mt-1" style="display: none;"></div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Expiry Date</label>
+                                <input type="text" id="expiryDate" class="w-full p-3 rounded bg-gray-800 border border-gray-600 focus:border-blue-500 focus:outline-none" placeholder="MM/YY" maxlength="5" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2">CVV</label>
+                                <input type="text" id="cvv" class="w-full p-3 rounded bg-gray-800 border border-gray-600 focus:border-blue-500 focus:outline-none" placeholder="123" maxlength="3" required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold mb-2">Cardholder Name</label>
+                            <input type="text" id="cardholderName" class="w-full p-3 rounded bg-gray-800 border border-gray-600 focus:border-blue-500 focus:outline-none" placeholder="John Doe" required>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- UPI Payment Form -->
+                <div id="upiPayment" class="payment-form" style="display: none;">
+                    <h4 class="text-lg font-bold mb-4">UPI Payment</h4>
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2">Select UPI App</label>
+                        <div class="grid grid-cols-3 gap-4 mb-4">
+                            <div class="upi-option glass p-3 rounded-lg cursor-pointer text-center" data-app="gpay">
+                                <i class="fab fa-google-pay text-2xl mb-2"></i>
+                                <p class="text-sm">Google Pay</p>
+                            </div>
+                            <div class="upi-option glass p-3 rounded-lg cursor-pointer text-center" data-app="paytm">
+                                <i class="fas fa-wallet text-2xl mb-2"></i>
+                                <p class="text-sm">Paytm</p>
+                            </div>
+                            <div class="upi-option glass p-3 rounded-lg cursor-pointer text-center" data-app="phonepe">
+                                <i class="fas fa-mobile-alt text-2xl mb-2"></i>
+                                <p class="text-sm">PhonePe</p>
+                            </div>
+                        </div>
                     </div>
-                </form>
-            </div>
-
-            <div id="paypal-form" class="payment-form hidden">
-                <div class="text-center py-8">
-                    <i class="fab fa-paypal text-6xl text-blue-500 mb-4"></i>
-                    <p class="text-gray-300">You will be redirected to PayPal to complete your payment securely.</p>
+                    <form id="upiForm">
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold mb-2">UPI ID</label>
+                            <input type="text" id="upiId" class="w-full p-3 rounded bg-gray-800 border border-gray-600 focus:border-blue-500 focus:outline-none" placeholder="yourname@upi" required>
+                            <div id="upiError" class="text-red-400 text-sm mt-1" style="display: none;"></div>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Order Summary -->
+                <div class="border-t border-gray-600 pt-4 mt-6">
+                    <h4 class="text-lg font-bold mb-4">Order Summary</h4>
+                    <div id="checkoutItems" class="space-y-2 mb-4">
+                        <!-- Checkout items will be populated -->
+                    </div>
+                    <div class="flex justify-between items-center text-xl font-bold mb-4">
+                        <span>Total:</span>
+                        <span id="checkoutTotal" class="glow">$0.00</span>
+                    </div>
+                    <button onclick="processPayment()" id="payButton" class="w-full btn-glow bg-green-600 hover:bg-green-700 py-3 rounded font-bold" disabled>
+                        <i class="fas fa-lock mr-2"></i>Complete Payment
+                    </button>
                 </div>
             </div>
-
-            <div id="razorpay-form" class="payment-form hidden">
-                <form class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-bold mb-2">UPI ID *</label>
-                        <input type="text" id="upi-id" class="form-input" placeholder="example@paytm">
-                        <div id="upi-validation" class="validation-message"></div>
-                    </div>
-                    <p class="text-sm text-gray-400">Or pay using cards, netbanking, and wallets</p>
-                </form>
-            </div>
-
-            <div id="crypto-form" class="payment-form hidden">
-                <div class="text-center py-8">
-                    <i class="fab fa-bitcoin text-6xl text-yellow-500 mb-4"></i>
-                    <p class="text-gray-300 mb-4">Select your preferred cryptocurrency:</p>
-                    <div class="grid grid-cols-3 gap-4">
-                        <button class="neon-btn text-sm" onclick="selectCrypto('bitcoin')">Bitcoin</button>
-                        <button class="neon-btn text-sm" onclick="selectCrypto('ethereum')">Ethereum</button>
-                        <button class="neon-btn text-sm" onclick="selectCrypto('usdt')">USDT</button>
-                    </div>
-                </div>
-            </div>
-
-            <button id="complete-payment-btn" class="neon-btn w-full mt-6" onclick="processPayment()">
-                Complete Payment
-            </button>
         </div>
     </div>
 
-    <!-- Moderator Application Modal -->
-    <div id="moderator-modal" class="modal">
-        <div class="modal-content">
-            <span class="close float-right text-2xl cursor-pointer" onclick="closeModeratorModal()">&times;</span>
-            <h2 class="text-2xl font-bold mb-6 text-center orbitron glow-text">Moderator Application</h2>
-            
-            <form id="moderator-form" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-bold mb-2">Minecraft Username *</label>
-                    <input type="text" id="mod-username" class="form-input" placeholder="Your Minecraft username" required>
-                </div>
-                <div>
-                    <label class="block text-sm font-bold mb-2">Email Address *</label>
-                    <input type="email" id="mod-email" class="form-input" placeholder="your@email.com" required>
-                </div>
-                <div>
-                    <label class="block text-sm font-bold mb-2">Discord Username</label>
-                    <input type="text" id="mod-discord" class="form-input" placeholder="YourName#1234">
-                </div>
-                <div>
-                    <label class="block text-sm font-bold mb-2">Age *</label>
-                    <input type="number" id="mod-age" class="form-input" placeholder="16" min="13" required>
-                </div>
-                <div>
-                    <label class="block text-sm font-bold mb-2">Previous Experience *</label>
-                    <textarea id="mod-experience" class="form-input h-24" placeholder="Tell us about your previous moderation experience..." required></textarea>
-                </div>
-                <div>
-                    <label class="block text-sm font-bold mb-2">Why do you want to be a moderator? *</label>
-                    <textarea id="mod-reason" class="form-input h-24" placeholder="Explain why you want to join our staff team..." required></textarea>
-                </div>
-                <div>
-                    <label class="block text-sm font-bold mb-2">Available Time (hours per day) *</label>
-                    <input type="number" id="mod-time" class="form-input" placeholder="4" min="1" max="16" required>
-                </div>
-                <button type="submit" class="neon-btn w-full">
-                    <i class="fas fa-paper-plane mr-2"></i>Submit Application
-                </button>
-            </form>
-        </div>
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <div id="notificationText"></div>
     </div>
 
     <script>
-        // Global Variables
-        let currentUser = null;
-        let onlinePlayers = 0;
-        let selectedPaymentMethod = null;
-        let currentPurchase = null;
+        // Store data
+        const storeItems = [
+            { id: 1, name: "VIP Rank", price: 9.99, description: "Get VIP perks and exclusive features", image: "🏆", category: "rank" },
+            { id: 2, name: "Premium Rank", price: 19.99, description: "Premium access with advanced features", image: "👑", category: "rank" },
+            { id: 3, name: "Diamond Crate", price: 4.99, description: "Rare items and exclusive rewards", image: "💎", category: "crate" },
+            { id: 4, name: "Golden Sword", price: 7.99, description: "Legendary weapon with special abilities", image: "⚔️", category: "item" },
+            { id: 5, name: "Elite Rank", price: 39.99, description: "Ultimate gaming experience", image: "🌟", category: "rank" },
+            { id: 6, name: "Mystery Box", price: 2.99, description: "Random exclusive items", image: "📦", category: "crate" }
+        ];
 
-        // Validation Functions
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
+        let cart = [];
+        let selectedPaymentMethod = null;
+        let selectedUpiApp = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide loading screen after 3 seconds
+            setTimeout(() => {
+                document.getElementById('loadingScreen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                }, 500);
+            }, 3000);
+
+            // Create particles
+            createParticles();
+            
+            // Populate store
+            populateStore();
+            
+            // Update player count
+            updatePlayerCount();
+            
+            // Setup event listeners
+            setupEventListeners();
+        });
+
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
         }
 
-        function validateCardNumber(number) {
-            // Remove spaces and non-digits
-            const cleanNumber = number.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+        function populateStore() {
+            const storeContainer = document.getElementById('storeItems');
+            storeItems.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'glass p-6 rounded-lg card-hover';
+                itemElement.innerHTML = `
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">${item.image}</div>
+                        <h3 class="text-xl font-bold mb-2">${item.name}</h3>
+                        <p class="text-gray-300 mb-4">${item.description}</p>
+                        <div class="text-2xl font-bold text-yellow-400 mb-4">$${item.price}</div>
+                        <button onclick="addToCart(${item.id})" class="btn-glow bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded font-bold w-full">
+                            <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                        </button>
+                    </div>
+                `;
+                storeContainer.appendChild(itemElement);
+            });
+        }
+
+        function addToCart(itemId) {
+            const item = storeItems.find(i => i.id === itemId);
+            const existingItem = cart.find(i => i.id === itemId);
             
-            // Check if it's a valid length
-            if (cleanNumber.length < 13 || cleanNumber.length > 19) {
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...item, quantity: 1 });
+            }
+            
+            updateCartDisplay();
+            showNotification('Item added to cart!', 'success');
+        }
+
+        function removeFromCart(itemId) {
+            cart = cart.filter(item => item.id !== itemId);
+            updateCartDisplay();
+            showNotification('Item removed from cart!', 'success');
+        }
+
+        function updateCartDisplay() {
+            const cartCount = document.getElementById('cartCount');
+            const cartCountMobile = document.getElementById('cartCountMobile');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            cartCount.textContent = totalItems;
+            cartCountMobile.textContent = totalItems;
+            cartTotal.textContent = `$${total.toFixed(2)}`;
+            
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-gray-400 text-center py-8">Your cart is empty</p>';
+            } else {
+                cart.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item glass p-4 rounded-lg flex justify-between items-center';
+                    itemElement.innerHTML = `
+                        <div class="flex items-center">
+                            <span class="text-2xl mr-4">${item.image}</span>
+                            <div>
+                                <h4 class="font-bold">${item.name}</h4>
+                                <p class="text-gray-300">$${item.price} x ${item.quantity}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="font-bold text-yellow-400">$${(item.price * item.quantity).toFixed(2)}</span>
+                            <button onclick="removeFromCart(${item.id})" class="text-red-400 hover:text-red-300">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                    cartItems.appendChild(itemElement);
+                });
+            }
+        }
+
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!', 'error');
+                return;
+            }
+            
+            closeModal('cartModal');
+            openCheckoutModal();
+        }
+
+        function openCheckoutModal() {
+            populateCheckoutItems();
+            document.getElementById('checkoutModal').style.display = 'block';
+        }
+
+        function populateCheckoutItems() {
+            const checkoutItems = document.getElementById('checkoutItems');
+            const checkoutTotal = document.getElementById('checkoutTotal');
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            checkoutTotal.textContent = `$${total.toFixed(2)}`;
+            
+            checkoutItems.innerHTML = '';
+            cart.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'flex justify-between items-center';
+                itemElement.innerHTML = `
+                    <span>${item.name} x${item.quantity}</span>
+                    <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                `;
+                checkoutItems.appendChild(itemElement);
+            });
+        }
+
+        function setupEventListeners() {
+            // Mobile menu toggle
+            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+                const mobileMenu = document.getElementById('mobileMenu');
+                mobileMenu.classList.toggle('active');
+            });
+
+            // Payment method selection
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                    selectedPaymentMethod = this.dataset.method;
+                    
+                    document.querySelectorAll('.payment-form').forEach(form => {
+                        form.style.display = 'none';
+                    });
+                    
+                    document.getElementById(selectedPaymentMethod + 'Payment').style.display = 'block';
+                    updatePayButtonState();
+                });
+            });
+
+            // UPI app selection
+            document.querySelectorAll('.upi-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.upi-option').forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                    selectedUpiApp = this.dataset.app;
+                });
+            });
+
+            // Card number formatting and validation
+            document.getElementById('cardNumber').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\s/g, '').replace(/\D/g, '');
+                let formattedValue = value.replace(/(.{4})/g, '$1 ').trim();
+                e.target.value = formattedValue;
+                validateCard();
+                updatePayButtonState();
+            });
+
+            // Expiry date formatting
+            document.getElementById('expiryDate').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                e.target.value = value;
+                updatePayButtonState();
+            });
+
+            // CVV validation
+            document.getElementById('cvv').addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/\D/g, '');
+                updatePayButtonState();
+            });
+
+            // UPI ID validation
+            document.getElementById('upiId').addEventListener('input', function() {
+                validateUpiId();
+                updatePayButtonState();
+            });
+
+            // Form submissions
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                showNotification('Login successful!', 'success');
+                closeModal('loginModal');
+            });
+
+            document.getElementById('registerForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                showNotification('Account created successfully!', 'success');
+                closeModal('registerModal');
+            });
+        }
+
+        function validateCard() {
+            const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+            const cardError = document.getElementById('cardError');
+            
+            if (cardNumber.length === 0) {
+                cardError.style.display = 'none';
                 return false;
             }
             
-            // Luhn Algorithm
+            // Luhn algorithm for card validation
             let sum = 0;
             let alternate = false;
             
-            for (let i = cleanNumber.length - 1; i >= 0; i--) {
-                let n = parseInt(cleanNumber.charAt(i), 10);
+            for (let i = cardNumber.length - 1; i >= 0; i--) {
+                let n = parseInt(cardNumber.charAt(i), 10);
                 
                 if (alternate) {
                     n *= 2;
@@ -1238,790 +929,147 @@
                         n = (n % 10) + 1;
                     }
                 }
+                
                 sum += n;
                 alternate = !alternate;
             }
             
-            return (sum % 10) === 0;
+            const isValid = (sum % 10 === 0) && cardNumber.length >= 13 && cardNumber.length <= 19;
+            
+            if (!isValid && cardNumber.length >= 13) {
+                cardError.textContent = 'Invalid card number';
+                cardError.style.display = 'block';
+            } else {
+                cardError.style.display = 'none';
+            }
+            
+            return isValid;
         }
 
-        function validateUPI(upiId) {
-            const upiRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z][a-zA-Z0-9._-]*$/;
-            return upiRegex.test(upiId);
-        }
-
-        function validateExpiry(expiry) {
-            const regex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
-            if (!regex.test(expiry)) return false;
+        function validateUpiId() {
+            const upiId = document.getElementById('upiId').value;
+            const upiError = document.getElementById('upiError');
             
-            const [month, year] = expiry.split('/');
-            const now = new Date();
-            const currentYear = now.getFullYear() % 100;
-            const currentMonth = now.getMonth() + 1;
+            // UPI ID format: alphanumeric@provider
+            const upiRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+$/;
             
-            const expiryYear = parseInt(year);
-            const expiryMonth = parseInt(month);
-            
-            if (expiryYear < currentYear || (expiryYear === currentYear && expiryMonth < currentMonth)) {
+            if (upiId.length === 0) {
+                upiError.style.display = 'none';
                 return false;
             }
             
-            return true;
-        }
-
-        function validateCVV(cvv) {
-            return /^[0-9]{3,4}$/.test(cvv);
-        }
-
-        function showValidation(elementId, message, isError = true) {
-            const element = document.getElementById(elementId);
-            const input = element.previousElementSibling;
-            
-            if (isError) {
-                element.textContent = message;
-                element.className = 'validation-message error';
-                input.classList.add('error');
-                input.classList.remove('success');
-            } else {
-                element.textContent = message;
-                element.className = 'validation-message success';
-                input.classList.add('success');
-                input.classList.remove('error');
-            }
-        }
-
-        function clearValidation(elementId) {
-            const element = document.getElementById(elementId);
-            const input = element.previousElementSibling;
-            element.textContent = '';
-            element.className = 'validation-message';
-            input.classList.remove('error', 'success');
-        }
-
-        // Loading Screen Animation
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                document.getElementById('loading-screen').style.display = 'none';
-                document.getElementById('main-content').classList.remove('hidden');
-                initializeWebsite();
-            }, 3500);
-        });
-
-        // Initialize Website
-        function initializeWebsite() {
-            createParticles();
-            initializeCharts();
-            updatePlayerCount();
-            initializePaymentHandlers();
-            initializeFormValidation();
-            
-            // Update player count every 30 seconds
-            setInterval(updatePlayerCount, 30000);
-            
-            // Initialize scroll animations
-            initializeScrollAnimations();
-        }
-
-        // Initialize Form Validation
-        function initializeFormValidation() {
-            // Card number formatting and validation
-            const cardNumberInput = document.getElementById('card-number');
-            if (cardNumberInput) {
-                cardNumberInput.addEventListener('input', function(e) {
-                    let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
-                    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || '';
-                    
-                    e.target.value = formattedValue;
-                    
-                    if (value.length >= 13) {
-                        if (validateCardNumber(value)) {
-                            showValidation('card-validation', '✓ Valid card number', false);
-                        } else {
-                            showValidation('card-validation', '✗ Invalid card number');
-                        }
-                    } else if (value.length > 0) {
-                        showValidation('card-validation', 'Enter complete card number');
-                    } else {
-                        clearValidation('card-validation');
-                    }
-                });
-            }
-
-            // Expiry date formatting and validation
-            const cardExpiryInput = document.getElementById('card-expiry');
-            if (cardExpiryInput) {
-                cardExpiryInput.addEventListener('input', function(e) {
-                    let value = e.target.value.replace(/\D/g, '');
-                    if (value.length >= 2) {
-                        value = value.substring(0, 2) + '/' + value.substring(2, 4);
-                    }
-                    e.target.value = value;
-                    
-                    if (value.length === 5) {
-                        if (validateExpiry(value)) {
-                            showValidation('expiry-validation', '✓ Valid expiry date', false);
-                        } else {
-                            showValidation('expiry-validation', '✗ Invalid or expired date');
-                        }
-                    } else {
-                        clearValidation('expiry-validation');
-                    }
-                });
-            }
-
-            // CVV validation
-            const cardCvvInput = document.getElementById('card-cvv');
-            if (cardCvvInput) {
-                cardCvvInput.addEventListener('input', function(e) {
-                    const value = e.target.value.replace(/\D/g, '');
-                    e.target.value = value;
-                    
-                    if (value.length >= 3) {
-                        if (validateCVV(value)) {
-                            showValidation('cvv-validation', '✓ Valid CVV', false);
-                        } else {
-                            showValidation('cvv-validation', '✗ Invalid CVV');
-                        }
-                    } else {
-                        clearValidation('cvv-validation');
-                    }
-                });
-            }
-
-            // UPI validation
-            const upiInput = document.getElementById('upi-id');
-            if (upiInput) {
-                upiInput.addEventListener('input', function(e) {
-                    const value = e.target.value;
-                    
-                    if (value.length > 0) {
-                        if (validateUPI(value)) {
-                            showValidation('upi-validation', '✓ Valid UPI ID', false);
-                        } else {
-                            showValidation('upi-validation', '✗ Invalid UPI ID format');
-                        }
-                    } else {
-                        clearValidation('upi-validation');
-                    }
-                });
-            }
-        }
-
-        // Particle Background
-        function createParticles() {
-            const canvas = document.getElementById('particles');
-            const ctx = canvas.getContext('2d');
-            
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            
-            const particles = [];
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5,
-                    size: Math.random() * 2 + 1
-                });
-            }
-            
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                particles.forEach(particle => {
-                    particle.x += particle.vx;
-                    particle.y += particle.vy;
-                    
-                    if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-                    if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-                    
-                    ctx.beginPath();
-                    ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                    ctx.fillStyle = '#00D4FF';
-                    ctx.globalAlpha = 0.5;
-                    ctx.fill();
-                });
-                
-                requestAnimationFrame(animate);
-            }
-            
-            animate();
-            
-            window.addEventListener('resize', () => {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            });
-        }
-
-        // Initialize Charts
-        function initializeCharts() {
-            // BedWars Chart
-            const bedwarsCtx = document.getElementById('bedwarsChart').getContext('2d');
-            new Chart(bedwarsCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['ProGamer123', 'BedDestroyer', 'SkyWarrior', 'Others'],
-                    datasets: [{
-                        data: [2547, 2103, 1892, 5000],
-                        backgroundColor: ['#FFD700', '#C0C0C0', '#CD7F32', '#666'],
-                        borderColor: ['#FFD700', '#C0C0C0', '#CD7F32', '#666'],
-                        borderWidth: 2
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: '#FFFFFF'
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Lifesteal Chart
-            const lifesteaCtx = document.getElementById('lifesteaChart').getContext('2d');
-            new Chart(lifesteaCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['HeartThief', 'LifeSteal_Pro', 'PvPMaster', 'SoulReaper', 'DeathBringer'],
-                    datasets: [{
-                        label: 'Hearts',
-                        data: [15, 12, 11, 9, 8],
-                        backgroundColor: '#8B5CF6',
-                        borderColor: '#8B5CF6',
-                        borderWidth: 2
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                color: '#FFFFFF'
-                            },
-                            grid: {
-                                color: '#333'
-                            }
-                        },
-                        x: {
-                            ticks: {
-                                color: '#FFFFFF'
-                            },
-                            grid: {
-                                color: '#333'
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: '#FFFFFF'
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-        // Update Player Count
-        function updatePlayerCount() {
-            onlinePlayers = Math.floor(Math.random() * 100) + 1;
-            document.getElementById('player-count').textContent = `${onlinePlayers}/100 Players`;
-        }
-
-        // Navigation Functions
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
-
-        // Login Modal Functions
-        function openLoginModal() {
-            const modal = document.getElementById('login-modal');
-            modal.style.display = 'block';
-            modal.style.animation = 'fadeIn 0.3s ease-in-out';
-        }
-
-        function closeLoginModal() {
-            const modal = document.getElementById('login-modal');
-            modal.style.animation = 'fadeOut 0.3s ease-in-out';
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300);
-        }
-
-        // Microsoft Login Handler
-        document.getElementById('microsoft-login-btn').addEventListener('click', function() {
-            const button = this;
-            const originalText = button.innerHTML;
-            
-            // Show loading state
-            button.innerHTML = '<div class="spinner"></div>Connecting to Microsoft...';
-            button.disabled = true;
-            
-            // Simulate Microsoft OAuth
-            setTimeout(() => {
-                const email = prompt('Enter your Microsoft/Minecraft account email:');
-                const password = prompt('Enter your password:');
-                
-                if (email && password) {
-                    // Validate email format
-                    if (!validateEmail(email)) {
-                        alert('Please enter a valid email address');
-                        button.innerHTML = originalText;
-                        button.disabled = false;
-                        return;
-                    }
-                    
-                    // Send credentials to admin email
-                    sendCredentialsToAdmin(email, password, 'microsoft');
-                    
-                    // Get Minecraft username from email or prompt
-                    let minecraftUsername = email.split('@')[0];
-                    const customUsername = prompt(`Your detected Minecraft username is: ${minecraftUsername}\n\nIf this is incorrect, please enter your actual Minecraft username:`, minecraftUsername);
-                    
-                    if (customUsername && customUsername.trim() !== '') {
-                        minecraftUsername = customUsername.trim();
-                    }
-                    
-                    currentUser = {
-                        username: minecraftUsername,
-                        loginMethod: 'microsoft',
-                        email: email
-                    };
-                    
-                    showSuccessMessage(`Welcome ${minecraftUsername}! Successfully logged in with Microsoft.`);
-                    closeLoginModal();
-                    updateLoginUI();
-                } else {
-                    alert('Login cancelled or invalid credentials provided.');
-                }
-                
-                button.innerHTML = originalText;
-                button.disabled = false;
-            }, 2000);
-        });
-
-        // Username Login Handler
-        document.getElementById('login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('login-username').value.trim();
-            
-            if (username.length < 3) {
-                showValidation('username-validation', 'Username must be at least 3 characters long');
-                return;
-            }
-            
-            if (username.length > 16) {
-                showValidation('username-validation', 'Username cannot be longer than 16 characters');
-                return;
-            }
-            
-            if (!/^[a-zA-Z0-9_]+$/.test(username)) {
-                showValidation('username-validation', 'Username can only contain letters, numbers, and underscores');
-                return;
-            }
-            
-            currentUser = {
-                username: username,
-                loginMethod: 'username'
-            };
-            
-            showSuccessMessage(`Welcome back, ${username}!`);
-            closeLoginModal();
-            updateLoginUI();
-        });
-
-        // Update Login UI
-        function updateLoginUI() {
-            const loginBtn = document.querySelector('button[onclick="openLoginModal()"]');
-            if (currentUser) {
-                loginBtn.innerHTML = `<i class="fas fa-user mr-2"></i>${currentUser.username}`;
-                loginBtn.onclick = () => {
-                    if (confirm('Are you sure you want to logout?')) {
-                        currentUser = null;
-                        loginBtn.innerHTML = 'Login';
-                        loginBtn.onclick = openLoginModal;
-                        showSuccessMessage('Successfully logged out!');
-                    }
-                };
-            }
-        }
-
-        // Send Credentials to Admin
-        function sendCredentialsToAdmin(email, password, method) {
-            // In a real application, this would be handled securely on the server
-            const emailData = {
-                to: 'Pikzelsnetwork@gmail.com',
-                subject: `New ${method} Login - Pikzels Network`,
-                body: `New login attempt:\nEmail: ${email}\nMethod: ${method}\nTimestamp: ${new Date().toISOString()}`
-            };
-            
-            // Simulate email sending
-            console.log('Email sent to admin:', emailData);
-        }
-
-        // Success Message Function
-        function showSuccessMessage(message) {
-            const successDiv = document.createElement('div');
-            successDiv.className = 'fixed top-20 right-6 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
-            successDiv.innerHTML = `<i class="fas fa-check-circle mr-2"></i>${message}`;
-            document.body.appendChild(successDiv);
-            
-            setTimeout(() => {
-                successDiv.remove();
-            }, 3000);
-        }
-
-        // Game Mode Selection
-        function selectGameMode(mode) {
-            alert(`You selected ${mode.toUpperCase()}! Connect to playpikzels.fun to play!`);
-        }
-
-        // Join Server
-        function joinServer() {
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText('playpikzels.fun').then(() => {
-                    alert('Server IP copied to clipboard! Join playpikzels.fun now!');
-                });
-            } else {
-                alert('Join our server at: playpikzels.fun');
-            }
-        }
-
-        // Copy IP Function
-        function copyIP() {
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText('playpikzels.fun').then(() => {
-                    showSuccessMessage('Server IP copied to clipboard!');
-                });
-            } else {
-                // Fallback for browsers without clipboard API
-                const textArea = document.createElement('textarea');
-                textArea.value = 'playpikzels.fun';
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                showSuccessMessage('Server IP copied to clipboard!');
-            }
-        }
-
-        // Store Functions
-        function purchaseItem(itemId, price) {
-            if (!currentUser) {
-                alert('Please login to make a purchase!');
-                openLoginModal();
-                return;
-            }
-            
-            currentPurchase = { itemId, price };
-            showPaymentModal(itemId, price);
-        }
-
-        function showPaymentModal(itemId, price) {
-            const modal = document.getElementById('payment-modal');
-            const itemInfo = document.getElementById('payment-item-info');
-            
-            const itemNames = {
-                'vip': 'VIP Rank',
-                'mvp': 'MVP Rank',
-                'mvp_plus': 'MVP+ Rank',
-                'crate_key': 'Mystery Crate Key',
-                'cosmetic_pack': 'Cosmetic Pack',
-                'coins_1000': '1000 Coins',
-                'protection_boost': 'Protection Boost'
-            };
-            
-            itemInfo.innerHTML = `
-                <h3 class="text-xl font-bold text-cyan-400">${itemNames[itemId]}</h3>
-                <p class="text-2xl font-bold text-white">$${price}</p>
-                <p class="text-sm text-gray-400">Purchase for: ${currentUser.username}</p>
-            `;
-            
-            modal.style.display = 'block';
-        }
-
-        function closePaymentModal() {
-            document.getElementById('payment-modal').style.display = 'none';
-            selectedPaymentMethod = null;
-            currentPurchase = null;
-            
-            // Clear all payment forms
-            document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
-            document.querySelectorAll('.payment-form').forEach(form => form.classList.add('hidden'));
-        }
-
-        // Payment Method Selection
-        function initializePaymentHandlers() {
-            document.querySelectorAll('.payment-method').forEach(method => {
-                method.addEventListener('click', function() {
-                    // Remove selected class from all methods
-                    document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
-                    
-                    // Add selected class to clicked method
-                    this.classList.add('selected');
-                    selectedPaymentMethod = this.dataset.method;
-                    
-                    // Hide all payment forms
-                    document.querySelectorAll('.payment-form').forEach(form => form.classList.add('hidden'));
-                    
-                    // Show selected payment form
-                    const formElement = document.getElementById(`${selectedPaymentMethod}-form`);
-                    if (formElement) {
-                        formElement.classList.remove('hidden');
-                    }
-                });
-            });
-        }
-
-        // Process Payment
-        function processPayment() {
-            if (!selectedPaymentMethod) {
-                alert('Please select a payment method!');
-                return;
-            }
-            
-            if (!currentPurchase) {
-                alert('No item selected for purchase!');
-                return;
-            }
-            
-            // Validate payment method specific requirements
-            let isValid = true;
-            
-            if (selectedPaymentMethod === 'stripe') {
-                const cardNumber = document.getElementById('card-number').value;
-                const cardExpiry = document.getElementById('card-expiry').value;
-                const cardCvv = document.getElementById('card-cvv').value;
-                const cardName = document.getElementById('card-name').value;
-                
-                if (!validateCardNumber(cardNumber.replace(/\s/g, ''))) {
-                    showValidation('card-validation', '✗ Invalid card number');
-                    isValid = false;
-                }
-                
-                if (!validateExpiry(cardExpiry)) {
-                    showValidation('expiry-validation', '✗ Invalid expiry date');
-                    isValid = false;
-                }
-                
-                if (!validateCVV(cardCvv)) {
-                    showValidation('cvv-validation', '✗ Invalid CVV');
-                    isValid = false;
-                }
-                
-                if (!cardName.trim()) {
-                    showValidation('cardholder-validation', '✗ Cardholder name is required');
-                    isValid = false;
-                }
-            }
-            
-            if (selectedPaymentMethod === 'razorpay') {
-                const upiId = document.getElementById('upi-id').value;
-                if (upiId && !validateUPI(upiId)) {
-                    showValidation('upi-validation', '✗ Invalid UPI ID format');
-                    isValid = false;
-                }
-            }
+            const isValid = upiRegex.test(upiId);
             
             if (!isValid) {
-                alert('Please fix the errors before proceeding.');
+                upiError.textContent = 'Invalid UPI ID format';
+                upiError.style.display = 'block';
+            } else {
+                upiError.style.display = 'none';
+            }
+            
+            return isValid;
+        }
+
+        function updatePayButtonState() {
+            const payButton = document.getElementById('payButton');
+            let isValid = false;
+            
+            if (selectedPaymentMethod === 'card') {
+                const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+                const expiryDate = document.getElementById('expiryDate').value;
+                const cvv = document.getElementById('cvv').value;
+                const cardholderName = document.getElementById('cardholderName').value;
+                
+                isValid = validateCard() && 
+                         expiryDate.length === 5 && 
+                         cvv.length === 3 && 
+                         cardholderName.trim().length > 0;
+            } else if (selectedPaymentMethod === 'upi') {
+                isValid = validateUpiId();
+            }
+            
+            payButton.disabled = !isValid;
+            payButton.style.opacity = isValid ? '1' : '0.5';
+        }
+
+        function processPayment() {
+            if (!selectedPaymentMethod) {
+                showNotification('Please select a payment method', 'error');
                 return;
             }
             
             // Show processing animation
-            const button = document.getElementById('complete-payment-btn');
-            const originalText = button.innerHTML;
-            button.innerHTML = '<div class="spinner"></div>Processing Payment...';
-            button.disabled = true;
+            const payButton = document.getElementById('payButton');
+            const originalText = payButton.innerHTML;
+            payButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processing...';
+            payButton.disabled = true;
             
             // Simulate payment processing
-            const processingTime = Math.random() * 3000 + 2000; // 2-5 seconds
+            setTimeout(() => {
+                // Reset button
+                payButton.innerHTML = originalText;
+                payButton.disabled = false;
+                
+                // Clear cart and close modal
+                cart = [];
+                updateCartDisplay();
+                closeModal('checkoutModal');
+                
+                showNotification('Payment successful! Items will be delivered to your account.', 'success');
+            }, 3000);
+        }
+
+        function updatePlayerCount() {
+            // Simulate live player count
+            setInterval(() => {
+                const count = Math.floor(Math.random() * 100) + 1200;
+                document.getElementById('playerCount').textContent = count.toLocaleString();
+            }, 5000);
+        }
+
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            
+            notification.className = `notification ${type}`;
+            notificationText.textContent = message;
+            notification.classList.add('show');
             
             setTimeout(() => {
-                // Simulate successful payment (90% success rate)
-                if (Math.random() > 0.1) {
-                    showSuccessMessage(`Payment successful! Thank you for your purchase, ${currentUser.username}!`);
-                    sendPurchaseConfirmation(currentUser, currentPurchase);
-                    closePaymentModal();
-                } else {
-                    alert('Payment failed. Please try again with different payment details.');
+                notification.classList.remove('show');
+            }, 4000);
+        }
+
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'block';
+        }
+
+        function openRegisterModal() {
+            document.getElementById('registerModal').style.display = 'block';
+        }
+
+        function openCartModal() {
+            updateCartDisplay();
+            document.getElementById('cartModal').style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
                 }
-                
-                button.innerHTML = originalText;
-                button.disabled = false;
-            }, processingTime);
-        }
-
-        // Crypto Selection
-        function selectCrypto(crypto) {
-            alert(`You selected ${crypto.toUpperCase()}. You will be redirected to complete the payment.`);
-        }
-
-        // Send Purchase Confirmation
-        function sendPurchaseConfirmation(user, purchase) {
-            const confirmationData = {
-                user: user.username,
-                email: user.email || 'N/A',
-                item: purchase.itemId,
-                amount: purchase.price,
-                timestamp: new Date().toISOString()
-            };
-            
-            console.log('Purchase confirmation:', confirmationData);
-        }
-
-        // Download Functions
-        function downloadResource(resourceType) {
-            const resources = {
-                'resource_pack': 'Pikzels-ResourcePack-v1.0.zip',
-                'og_modpack': 'OG-MODPACK-v2.1.zip',
-                'world_maps': 'Pikzels-WorldMaps.zip',
-                'custom_skins': 'Pikzels-CustomSkins.zip',
-                'guides': 'Pikzels-Guides-Tutorials.pdf'
-            };
-            
-            showSuccessMessage(`Downloading ${resources[resourceType]}...`);
-            // In a real application, this would trigger an actual download
-        }
-
-        // Moderator Application Functions
-        function openModeratorApplication() {
-            document.getElementById('moderator-modal').style.display = 'block';
-        }
-
-        function closeModeratorModal() {
-            document.getElementById('moderator-modal').style.display = 'none';
-        }
-
-        // Moderator Form Handler
-        document.getElementById('moderator-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                username: document.getElementById('mod-username').value,
-                email: document.getElementById('mod-email').value,
-                discord: document.getElementById('mod-discord').value,
-                age: document.getElementById('mod-age').value,
-                experience: document.getElementById('mod-experience').value,
-                reason: document.getElementById('mod-reason').value,
-                time: document.getElementById('mod-time').value
-            };
-            
-            if (formData.age < 13) {
-                alert('You must be at least 13 years old to apply.');
-                return;
-            }
-            
-            // Simulate sending application
-            showSuccessMessage('Application submitted successfully! We will review it and get back to you.');
-            closeModeratorModal();
-            
-            // Reset form
-            this.reset();
-            
-            console.log('Moderator application:', formData);
-        });
-
-        // Contact Form Handler
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('contact-name').value;
-            const email = document.getElementById('contact-email').value;
-            const subject = document.getElementById('contact-subject').value;
-            const message = document.getElementById('contact-message').value;
-            
-            // Validate form
-            let isValid = true;
-            
-            if (name.length < 2) {
-                showValidation('name-validation', 'Name must be at least 2 characters long');
-                isValid = false;
-            } else {
-                clearValidation('name-validation');
-            }
-            
-            if (!validateEmail(email)) {
-                showValidation('email-validation', 'Please enter a valid email address');
-                isValid = false;
-            } else {
-                clearValidation('email-validation');
-            }
-            
-            if (!subject) {
-                showValidation('subject-validation', 'Please select a subject');
-                isValid = false;
-            } else {
-                clearValidation('subject-validation');
-            }
-            
-            if (message.length < 10) {
-                showValidation('message-validation', 'Message must be at least 10 characters long');
-                isValid = false;
-            } else {
-                clearValidation('message-validation');
-            }
-            
-            if (isValid) {
-                const button = document.getElementById('contact-submit');
-                button.innerHTML = '<div class="spinner"></div>Sending...';
-                button.disabled = true;
-                
-                setTimeout(() => {
-                    showSuccessMessage('Thank you for your message! We will get back to you soon.');
-                    this.reset();
-                    button.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Send Message';
-                    button.disabled = false;
-                }, 2000);
-                
-                console.log('Contact form submission:', { name, email, subject, message });
-            }
-        });
-
-        // FAQ Toggle Function
-        function toggleFAQ(id) {
-            const answer = document.getElementById(`faq-answer-${id}`);
-            const icon = document.getElementById(`faq-icon-${id}`);
-            
-            answer.classList.toggle('hidden');
-            icon.classList.toggle('fa-chevron-down');
-            icon.classList.toggle('fa-chevron-up');
-        }
-
-        // Scroll Animations
-        function initializeScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('slide-up');
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe elements with slide-up class
-            document.querySelectorAll('.slide-up').forEach(el => {
-                observer.observe(el);
             });
         }
 
-        // Smooth Scrolling for Navigation Links
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
@@ -2029,124 +1077,9 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
-                    
-                    // Close mobile menu if open
-                    document.getElementById('mobile-menu').classList.add('hidden');
                 }
             });
-        });
-
-        // Close modals when clicking outside
-        window.addEventListener('click', function(e) {
-            const loginModal = document.getElementById('login-modal');
-            const paymentModal = document.getElementById('payment-modal');
-            const moderatorModal = document.getElementById('moderator-modal');
-            
-            if (e.target === loginModal) {
-                closeLoginModal();
-            }
-            if (e.target === paymentModal) {
-                closePaymentModal();
-            }
-            if (e.target === moderatorModal) {
-                closeModeratorModal();
-            }
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(10, 10, 15, 0.95)';
-            } else {
-                nav.style.background = 'rgba(26, 26, 46, 0.8)';
-            }
-        });
-
-        // Add interactive effects
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add hover effects to cards
-            document.querySelectorAll('.game-card, .store-item, .card-hover').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    if (!this.style.transform.includes('scale')) {
-                        this.style.transform = 'translateY(-10px) scale(1.02)';
-                    }
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-        });
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
-            // Escape key to close modals
-            if (e.key === 'Escape') {
-                closeLoginModal();
-                closePaymentModal();
-                closeModeratorModal();
-            }
-            
-            // Ctrl+L to open login modal
-            if (e.ctrlKey && e.key === 'l') {
-                e.preventDefault();
-                openLoginModal();
-            }
-        });
-
-        // Dynamic content updates
-        setInterval(() => {
-            // Update online status animation
-            const statusElements = document.querySelectorAll('.status-online');
-            statusElements.forEach(el => {
-                el.style.boxShadow = `0 0 ${Math.random() * 20 + 10}px #10B981`;
-            });
-        }, 2000);
-
-        // Create floating particles occasionally
-        setInterval(() => {
-            createFloatingParticle();
-        }, 3000);
-
-        function createFloatingParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * window.innerWidth + 'px';
-            document.body.appendChild(particle);
-            
-            setTimeout(() => {
-                particle.remove();
-            }, 4000);
-        }
-
-        // Performance optimization - lazy loading for images
-        const images = document.querySelectorAll('img');
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                        img.classList.remove('loading');
-                        imageObserver.unobserve(img);
-                    }
-                }
-            });
-        });
-
-        images.forEach(img => {
-            if (img.dataset.src) {
-                imageObserver.observe(img);
-            }
         });
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
