@@ -673,47 +673,60 @@
 
             
             <!-- Crates Section -->
-            <div class="mb-16">
-                <h3 class="text-3xl font-bold text-center mb-8 text-yellow-400">Mystery Crates</h3>
-                <div class="grid md:grid-cols-4 gap-6">
-                    <div class="game-card p-6 rounded-xl text-center">
-                        <div class="text-5xl mb-4 crate-icon">📦</div>
-                        <h4 class="font-bold mb-2 text-green-400">Common Crate</h4>
-                        <p class="text-sm text-gray-400 mb-3">Basic items and rewards</p>
-                        <p class="text-2xl font-bold text-green-400 mb-4">$1.99</p>
-                        <button onclick="showPurchase('Common Crate', 1.99)" class="btn-neon w-full py-2 rounded-lg">
-                            <i class="fas fa-unlock mr-1"></i>Open
-                        </button>
-                    </div>
-                    <div class="game-card p-6 rounded-xl text-center">
-                        <div class="text-5xl mb-4 crate-icon">🎁</div>
-                        <h4 class="font-bold mb-2 text-blue-400">Rare Crate</h4>
-                        <p class="text-sm text-gray-400 mb-3">Uncommon items and gear</p>
-                        <p class="text-2xl font-bold text-blue-400 mb-4">$4.99</p>
-                        <button onclick="showPurchase('Rare Crate', 4.99)" class="btn-neon w-full py-2 rounded-lg">
-                            <i class="fas fa-unlock mr-1"></i>Open
-                        </button>
-                    </div>
-                    <div class="game-card p-6 rounded-xl text-center">
-                        <div class="text-5xl mb-4 crate-icon">💎</div>
-                        <h4 class="font-bold mb-2 text-purple-400">Epic Crate</h4>
-                        <p class="text-sm text-gray-400 mb-3">Rare weapons and tools</p>
-                        <p class="text-2xl font-bold text-purple-400 mb-4">$9.99</p>
-                        <button onclick="showPurchase('Epic Crate', 9.99)" class="btn-purple w-full py-2 rounded-lg">
-                            <i class="fas fa-unlock mr-1"></i>Open
-                        </button>
-                    </div>
-                    <div class="game-card p-6 rounded-xl text-center">
-                        <div class="text-5xl mb-4 crate-icon">👑</div>
-                        <h4 class="font-bold mb-2 text-yellow-400">Legendary Crate</h4>
-                        <p class="text-sm text-gray-400 mb-3">Legendary items and perks</p>
-                        <p class="text-2xl font-bold text-yellow-400 mb-4">$19.99</p>
-                        <button onclick="showPurchase('Legendary Crate', 19.99)" class="btn-gold w-full py-2 rounded-lg">
-                            <i class="fas fa-unlock mr-1"></i>Open
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <!-- Crates Store Section -->
+<section id="crates" class="py-20 bg-gray-900 text-center">
+  <h2 class="text-4xl font-bold text-yellow-400 mb-10">🎁 Crates</h2>
+  <p class="text-gray-300 mb-12">Open amazing crates and win exclusive rewards!</p>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
+
+    <!-- Starter Crate -->
+    <div class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-blue-500/50 transition">
+      <h3 class="text-2xl font-bold text-white mb-4">Starter Crate</h3>
+      <ul class="text-gray-400 text-sm mb-4 space-y-2">
+        <li>✔ Common Items</li>
+        <li>✔ Small Chance for Rare</li>
+        <li>✔ Good for Beginners</li>
+      </ul>
+      <p class="text-3xl font-bold text-yellow-400 mb-6">₹49</p>
+      <a href="upi://pay?pa=8091056604@fam&pn=Starter%20Crate&am=49&cu=INR"
+         class="px-6 py-3 bg-yellow-500 text-black font-bold rounded-lg hover:bg-yellow-400 transition">
+         Buy Now
+      </a>
+    </div>
+
+    <!-- Ultimate Crate -->
+    <div class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-blue-500/50 transition">
+      <h3 class="text-2xl font-bold text-white mb-4">Ultimate Crate</h3>
+      <ul class="text-gray-400 text-sm mb-4 space-y-2">
+        <li>✔ Guaranteed Rare</li>
+        <li>✔ Chance for Legendary</li>
+        <li>✔ Contains Unique Cosmetics</li>
+      </ul>
+      <p class="text-3xl font-bold text-yellow-400 mb-6">₹199</p>
+      <a href="upi://pay?pa=8091056604@fam&pn=Ultimate%20Crate&am=199&cu=INR"
+         class="px-6 py-3 bg-yellow-500 text-black font-bold rounded-lg hover:bg-yellow-400 transition">
+         Buy Now
+      </a>
+    </div>
+
+    <!-- Elite Crate -->
+    <div class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-blue-500/50 transition">
+      <h3 class="text-2xl font-bold text-white mb-4">Elite Crate</h3>
+      <ul class="text-gray-400 text-sm mb-4 space-y-2">
+        <li>✔ Exclusive Items</li>
+        <li>✔ High Chance Legendary</li>
+        <li>✔ Rare Cosmetics + Buffs</li>
+      </ul>
+      <p class="text-3xl font-bold text-yellow-400 mb-6">₹349</p>
+      <a href="upi://pay?pa=8091056604@fam&pn=Elite%20Crate&am=349&cu=INR"
+         class="px-6 py-3 bg-yellow-500 text-black font-bold rounded-lg hover:bg-yellow-400 transition">
+         Buy Now
+      </a>
+    </div>
+
+  </div>
+</section>
 
             <!-- Donation Packages -->
             <div>
@@ -1430,4 +1443,5 @@
     </script>
 </body>
 </html>
+
 
