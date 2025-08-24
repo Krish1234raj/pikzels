@@ -729,40 +729,62 @@
 </section>
 
             <!-- Donation Packages -->
-            <div>
-                <h3 class="text-3xl font-bold text-center mb-8 text-cyan-400">Support Packages</h3>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="game-card p-6 rounded-xl text-center">
-                        <i class="fas fa-heart text-4xl text-red-400 mb-4"></i>
-                        <h4 class="text-xl font-bold mb-3">Supporter</h4>
-                        <p class="text-3xl font-bold text-cyan-400 mb-4">$5.00</p>
-                        <p class="text-gray-400 mb-4">Show your support for the server with a small donation</p>
-                        <button onclick="showPurchase('Supporter Package', 5.00)" class="btn-neon w-full py-3 rounded-lg">
-                            <i class="fas fa-donate mr-2"></i>Support Us
-                        </button>
-                    </div>
-                    <div class="game-card p-6 rounded-xl text-center">
-                        <i class="fas fa-hands-helping text-4xl text-yellow-400 mb-4"></i>
-                        <h4 class="text-xl font-bold mb-3">Contributor</h4>
-                        <p class="text-3xl font-bold text-yellow-400 mb-4">$15.00</p>
-                        <p class="text-gray-400 mb-4">Help us maintain high-quality servers and add new features</p>
-                        <button onclick="showPurchase('Contributor Package', 15.00)" class="btn-gold w-full py-3 rounded-lg">
-                            <i class="fas fa-donate mr-2"></i>Contribute
-                        </button>
-                    </div>
-                    <div class="game-card p-6 rounded-xl text-center">
-                        <i class="fas fa-trophy text-4xl text-purple-400 mb-4"></i>
-                        <h4 class="text-xl font-bold mb-3">Patron</h4>
-                        <p class="text-3xl font-bold text-purple-400 mb-4">$50.00</p>
-                        <p class="text-gray-400 mb-4">Become a patron and help shape the future of Pikzels Network</p>
-                        <button onclick="showPurchase('Patron Package', 50.00)" class="btn-purple w-full py-3 rounded-lg">
-                            <i class="fas fa-crown mr-2"></i>Become Patron
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            <!-- Donator Store Section -->
+<section id="donator" class="py-20 bg-gray-900 text-center">
+  <h2 class="text-4xl font-bold text-yellow-400 mb-10">💎 Donator Packs</h2>
+  <p class="text-gray-300 mb-12">Support Pikzels Network even more with special Donator Packs!</p>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
+
+    <!-- Bronze Donator -->
+    <div class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-green-500/50 transition">
+      <h3 class="text-2xl font-bold text-white mb-4">Bronze Donator</h3>
+      <ul class="text-gray-400 text-sm mb-4 space-y-2">
+        <li>✔ Donator Tag in-game</li>
+        <li>✔ Access to Donator-only chat</li>
+        <li>✔ Small monthly crate</li>
+      </ul>
+      <p class="text-3xl font-bold text-yellow-400 mb-6">₹199</p>
+      <a href="upi://pay?pa=8091056604@fam&pn=Bronze%20Donator&am=199&cu=INR"
+         class="px-6 py-3 bg-yellow-500 text-black font-bold rounded-lg hover:bg-yellow-400 transition">
+         Buy Now
+      </a>
+    </div>
+
+    <!-- Silver Donator -->
+    <div class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-green-500/50 transition">
+      <h3 class="text-2xl font-bold text-white mb-4">Silver Donator</h3>
+      <ul class="text-gray-400 text-sm mb-4 space-y-2">
+        <li>✔ All Bronze Perks</li>
+        <li>✔ Extra cosmetics & pets</li>
+        <li>✔ Medium monthly crate</li>
+      </ul>
+      <p class="text-3xl font-bold text-yellow-400 mb-6">₹399</p>
+      <a href="upi://pay?pa=8091056604@fam&pn=Silver%20Donator&am=399&cu=INR"
+         class="px-6 py-3 bg-yellow-500 text-black font-bold rounded-lg hover:bg-yellow-400 transition">
+         Buy Now
+      </a>
+    </div>
+
+    <!-- Gold Donator -->
+    <div class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-green-500/50 transition">
+      <h3 class="text-2xl font-bold text-white mb-4">Gold Donator</h3>
+      <ul class="text-gray-400 text-sm mb-4 space-y-2">
+        <li>✔ All Silver Perks</li>
+        <li>✔ Exclusive glowing tag</li>
+        <li>✔ Large monthly crate</li>
+        <li>✔ Discord VIP Role</li>
+      </ul>
+      <p class="text-3xl font-bold text-yellow-400 mb-6">₹799</p>
+      <a href="upi://pay?pa=8091056604@fam&pn=Gold%20Donator&am=799&cu=INR"
+         class="px-6 py-3 bg-yellow-500 text-black font-bold rounded-lg hover:bg-yellow-400 transition">
+         Buy Now
+      </a>
+    </div>
+
+  </div>
+</section>
+
 
     <!-- Game Modes Section -->
     <section id="gamemodes" class="py-20 bg-gray-800">
@@ -1443,5 +1465,6 @@
     </script>
 </body>
 </html>
+
 
 
