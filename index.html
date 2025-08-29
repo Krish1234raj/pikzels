@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pikzels Network - Premium Minecraft Server</title>
+    <title>Enhanced Pikzels Network - Premium Minecraft Server</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -56,7 +56,7 @@
             transform: translate(-50%, -50%);
         }
 
-        /* Loading Screen */
+        /* Loading Screen with Enhanced Animation */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -83,8 +83,9 @@
             font-weight: bold;
             color: #000;
             margin-bottom: 30px;
-            animation: pulse 2s infinite;
+            animation: pulseGlow 2s infinite, float3D 4s ease-in-out infinite;
             box-shadow: 0 0 50px rgba(0, 255, 255, 0.5);
+            transform-style: preserve-3d;
         }
         
         .loading-bar {
@@ -98,9 +99,9 @@
         
         .loading-progress {
             height: 100%;
-            background: linear-gradient(90deg, #00ffff, #ffd700, #00ffff);
-            background-size: 200% 100%;
-            animation: loading 3s ease-in-out;
+            background: linear-gradient(90deg, #00ffff, #ffd700, #ff6b6b, #00ffff);
+            background-size: 400% 100%;
+            animation: loading 3s ease-in-out, shimmer 2s linear infinite;
             border-radius: 3px;
         }
         
@@ -109,12 +110,22 @@
             100% { width: 100%; }
         }
         
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
         
-        /* Animated Background */
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1) rotateY(0deg); box-shadow: 0 0 50px rgba(0, 255, 255, 0.5); }
+            50% { transform: scale(1.1) rotateY(180deg); box-shadow: 0 0 80px rgba(255, 215, 0, 0.8); }
+        }
+        
+        @keyframes float3D {
+            0%, 100% { transform: translateY(0px) rotateX(0deg); }
+            50% { transform: translateY(-20px) rotateX(10deg); }
+        }
+        
+        /* Enhanced Animated Background */
         .hero-bg {
             background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #16213e 100%);
             position: relative;
@@ -138,6 +149,9 @@
             box-shadow: 0 0 10px #ffd700;
         }
         
+        .particle.cyan { background: #00ffff; box-shadow: 0 0 10px #00ffff; }
+        .particle.red { background: #ff6b6b; box-shadow: 0 0 10px #ff6b6b; }
+        
         @keyframes float {
             0% {
                 transform: translateY(100vh) rotate(0deg);
@@ -155,7 +169,7 @@
             }
         }
 
-        /* Parallax Effects */
+        /* Enhanced Parallax Effects */
         .parallax-layer {
             position: absolute;
             width: 120%;
@@ -170,11 +184,11 @@
         }
 
         @keyframes parallaxMove {
-            0% { transform: translate(-10%, -10%); }
-            100% { transform: translate(10%, 10%); }
+            0% { transform: translate(-10%, -10%) rotate(0deg); }
+            100% { transform: translate(10%, 10%) rotate(5deg); }
         }
         
-        /* Enhanced Button Styles */
+        /* Enhanced Button Styles with 3D Effects */
         .btn-neon {
             background: linear-gradient(45deg, #00ffff, #0099cc);
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
@@ -184,6 +198,7 @@
             font-weight: bold;
             position: relative;
             overflow: hidden;
+            transform-style: preserve-3d;
         }
 
         .btn-neon::before {
@@ -193,7 +208,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             transition: left 0.5s;
         }
 
@@ -202,8 +217,8 @@
         }
         
         .btn-neon:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0, 255, 255, 0.8);
+            transform: translateY(-5px) rotateX(10deg);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.8);
             background: linear-gradient(45deg, #00ffff, #66ccff);
         }
         
@@ -215,6 +230,7 @@
             font-weight: bold;
             position: relative;
             overflow: hidden;
+            transform-style: preserve-3d;
         }
 
         .btn-gold::before {
@@ -224,7 +240,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             transition: left 0.5s;
         }
 
@@ -233,8 +249,8 @@
         }
         
         .btn-gold:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.8);
+            transform: translateY(-5px) rotateX(10deg);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.8);
         }
 
         .btn-purple {
@@ -245,6 +261,7 @@
             font-weight: bold;
             position: relative;
             overflow: hidden;
+            transform-style: preserve-3d;
         }
 
         .btn-purple::before {
@@ -254,7 +271,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             transition: left 0.5s;
         }
 
@@ -263,8 +280,8 @@
         }
 
         .btn-purple:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.8);
+            transform: translateY(-5px) rotateX(10deg);
+            box-shadow: 0 20px 40px rgba(147, 51, 234, 0.8);
         }
 
         .btn-red {
@@ -273,13 +290,12 @@
             box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
             transition: all 0.3s ease;
             font-weight: bold;
-            position: relative;
-            overflow: hidden;
+            transform-style: preserve-3d;
         }
 
         .btn-red:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(239, 68, 68, 0.8);
+            transform: translateY(-5px) rotateX(10deg);
+            box-shadow: 0 20px 40px rgba(239, 68, 68, 0.8);
         }
 
         .btn-green {
@@ -288,14 +304,15 @@
             box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
             transition: all 0.3s ease;
             font-weight: bold;
+            transform-style: preserve-3d;
         }
 
         .btn-green:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(34, 197, 94, 0.8);
+            transform: translateY(-5px) rotateX(10deg);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.8);
         }
         
-        /* Enhanced Card Effects */
+        /* Enhanced Card Effects with 3D */
         .game-card {
             background: rgba(26, 26, 46, 0.9);
             border: 2px solid rgba(0, 255, 255, 0.3);
@@ -303,10 +320,11 @@
             backdrop-filter: blur(15px);
             position: relative;
             overflow: hidden;
+            transform-style: preserve-3d;
         }
         
         .game-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-15px) rotateX(5deg) rotateY(5deg);
             border-color: #ffd700;
             box-shadow: 0 25px 50px rgba(0, 255, 255, 0.4);
         }
@@ -318,7 +336,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
             transition: left 0.5s;
         }
 
@@ -326,7 +344,7 @@
             left: 100%;
         }
 
-        /* Store Card Enhancements */
+        /* Store Card Enhancements with 3D */
         .store-card {
             background: rgba(26, 26, 46, 0.95);
             border: 2px solid rgba(0, 255, 255, 0.3);
@@ -334,17 +352,24 @@
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
         }
 
         .store-card:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-15px) scale(1.05) rotateX(5deg);
             border-color: #ffd700;
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 25px 50px rgba(255, 215, 0, 0.4);
         }
 
         .store-card.popular {
             border-color: #ffd700;
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            animation: popularGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes popularGlow {
+            0% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); }
+            100% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.8); }
         }
 
         .store-card.popular::before {
@@ -352,54 +377,194 @@
             position: absolute;
             top: 10px;
             right: -30px;
-            background: #ffd700;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
             color: #000;
             padding: 5px 40px;
             transform: rotate(45deg);
             font-weight: bold;
             font-size: 0.8rem;
             z-index: 1;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
-        /* Crate Opening Animation */
-        .crate-icon {
-            transition: all 0.5s ease;
+        /* Enhanced 3D Crate Animations */
+        .crate-3d {
+            width: 80px;
+            height: 80px;
             position: relative;
+            transform-style: preserve-3d;
+            animation: rotate3D 6s linear infinite;
+            margin: 0 auto 1rem;
         }
 
-        .crate-icon:hover {
-            transform: rotateY(180deg) scale(1.1);
-            filter: drop-shadow(0 0 20px #ffd700);
-        }
-
-        .crate-icon::after {
-            content: '💎';
+        .crate-face {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
+            width: 80px;
+            height: 80px;
+            border: 2px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 2rem;
-            transition: transform 0.3s ease;
+            background: rgba(0, 0, 0, 0.8);
         }
 
-        .crate-icon:hover::after {
-            transform: translate(-50%, -50%) scale(1);
+        .crate-face.front { transform: rotateY(0deg) translateZ(40px); }
+        .crate-face.back { transform: rotateY(180deg) translateZ(40px); }
+        .crate-face.right { transform: rotateY(90deg) translateZ(40px); }
+        .crate-face.left { transform: rotateY(-90deg) translateZ(40px); }
+        .crate-face.top { transform: rotateX(90deg) translateZ(40px); }
+        .crate-face.bottom { transform: rotateX(-90deg) translateZ(40px); }
+
+        .crate-3d.starter .crate-face { border-color: #10b981; background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.4)); }
+        .crate-3d.ultimate .crate-face { border-color: #3b82f6; background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.4)); }
+        .crate-3d.elite .crate-face { border-color: #9333ea; background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(147, 51, 234, 0.4)); }
+        .crate-3d.pikzels .crate-face { border-color: #ffd700; background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.4)); }
+        .crate-3d.hsr .crate-face { border-color: #ff6b6b; background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 107, 107, 0.4)); }
+
+        @keyframes rotate3D {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            25% { transform: rotateX(90deg) rotateY(90deg); }
+            50% { transform: rotateX(180deg) rotateY(180deg); }
+            75% { transform: rotateX(270deg) rotateY(270deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
         }
 
-        /* Glowing Icons */
+        .crate-3d:hover {
+            animation-duration: 2s;
+            transform: scale(1.2);
+        }
+
+        /* 3D Rank Cards */
+        .rank-preview-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .rank-card-3d {
+            width: 200px;
+            height: 250px;
+            position: relative;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            transition: transform 0.5s;
+        }
+
+        .rank-card-3d:hover {
+            transform: rotateY(180deg);
+        }
+
+        .rank-card-front,
+        .rank-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            border: 2px solid;
+        }
+
+        .rank-card-back {
+            transform: rotateY(180deg);
+        }
+
+        .rank-card-3d.pikzels-network .rank-card-front,
+        .rank-card-3d.pikzels-network .rank-card-back {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border-color: #ffd700;
+            color: #000;
+        }
+
+        .rank-card-3d.legend .rank-card-front,
+        .rank-card-3d.legend .rank-card-back {
+            background: linear-gradient(135deg, #9333ea, #c084fc);
+            border-color: #9333ea;
+            color: white;
+        }
+
+        .rank-card-3d.ultimate-gamer .rank-card-front,
+        .rank-card-3d.ultimate-gamer .rank-card-back {
+            background: linear-gradient(135deg, #ef4444, #f87171);
+            border-color: #ef4444;
+            color: white;
+        }
+
+        .rank-card-3d.beast .rank-card-front,
+        .rank-card-3d.beast .rank-card-back {
+            background: linear-gradient(135deg, #22c55e, #4ade80);
+            border-color: #22c55e;
+            color: white;
+        }
+
+        /* Crate Carousel */
+        .crate-carousel {
+            position: relative;
+            height: 300px;
+            perspective: 1000px;
+            margin: 3rem 0;
+        }
+
+        .crate-carousel-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: carouselRotate 15s linear infinite;
+        }
+
+        .crate-carousel-item {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            left: 50%;
+            top: 50%;
+            margin-left: -100px;
+            margin-top: -100px;
+        }
+
+        .crate-carousel-item:nth-child(1) { transform: rotateY(0deg) translateZ(300px); }
+        .crate-carousel-item:nth-child(2) { transform: rotateY(72deg) translateZ(300px); }
+        .crate-carousel-item:nth-child(3) { transform: rotateY(144deg) translateZ(300px); }
+        .crate-carousel-item:nth-child(4) { transform: rotateY(216deg) translateZ(300px); }
+        .crate-carousel-item:nth-child(5) { transform: rotateY(288deg) translateZ(300px); }
+
+        @keyframes carouselRotate {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        .crate-carousel:hover .crate-carousel-inner {
+            animation-play-state: paused;
+        }
+
+        /* Glowing Icons Enhanced */
         .glow-icon {
             filter: drop-shadow(0 0 10px currentColor);
-            transition: filter 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .glow-icon:hover {
-            filter: drop-shadow(0 0 20px currentColor);
-            animation: iconPulse 1s infinite;
+            filter: drop-shadow(0 0 25px currentColor);
+            animation: iconPulse 1s infinite, iconFloat 2s ease-in-out infinite;
         }
 
         @keyframes iconPulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
         
         /* Enhanced Navbar */
@@ -407,9 +572,16 @@
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(15px);
             border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.98);
+            border-bottom-color: #ffd700;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
         }
         
-        /* Modal Styles */
+        /* Enhanced Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -434,6 +606,7 @@
             animation: modalSlideIn 0.3s ease;
             position: relative;
             overflow: hidden;
+            transform-style: preserve-3d;
         }
 
         .modal-content::before {
@@ -444,6 +617,7 @@
             right: -2px;
             bottom: -2px;
             background: linear-gradient(45deg, #00ffff, #ffd700, #ff6b6b, #00ffff);
+            background-size: 400% 100%;
             border-radius: 15px;
             z-index: -1;
             animation: borderGlow 3s linear infinite;
@@ -455,42 +629,41 @@
         }
 
         @keyframes modalSlideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from { transform: translateY(-50px) rotateX(-10deg); opacity: 0; }
+            to { transform: translateY(0) rotateX(0deg); opacity: 1; }
         }
 
-        .modal input {
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid rgba(0, 255, 255, 0.3);
+        /* Notification System */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
             color: white;
-            transition: all 0.3s ease;
-            border-radius: 8px;
-            padding: 12px;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
+            z-index: 10001;
+            animation: notificationSlide 0.5s ease, notificationGlow 2s ease-in-out infinite alternate;
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
-        .modal input:focus {
-            border-color: #00ffff;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-            outline: none;
+        .notification.error {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
         }
 
-        /* Form Shake Animation */
-        .shake {
-            animation: shake 0.5s ease-in-out;
+        @keyframes notificationSlide {
+            from { transform: translateX(100%) rotateY(90deg); opacity: 0; }
+            to { transform: translateX(0) rotateY(0deg); opacity: 1; }
         }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
+        @keyframes notificationGlow {
+            0% { box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3); }
+            100% { box-shadow: 0 15px 35px rgba(34, 197, 94, 0.6); }
         }
 
-        .error-glow {
-            border-color: #ef4444 !important;
-            box-shadow: 0 0 15px rgba(239, 68, 68, 0.5) !important;
-        }
-        
-        /* Cart System */
+        /* Cart System Enhanced */
         .cart-item {
             background: rgba(26, 26, 46, 0.8);
             border: 1px solid rgba(0, 255, 255, 0.3);
@@ -498,139 +671,65 @@
             padding: 1rem;
             margin-bottom: 0.5rem;
             transition: all 0.3s ease;
+            transform-style: preserve-3d;
         }
 
         .cart-item:hover {
             border-color: #ffd700;
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+            transform: translateY(-2px) rotateX(2deg);
         }
 
         .cart-badge {
-            background: #ef4444;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.75rem;
             font-weight: bold;
             position: absolute;
-            top: -8px;
-            right: -8px;
+            top: -10px;
+            right: -10px;
+            animation: cartPulse 2s infinite;
+            border: 2px solid #000;
+        }
+
+        @keyframes cartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
         
-        /* Leaderboard */
-        .leaderboard-item {
-            background: rgba(26, 26, 46, 0.8);
-            border-left: 4px solid #00ffff;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .leaderboard-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: linear-gradient(90deg, rgba(0,255,255,0.1), rgba(255,215,0,0.1));
-            transition: width 0.3s ease;
-        }
-        
-        .leaderboard-item:hover {
-            background: rgba(26, 26, 46, 1);
-            border-left-color: #ffd700;
-            transform: translateX(10px);
-        }
-
-        .leaderboard-item:hover::before {
+        /* Enhanced Progress Bars */
+        .stat-progress {
             width: 100%;
-        }
-
-        /* Welcome Message */
-        .welcome-message {
-            background: linear-gradient(45deg, #1a1a2e, #16213e);
-            border: 2px solid #ffd700;
-            border-radius: 10px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            animation: welcomeGlow 2s ease-in-out infinite alternate;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .welcome-message::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,215,0,0.1), transparent);
-            animation: welcomeSweep 3s linear infinite;
-        }
-
-        @keyframes welcomeSweep {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes welcomeGlow {
-            0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
-            100% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); }
-        }
-
-        /* Download Progress */
-        .download-progress {
-            width: 100%;
-            height: 6px;
+            height: 8px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
+            border-radius: 4px;
             overflow: hidden;
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
-        .download-progress-bar {
+        .stat-progress-bar {
             height: 100%;
             background: linear-gradient(90deg, #00ffff, #ffd700);
-            border-radius: 3px;
-            transition: width 0.3s ease;
+            border-radius: 4px;
+            animation: progressFill 2s ease-in-out, progressGlow 3s ease-in-out infinite;
         }
 
-        /* Discord Widget Styles */
-        .discord-widget {
-            background: rgba(114, 137, 218, 0.1);
-            border: 2px solid rgba(114, 137, 218, 0.3);
-            border-radius: 15px;
-            padding: 1.5rem;
-            backdrop-filter: blur(10px);
+        @keyframes progressFill {
+            from { width: 0%; }
         }
 
-        /* News Slider */
-        .news-slider {
-            overflow: hidden;
-            position: relative;
+        @keyframes progressGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
         }
 
-        .news-slide {
-            display: none;
-            animation: slideIn 0.5s ease-in-out;
-        }
-
-        .news-slide.active {
-            display: block;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        /* Server Status */
+        /* Enhanced Server Status */
         .server-status {
             display: inline-flex;
             align-items: center;
@@ -638,23 +737,30 @@
             border: 1px solid rgba(34, 197, 94, 0.5);
             border-radius: 20px;
             padding: 0.5rem 1rem;
+            animation: statusGlow 3s ease-in-out infinite;
         }
 
         .status-dot {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: #22c55e;
             margin-right: 8px;
             animation: statusPulse 2s infinite;
+            box-shadow: 0 0 10px #22c55e;
         }
 
         @keyframes statusPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+        }
+
+        @keyframes statusGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(34, 197, 94, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(34, 197, 94, 0.6); }
         }
         
-        /* Responsive */
+        /* Responsive Enhancements */
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2.5rem;
@@ -677,20 +783,30 @@
             .parallax-layer {
                 display: none;
             }
-        }
 
-        /* User Status */
-        .user-status {
-            display: none;
-        }
+            .rank-preview-container {
+                gap: 1rem;
+            }
 
-        .user-status.logged-in {
-            display: flex;
-            align-items: center;
-            background: rgba(0, 255, 255, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            border: 1px solid rgba(0, 255, 255, 0.3);
+            .rank-card-3d {
+                width: 150px;
+                height: 200px;
+            }
+
+            .crate-carousel {
+                height: 200px;
+            }
+
+            .crate-3d {
+                width: 60px;
+                height: 60px;
+            }
+
+            .crate-face {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
         }
 
         .hidden {
@@ -701,63 +817,62 @@
             display: block !important;
         }
 
-        /* Cart Icon */
-        .cart-icon {
-            position: relative;
-            cursor: pointer;
-        }
-
-        /* Discount Banner */
-        .discount-banner {
-            background: linear-gradient(45deg, #ef4444, #f87171);
+        /* Purchase Success Animation */
+        .purchase-success {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #22c55e, #16a34a);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 0.875rem;
-            animation: discountPulse 2s infinite;
-            margin-bottom: 1rem;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            z-index: 10002;
+            animation: successZoom 0.5s ease;
+            box-shadow: 0 20px 50px rgba(34, 197, 94, 0.5);
         }
 
-        @keyframes discountPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        @keyframes successZoom {
+            0% { transform: translate(-50%, -50%) scale(0) rotateZ(-180deg); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1) rotateZ(0deg); opacity: 1; }
         }
 
-        /* Progress Bars for Stats */
-        .stat-progress {
-            width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 8px;
+        /* Enhanced News Slider */
+        .news-slide {
+            display: none;
+            animation: slideIn 0.5s ease-in-out;
         }
 
-        .stat-progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #00ffff, #ffd700);
-            border-radius: 4px;
-            animation: progressFill 2s ease-in-out;
+        .news-slide.active {
+            display: block;
         }
 
-        @keyframes progressFill {
-            from { width: 0%; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px) rotateY(10deg); }
+            to { opacity: 1; transform: translateX(0) rotateY(0deg); }
         }
 
-        /* Special Effects */
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #ffd700;
+        .news-dot {
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            animation: sparkle 2s linear infinite;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 5px;
+        }
+        
+        .news-dot.active {
+            background: #00ffff;
+            box-shadow: 0 0 15px #00ffff;
+            transform: scale(1.3);
         }
 
-        @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1); }
+        .news-dot:hover {
+            background: #ffd700;
+            transform: scale(1.2);
         }
     </style>
 </head>
@@ -771,59 +886,37 @@
         <div class="loading-bar">
             <div class="loading-progress"></div>
         </div>
-        <p class="text-xl font-semibold text-cyan-400">Loading Pikzels Network...</p>
-        <p class="text-sm text-gray-400 mt-2">Connecting to the world...</p>
-    </div>
-
-    <!-- Welcome Message (Hidden by default) -->
-    <div id="welcomeMessage" class="welcome-message fixed top-20 right-4 z-50 hidden">
-        <div class="flex items-center space-x-3">
-            <i class="fas fa-user-circle text-2xl text-cyan-400"></i>
-            <div>
-                <p class="text-sm text-gray-300">Welcome back,</p>
-                <p class="font-bold text-lg" id="welcomeUsername">Player</p>
-            </div>
-            <button onclick="logout()" class="text-red-400 hover:text-red-300 ml-4 transition-colors">
-                <i class="fas fa-sign-out-alt"></i>
-            </button>
-        </div>
+        <p class="text-xl font-semibold text-cyan-400">Loading Enhanced Pikzels Network...</p>
+        <p class="text-sm text-gray-400 mt-2">Preparing 3D experience...</p>
     </div>
 
     <!-- Navbar -->
-    <nav class="navbar fixed w-full top-0 z-50 transition-all duration-300">
+    <nav class="navbar fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <div class="w-10 h-10 bg-gradient-to-r from-cyan-500 to-yellow-500 rounded-lg flex items-center justify-center">
                     <span class="orbitron font-bold text-black">P</span>
                 </div>
-                <span class="orbitron font-bold text-xl">Pikzels Network</span>
+                <span class="orbitron font-bold text-xl">Enhanced Pikzels Network</span>
             </div>
             
             <div class="hidden md:flex space-x-8">
                 <a href="#home" class="hover:text-cyan-400 transition-colors">Home</a>
+                <a href="#ranks" class="hover:text-cyan-400 transition-colors">Ranks</a>
+                <a href="#crates" class="hover:text-cyan-400 transition-colors">Crates</a>
                 <a href="#store" class="hover:text-cyan-400 transition-colors">Store</a>
-                <a href="#downloads" class="hover:text-cyan-400 transition-colors">Downloads</a>
                 <a href="#stats" class="hover:text-cyan-400 transition-colors">Stats</a>
-                <a href="#vote" class="hover:text-cyan-400 transition-colors">Vote</a>
-                <a href="#discord" class="hover:text-cyan-400 transition-colors">Discord</a>
+                <a href="#discord" class="hover:text-cyan-400 transition-colors">Community</a>
             </div>
             
             <div class="flex items-center space-x-3">
                 <!-- Cart Icon -->
-                <div class="cart-icon" onclick="toggleCart()">
-                    <i class="fas fa-shopping-cart text-xl text-yellow-400 hover:text-yellow-300 transition-colors"></i>
+                <div class="cart-icon relative" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart text-xl text-yellow-400 hover:text-yellow-300 transition-colors glow-icon"></i>
                     <div id="cartBadge" class="cart-badge hidden">0</div>
                 </div>
 
-                <!-- User Status (Logged In) -->
-                <div id="userStatus" class="user-status">
-                    <span id="navUsername" class="text-cyan-400 font-semibold"></span>
-                    <button onclick="logout()" class="ml-3 text-red-400 hover:text-red-300 transition-colors">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </button>
-                </div>
-                
-                <!-- Login/Register Buttons (Logged Out) -->
+                <!-- Login/Register Buttons -->
                 <div id="authButtons">
                     <button onclick="showLogin()" class="btn-neon px-4 py-2 rounded-lg font-semibold transition-all">Login</button>
                     <button onclick="showRegister()" class="btn-gold px-4 py-2 rounded-lg font-semibold transition-all">Register</button>
@@ -832,7 +925,7 @@
             
             <!-- Mobile Menu -->
             <button class="md:hidden" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars text-2xl"></i>
+                <i class="fas fa-bars text-2xl glow-icon"></i>
             </button>
         </div>
         
@@ -840,11 +933,11 @@
         <div id="mobileMenu" class="md:hidden hidden bg-gray-900 border-t border-cyan-500">
             <div class="px-4 py-2 space-y-2">
                 <a href="#home" class="block py-2 hover:text-cyan-400">Home</a>
+                <a href="#ranks" class="block py-2 hover:text-cyan-400">Ranks</a>
+                <a href="#crates" class="block py-2 hover:text-cyan-400">Crates</a>
                 <a href="#store" class="block py-2 hover:text-cyan-400">Store</a>
-                <a href="#downloads" class="block py-2 hover:text-cyan-400">Downloads</a>
                 <a href="#stats" class="block py-2 hover:text-cyan-400">Stats</a>
-                <a href="#vote" class="block py-2 hover:text-cyan-400">Vote</a>
-                <a href="#discord" class="block py-2 hover:text-cyan-400">Discord</a>
+                <a href="#discord" class="block py-2 hover:text-cyan-400">Community</a>
             </div>
         </div>
     </nav>
@@ -856,18 +949,18 @@
         
         <div class="text-center z-10 relative">
             <div class="mb-8">
-                <div class="w-32 h-32 mx-auto bg-gradient-to-r from-cyan-500 to-yellow-500 rounded-2xl flex items-center justify-center mb-6 animate-pulse">
+                <div class="w-32 h-32 mx-auto bg-gradient-to-r from-cyan-500 to-yellow-500 rounded-2xl flex items-center justify-center mb-6 animate-pulse transform hover:scale-110 transition-transform">
                     <span class="orbitron font-bold text-6xl text-black">P</span>
                 </div>
                 <h1 class="hero-title orbitron font-black text-6xl md:text-8xl mb-4 bg-gradient-to-r from-cyan-400 to-yellow-400 bg-clip-text text-transparent">
-                    PIKZELS NETWORK
+                    ENHANCED PIKZELS
                 </h1>
-                <p class="text-xl md:text-2xl text-gray-300 mb-8">Experience the Ultimate Minecraft Adventure</p>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8">Experience the Ultimate 3D Minecraft Adventure</p>
             </div>
             
             <div class="space-y-4">
                 <button class="btn-neon px-8 py-4 rounded-lg text-xl font-bold transition-all mr-4">
-                    <i class="fas fa-play mr-2"></i>PLAY NOW
+                    <i class="fas fa-play mr-2 glow-icon"></i>PLAY NOW
                 </button>
                 <p class="text-gray-400">Server IP: <span class="text-yellow-400 font-mono">Pikzels.aternos.me:61225</span></p>
                 <div class="flex justify-center items-center space-x-8 mt-6">
@@ -888,29 +981,333 @@
         </div>
     </section>
 
-    <!-- Store Section -->
+    <!-- Enhanced Ranks Section -->
+    <section id="ranks" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-yellow-400 bg-clip-text text-transparent">
+                    <i class="fas fa-crown mr-2 glow-icon"></i>SERVER RANKS
+                </h2>
+                <p class="text-xl text-gray-300">Unlock exclusive perks and privileges</p>
+            </div>
+            
+            <!-- 3D Rank Preview Cards -->
+            <div class="rank-preview-container">
+                <div class="rank-card-3d pikzels-network">
+                    <div class="rank-card-front">
+                        <i class="fas fa-crown text-4xl mb-2"></i>
+                        <h3 class="font-bold text-lg">Pikzels Network</h3>
+                        <p class="text-sm mt-2">Ultimate Access</p>
+                    </div>
+                    <div class="rank-card-back">
+                        <i class="fas fa-infinity text-3xl mb-2"></i>
+                        <p class="text-sm">• All Commands</p>
+                        <p class="text-sm">• Creative Mode</p>
+                        <p class="text-sm">• Server Management</p>
+                        <p class="text-sm">• Custom Plugins</p>
+                    </div>
+                </div>
+
+                <div class="rank-card-3d legend">
+                    <div class="rank-card-front">
+                        <i class="fas fa-medal text-4xl mb-2"></i>
+                        <h3 class="font-bold text-lg">Legend</h3>
+                        <p class="text-sm mt-2">Epic Powers</p>
+                    </div>
+                    <div class="rank-card-back">
+                        <i class="fas fa-magic text-3xl mb-2"></i>
+                        <p class="text-sm">• Legendary Perks</p>
+                        <p class="text-sm">• VIP Areas</p>
+                        <p class="text-sm">• Custom Commands</p>
+                        <p class="text-sm">• Monthly Rewards</p>
+                    </div>
+                </div>
+
+                <div class="rank-card-3d ultimate-gamer">
+                    <div class="rank-card-front">
+                        <i class="fas fa-gamepad text-4xl mb-2"></i>
+                        <h3 class="font-bold text-lg">Ultimate Gamer</h3>
+                        <p class="text-sm mt-2">Pro Gaming</p>
+                    </div>
+                    <div class="rank-card-back">
+                        <i class="fas fa-trophy text-3xl mb-2"></i>
+                        <p class="text-sm">• Pro Commands</p>
+                        <p class="text-sm">• Special Events</p>
+                        <p class="text-sm">• Gaming Perks</p>
+                        <p class="text-sm">• Tournament Access</p>
+                    </div>
+                </div>
+
+                <div class="rank-card-3d beast">
+                    <div class="rank-card-front">
+                        <i class="fas fa-dragon text-4xl mb-2"></i>
+                        <h3 class="font-bold text-lg">Beast</h3>
+                        <p class="text-sm mt-2">Raw Power</p>
+                    </div>
+                    <div class="rank-card-back">
+                        <i class="fas fa-fire text-3xl mb-2"></i>
+                        <p class="text-sm">• Beast Mode</p>
+                        <p class="text-sm">• Combat Boosts</p>
+                        <p class="text-sm">• Exclusive Gear</p>
+                        <p class="text-sm">• Power Commands</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rank Purchase Options -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Pikzels Network Rank -->
+                <div class="store-card popular p-6 rounded-xl text-center">
+                    <div class="text-6xl mb-4">
+                        <i class="fas fa-crown glow-icon" style="color: #ffd700;"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-yellow-400">Pikzels Network</h4>
+                    <ul class="text-gray-300 text-left mb-6 space-y-2">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>All Server Commands</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Creative Mode Access</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>WorldEdit Permissions</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Server Management</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Custom Plugin Access</li>
+                    </ul>
+                    <div class="text-3xl font-bold text-yellow-400 mb-4">₹999</div>
+                    <button onclick="purchaseWithNotification('pikzels-network-rank', 'Pikzels Network Rank', 999)" class="btn-gold w-full py-3 rounded-lg font-bold mb-2">
+                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                    </button>
+                </div>
+
+                <!-- Legend Rank -->
+                <div class="store-card p-6 rounded-xl text-center">
+                    <div class="text-6xl mb-4">
+                        <i class="fas fa-medal glow-icon" style="color: #9333ea;"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-purple-400">Legend</h4>
+                    <ul class="text-gray-300 text-left mb-6 space-y-2">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Legendary Commands</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>VIP World Access</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Custom Cosmetics</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Monthly Crates</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Discord Premium Role</li>
+                    </ul>
+                    <div class="text-3xl font-bold text-yellow-400 mb-4">₹599</div>
+                    <button onclick="purchaseWithNotification('legend-rank', 'Legend Rank', 599)" class="btn-purple w-full py-3 rounded-lg font-bold mb-2">
+                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                    </button>
+                </div>
+
+                <!-- Ultimate Gamer Rank -->
+                <div class="store-card p-6 rounded-xl text-center">
+                    <div class="text-6xl mb-4">
+                        <i class="fas fa-gamepad glow-icon" style="color: #ef4444;"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-red-400">Ultimate Gamer</h4>
+                    <ul class="text-gray-300 text-left mb-6 space-y-2">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Pro Gaming Perks</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Tournament Access</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Special Events</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Gaming Boosts</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Exclusive Arenas</li>
+                    </ul>
+                    <div class="text-3xl font-bold text-yellow-400 mb-4">₹399</div>
+                    <button onclick="purchaseWithNotification('ultimate-gamer-rank', 'Ultimate Gamer Rank', 399)" class="btn-red w-full py-3 rounded-lg font-bold mb-2">
+                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                    </button>
+                </div>
+
+                <!-- Beast Rank -->
+                <div class="store-card p-6 rounded-xl text-center">
+                    <div class="text-6xl mb-4">
+                        <i class="fas fa-dragon glow-icon" style="color: #22c55e;"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-green-400">Beast</h4>
+                    <ul class="text-gray-300 text-left mb-6 space-y-2">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Beast Mode Powers</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Combat Enhancements</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Exclusive Weapons</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Power Commands</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Beast Arena Access</li>
+                    </ul>
+                    <div class="text-3xl font-bold text-yellow-400 mb-4">₹299</div>
+                    <button onclick="purchaseWithNotification('beast-rank', 'Beast Rank', 299)" class="btn-green w-full py-3 rounded-lg font-bold mb-2">
+                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Crates Section -->
+    <section id="crates" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-yellow-400 bg-clip-text text-transparent">
+                    <i class="fas fa-treasure-chest mr-2 glow-icon"></i>MYSTERY CRATES
+                </h2>
+                <p class="text-xl text-gray-300">Discover rare items and exclusive rewards</p>
+            </div>
+            
+            <!-- 3D Crate Carousel -->
+            <div class="crate-carousel">
+                <div class="crate-carousel-inner">
+                    <div class="crate-carousel-item">
+                        <div class="crate-3d starter">
+                            <div class="crate-face front"><i class="fas fa-box"></i></div>
+                            <div class="crate-face back"><i class="fas fa-gift"></i></div>
+                            <div class="crate-face right"><i class="fas fa-star"></i></div>
+                            <div class="crate-face left"><i class="fas fa-gem"></i></div>
+                            <div class="crate-face top"><i class="fas fa-crown"></i></div>
+                            <div class="crate-face bottom"><i class="fas fa-treasure-chest"></i></div>
+                        </div>
+                        <p class="text-center mt-4 font-bold text-green-400">Starter Crate</p>
+                    </div>
+                    <div class="crate-carousel-item">
+                        <div class="crate-3d pikzels">
+                            <div class="crate-face front"><i class="fas fa-fire"></i></div>
+                            <div class="crate-face back"><i class="fas fa-lightning-bolt"></i></div>
+                            <div class="crate-face right"><i class="fas fa-diamond"></i></div>
+                            <div class="crate-face left"><i class="fas fa-magic"></i></div>
+                            <div class="crate-face top"><i class="fas fa-infinity"></i></div>
+                            <div class="crate-face bottom"><i class="fas fa-dragon"></i></div>
+                        </div>
+                        <p class="text-center mt-4 font-bold text-yellow-400">Pikzels Crate 799</p>
+                    </div>
+                    <div class="crate-carousel-item">
+                        <div class="crate-3d hsr">
+                            <div class="crate-face front"><i class="fas fa-rocket"></i></div>
+                            <div class="crate-face back"><i class="fas fa-meteor"></i></div>
+                            <div class="crate-face right"><i class="fas fa-space-shuttle"></i></div>
+                            <div class="crate-face left"><i class="fas fa-satellite"></i></div>
+                            <div class="crate-face top"><i class="fas fa-moon"></i></div>
+                            <div class="crate-face bottom"><i class="fas fa-sun"></i></div>
+                        </div>
+                        <p class="text-center mt-4 font-bold text-red-400">HSR Crate</p>
+                    </div>
+                    <div class="crate-carousel-item">
+                        <div class="crate-3d ultimate">
+                            <div class="crate-face front"><i class="fas fa-shield-alt"></i></div>
+                            <div class="crate-face back"><i class="fas fa-sword"></i></div>
+                            <div class="crate-face right"><i class="fas fa-hammer"></i></div>
+                            <div class="crate-face left"><i class="fas fa-bow-arrow"></i></div>
+                            <div class="crate-face top"><i class="fas fa-helmet-battle"></i></div>
+                            <div class="crate-face bottom"><i class="fas fa-shield"></i></div>
+                        </div>
+                        <p class="text-center mt-4 font-bold text-blue-400">Ultimate Crate</p>
+                    </div>
+                    <div class="crate-carousel-item">
+                        <div class="crate-3d elite">
+                            <div class="crate-face front"><i class="fas fa-gem"></i></div>
+                            <div class="crate-face back"><i class="fas fa-ruby"></i></div>
+                            <div class="crate-face right"><i class="fas fa-emerald"></i></div>
+                            <div class="crate-face left"><i class="fas fa-sapphire"></i></div>
+                            <div class="crate-face top"><i class="fas fa-diamond"></i></div>
+                            <div class="crate-face bottom"><i class="fas fa-crystal"></i></div>
+                        </div>
+                        <p class="text-center mt-4 font-bold text-purple-400">Elite Crate</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crate Purchase Options -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+                <!-- Pikzels Crate 799 -->
+                <div class="store-card popular p-6 rounded-xl text-center">
+                    <div class="crate-3d pikzels mb-4">
+                        <div class="crate-face front"><i class="fas fa-fire"></i></div>
+                        <div class="crate-face back"><i class="fas fa-lightning-bolt"></i></div>
+                        <div class="crate-face right"><i class="fas fa-diamond"></i></div>
+                        <div class="crate-face left"><i class="fas fa-magic"></i></div>
+                        <div class="crate-face top"><i class="fas fa-infinity"></i></div>
+                        <div class="crate-face bottom"><i class="fas fa-dragon"></i></div>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-yellow-400">Pikzels Crate 799</h4>
+                    <ul class="text-gray-300 text-left mb-6 space-y-2">
+                        <li><i class="fas fa-gem text-yellow-400 mr-2"></i>Legendary Items (40%)</li>
+                        <li><i class="fas fa-gem text-red-400 mr-2"></i>Mythical Items (35%)</li>
+                        <li><i class="fas fa-gem text-purple-400 mr-2"></i>Divine Items (20%)</li>
+                        <li><i class="fas fa-gem text-cyan-400 mr-2"></i>Exclusive Cosmetics (5%)</li>
+                    </ul>
+                    <div class="text-3xl font-bold text-yellow-400 mb-4">₹799</div>
+                    <button onclick="purchaseWithNotification('pikzels-crate-799', 'Pikzels Crate 799', 799)" class="btn-gold w-full py-3 rounded-lg font-bold mb-2">
+                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                    </button>
+                    <button onclick="openCrateAnimation('pikzels')" class="btn-neon w-full py-3 rounded-lg font-bold">
+                        <i class="fas fa-unlock mr-2"></i>Open Preview
+                    </button>
+                </div>
+
+                <!-- HSR Crate -->
+                <div class="store-card p-6 rounded-xl text-center">
+                    <div class="crate-3d hsr mb-4">
+                        <div class="crate-face front"><i class="fas fa-rocket"></i></div>
+                        <div class="crate-face back"><i class="fas fa-meteor"></i></div>
+                        <div class="crate-face right"><i class="fas fa-space-shuttle"></i></div>
+                        <div class="crate-face left"><i class="fas fa-satellite"></i></div>
+                        <div class="crate-face top"><i class="fas fa-moon"></i></div>
+                        <div class="crate-face bottom"><i class="fas fa-sun"></i></div>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-red-400">HSR Crate</h4>
+                    <ul class="text-gray-300 text-left mb-6 space-y-2">
+                        <li><i class="fas fa-gem text-blue-400 mr-2"></i>Stellar Items (45%)</li>
+                        <li><i class="fas fa-gem text-purple-400 mr-2"></i>Cosmic Items (30%)</li>
+                        <li><i class="fas fa-gem text-yellow-400 mr-2"></i>Galaxy Items (20%)</li>
+                        <li><i class="fas fa-gem text-red-400 mr-2"></i>Universe Items (5%)</li>
+                    </ul>
+                    <div class="text-3xl font-bold text-yellow-400 mb-4">₹549</div>
+                    <button onclick="purchaseWithNotification('hsr-crate', 'HSR Crate', 549)" class="btn-red w-full py-3 rounded-lg font-bold mb-2">
+                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                    </button>
+                    <button onclick="openCrateAnimation('hsr')" class="btn-purple w-full py-3 rounded-lg font-bold">
+                        <i class="fas fa-unlock mr-2"></i>Open Preview
+                    </button>
+                </div>
+
+                <!-- Ultimate Crate -->
+                <div class="store-card p-6 rounded-xl text-center">
+                    <div class="crate-3d ultimate mb-4">
+                        <div class="crate-face front"><i class="fas fa-shield-alt"></i></div>
+                        <div class="crate-face back"><i class="fas fa-sword"></i></div>
+                        <div class="crate-face right"><i class="fas fa-hammer"></i></div>
+                        <div class="crate-face left"><i class="fas fa-bow-arrow"></i></div>
+                        <div class="crate-face top"><i class="fas fa-helmet-battle"></i></div>
+                        <div class="crate-face bottom"><i class="fas fa-shield"></i></div>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-blue-400">Ultimate Crate</h4>
+                    <ul class="text-gray-300 text-left mb-6 space-y-2">
+                        <li><i class="fas fa-gem text-blue-400 mr-2"></i>Rare Items (40%)</li>
+                        <li><i class="fas fa-gem text-purple-400 mr-2"></i>Epic Items (35%)</li>
+                        <li><i class="fas fa-gem text-yellow-400 mr-2"></i>Legendary Items (25%)</li>
+                    </ul>
+                    <div class="text-3xl font-bold text-yellow-400 mb-4">₹199</div>
+                    <button onclick="purchaseWithNotification('ultimate-crate', 'Ultimate Crate', 199)" class="btn-blue w-full py-3 rounded-lg font-bold mb-2">
+                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Original Store Section (keeping existing items) -->
     <section id="store" class="py-20 bg-gray-900">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="orbitron text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-yellow-400 bg-clip-text text-transparent">SERVER STORE</h2>
                 <p class="text-xl text-gray-300">Support the server and unlock premium features!</p>
                 <div class="discount-banner inline-block mt-4">
-                    <i class="fas fa-fire mr-2"></i>LIMITED TIME: 25% OFF ALL RANKS!
+                    <i class="fas fa-fire mr-2"></i>LIMITED TIME: 25% OFF ALL ITEMS!
                 </div>
             </div>
             
-            <!-- Ranks Section -->
+            <!-- Additional Items Section -->
             <div class="mb-16">
                 <h3 class="text-3xl font-bold text-center mb-8 text-yellow-400">
-                    <i class="fas fa-crown mr-2 glow-icon"></i>Server Ranks
+                    <i class="fas fa-star mr-2 glow-icon"></i>Premium Items
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Starter Rank -->
+                    <!-- Starter Package -->
                     <div class="store-card p-6 rounded-xl text-center">
                         <div class="text-6xl mb-4">
                             <i class="fas fa-sword glow-icon" style="color: #10b981;"></i>
                         </div>
-                        <h4 class="text-2xl font-bold mb-4 text-green-400">Starter Rank</h4>
+                        <h4 class="text-2xl font-bold mb-4 text-green-400">Starter Package</h4>
                         <ul class="text-gray-300 text-left mb-6 space-y-2">
                             <li><i class="fas fa-check text-green-400 mr-2"></i>Basic Commands</li>
                             <li><i class="fas fa-check text-green-400 mr-2"></i>Colored Chat</li>
@@ -918,20 +1315,17 @@
                             <li><i class="fas fa-check text-green-400 mr-2"></i>Priority Support</li>
                         </ul>
                         <div class="text-3xl font-bold text-yellow-400 mb-4">₹99</div>
-                        <button onclick="addToCart('starter-rank', 'Starter Rank', 99)" class="btn-green w-full py-3 rounded-lg font-bold mb-2">
-                            <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                        <button onclick="purchaseWithNotification('starter-package', 'Starter Package', 99)" class="btn-green w-full py-3 rounded-lg font-bold">
+                            <i class="fas fa-cart-plus mr-2"></i>Purchase Now
                         </button>
-                        <a href="upi://pay?pa=8091056604@fam&pn=Starter%20Rank&am=99&cu=INR" class="btn-neon w-full py-3 rounded-lg font-bold block">
-                            <i class="fas fa-bolt mr-2"></i>Buy Now
-                        </a>
                     </div>
 
-                    <!-- Elite Rank (Popular) -->
+                    <!-- VIP Package -->
                     <div class="store-card popular p-6 rounded-xl text-center">
                         <div class="text-6xl mb-4">
-                            <i class="fas fa-shield-alt glow-icon" style="color: #3b82f6;"></i>
+                            <i class="fas fa-crown glow-icon" style="color: #3b82f6;"></i>
                         </div>
-                        <h4 class="text-2xl font-bold mb-4 text-blue-400">Elite Rank</h4>
+                        <h4 class="text-2xl font-bold mb-4 text-blue-400">VIP Package</h4>
                         <ul class="text-gray-300 text-left mb-6 space-y-2">
                             <li><i class="fas fa-check text-green-400 mr-2"></i>All Starter Perks</li>
                             <li><i class="fas fa-check text-green-400 mr-2"></i>Fly Command</li>
@@ -940,176 +1334,36 @@
                             <li><i class="fas fa-check text-green-400 mr-2"></i>Access to VIP Lounge</li>
                         </ul>
                         <div class="text-3xl font-bold text-yellow-400 mb-4">₹249</div>
-                        <button onclick="addToCart('elite-rank', 'Elite Rank', 249)" class="btn-green w-full py-3 rounded-lg font-bold mb-2">
-                            <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                        <button onclick="purchaseWithNotification('vip-package', 'VIP Package', 249)" class="btn-gold w-full py-3 rounded-lg font-bold">
+                            <i class="fas fa-cart-plus mr-2"></i>Purchase Now
                         </button>
-                        <a href="upi://pay?pa=8091056604@fam&pn=Elite%20Rank&am=249&cu=INR" class="btn-gold w-full py-3 rounded-lg font-bold block">
-                            <i class="fas fa-bolt mr-2"></i>Buy Now
-                        </a>
                     </div>
 
-                    <!-- Legend Rank -->
+                    <!-- Premium Package -->
                     <div class="store-card p-6 rounded-xl text-center">
                         <div class="text-6xl mb-4">
-                            <i class="fas fa-crown glow-icon" style="color: #9333ea;"></i>
+                            <i class="fas fa-gem glow-icon" style="color: #9333ea;"></i>
                         </div>
-                        <h4 class="text-2xl font-bold mb-4 text-purple-400">Legend Rank</h4>
+                        <h4 class="text-2xl font-bold mb-4 text-purple-400">Premium Package</h4>
                         <ul class="text-gray-300 text-left mb-6 space-y-2">
-                            <li><i class="fas fa-check text-green-400 mr-2"></i>All Elite Perks</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i>All VIP Perks</li>
                             <li><i class="fas fa-check text-green-400 mr-2"></i>/nick Command</li>
                             <li><i class="fas fa-check text-green-400 mr-2"></i>Custom Cosmetics</li>
                             <li><i class="fas fa-check text-green-400 mr-2"></i>Exclusive Discord Role</li>
                             <li><i class="fas fa-check text-green-400 mr-2"></i>Private World Access</li>
                         </ul>
                         <div class="text-3xl font-bold text-yellow-400 mb-4">₹499</div>
-                        <button onclick="addToCart('legend-rank', 'Legend Rank', 499)" class="btn-green w-full py-3 rounded-lg font-bold mb-2">
-                            <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                        <button onclick="purchaseWithNotification('premium-package', 'Premium Package', 499)" class="btn-purple w-full py-3 rounded-lg font-bold">
+                            <i class="fas fa-cart-plus mr-2"></i>Purchase Now
                         </button>
-                        <a href="upi://pay?pa=8091056604@fam&pn=Legend%20Rank&am=499&cu=INR" class="btn-purple w-full py-3 rounded-lg font-bold block">
-                            <i class="fas fa-bolt mr-2"></i>Buy Now
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Crates Section -->
-            <div class="mb-16">
-                <h3 class="text-3xl font-bold text-center mb-8 text-yellow-400">
-                    <i class="fas fa-treasure-chest mr-2 glow-icon"></i>Mystery Crates
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Starter Crate -->
-                    <div class="store-card p-6 rounded-xl text-center">
-                        <div class="crate-icon text-6xl mb-4">
-                            <i class="fas fa-box glow-icon" style="color: #10b981;"></i>
-                        </div>
-                        <h4 class="text-2xl font-bold mb-4 text-green-400">Starter Crate</h4>
-                        <ul class="text-gray-300 text-left mb-6 space-y-2">
-                            <li><i class="fas fa-gem text-green-400 mr-2"></i>Common Items (70%)</li>
-                            <li><i class="fas fa-gem text-blue-400 mr-2"></i>Rare Items (25%)</li>
-                            <li><i class="fas fa-gem text-purple-400 mr-2"></i>Epic Items (5%)</li>
-                        </ul>
-                        <div class="text-3xl font-bold text-yellow-400 mb-4">₹1</div>
-                        <button onclick="addToCart('starter-crate', 'Starter Crate', 1)" class="btn-green w-full py-3 rounded-lg font-bold mb-2">
-                            <i class="fas fa-cart-plus mr-2"></i>Add to Cart
-                        </button>
-                        <a href="upi://pay?pa=8091056604@fam&pn=Starter%20Crate&am=1&cu=INR" class="btn-neon w-full py-3 rounded-lg font-bold block">
-                            <i class="fas fa-unlock mr-2"></i>Open Now
-                        </a>
-                    </div>
-
-                    <!-- Ultimate Crate -->
-                    <div class="store-card p-6 rounded-xl text-center">
-                        <div class="crate-icon text-6xl mb-4">
-                            <i class="fas fa-treasure-chest glow-icon" style="color: #3b82f6;"></i>
-                        </div>
-                        <h4 class="text-2xl font-bold mb-4 text-blue-400">Ultimate Crate</h4>
-                        <ul class="text-gray-300 text-left mb-6 space-y-2">
-                            <li><i class="fas fa-gem text-blue-400 mr-2"></i>Rare Items (40%)</li>
-                            <li><i class="fas fa-gem text-purple-400 mr-2"></i>Epic Items (35%)</li>
-                            <li><i class="fas fa-gem text-yellow-400 mr-2"></i>Legendary Items (25%)</li>
-                        </ul>
-                        <div class="text-3xl font-bold text-yellow-400 mb-4">₹199</div>
-                        <button onclick="addToCart('ultimate-crate', 'Ultimate Crate', 199)" class="btn-green w-full py-3 rounded-lg font-bold mb-2">
-                            <i class="fas fa-cart-plus mr-2"></i>Add to Cart
-                        </button>
-                        <a href="upi://pay?pa=8091056604@fam&pn=Ultimate%20Crate&am=199&cu=INR" class="btn-gold w-full py-3 rounded-lg font-bold block">
-                            <i class="fas fa-unlock mr-2"></i>Open Now
-                        </a>
-                    </div>
-
-                    <!-- Elite Crate -->
-                    <div class="store-card p-6 rounded-xl text-center">
-                        <div class="crate-icon text-6xl mb-4">
-                            <i class="fas fa-gem glow-icon" style="color: #9333ea;"></i>
-                        </div>
-                        <h4 class="text-2xl font-bold mb-4 text-purple-400">Elite Crate</h4>
-                        <ul class="text-gray-300 text-left mb-6 space-y-2">
-                            <li><i class="fas fa-gem text-purple-400 mr-2"></i>Epic Items (30%)</li>
-                            <li><i class="fas fa-gem text-yellow-400 mr-2"></i>Legendary Items (50%)</li>
-                            <li><i class="fas fa-gem text-red-400 mr-2"></i>Mythical Items (20%)</li>
-                        </ul>
-                        <div class="text-3xl font-bold text-yellow-400 mb-4">₹349</div>
-                        <button onclick="addToCart('elite-crate', 'Elite Crate', 349)" class="btn-green w-full py-3 rounded-lg font-bold mb-2">
-                            <i class="fas fa-cart-plus mr-2"></i>Add to Cart
-                        </button>
-                        <a href="upi://pay?pa=8091056604@fam&pn=Elite%20Crate&am=349&cu=INR" class="btn-purple w-full py-3 rounded-lg font-bold block">
-                            <i class="fas fa-unlock mr-2"></i>Open Now
-                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Downloads Hub Section -->
-    <section id="downloads" class="py-20 bg-gray-800">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="orbitron text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-yellow-400 bg-clip-text text-transparent">DOWNLOADS HUB</h2>
-                <p class="text-xl text-gray-300">Get the best experience with our custom resource packs and mods</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- OG Resource Pack -->
-                <div class="game-card p-6 rounded-xl">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-fire text-4xl text-orange-400 mr-4 glow-icon"></i>
-                        <div>
-                            <h3 class="text-2xl font-bold">OG PACK by Krish</h3>
-                            <p class="text-gray-400">Version 3.0 • 128x128 Resolution</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-4">The ultimate custom resource pack created by OG_KRISH2011. Features premium textures, custom UI elements, animated blocks, and exclusive Pikzels Network branding. Elevate your Minecraft experience!</p>
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-sm text-gray-400">Size: 67.8 MB</span>
-                        <span class="text-sm text-green-400">Compatible: 1.16-1.20</span>
-                    </div>
-                    <div class="mb-4">
-                        <div class="flex items-center space-x-2">
-                            <span class="bg-orange-500 text-white px-2 py-1 rounded text-xs font-bold">OG EXCLUSIVE</span>
-                            <span class="bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">NEW</span>
-                            <span class="bg-green-500 text-white px-2 py-1 rounded text-xs font-bold">UPDATED</span>
-                        </div>
-                    </div>
-                    <div class="download-progress hidden" id="resourceProgress">
-                        <div class="download-progress-bar" style="width: 0%"></div>
-                    </div>
-                    <a href="https://github.com/Krish1234raj/OG-Resource-Pack/releases/tag/Og" 
-   download="OG_PACK.zip" 
-   class="btn-neon w-full py-3 rounded-lg font-bold flex justify-center items-center">
-   <i class="fas fa-download mr-2"></i>Download OG PACK
-</a>
-
-                </div>
-
-                <!-- Modpack -->
-                <div class="game-card p-6 rounded-xl">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-cogs text-4xl text-yellow-400 mr-4 glow-icon"></i>
-                        <div>
-                            <h3 class="text-2xl font-bold">Pikzels Modpack</h3>
-                            <p class="text-gray-400">Version 1.3 • Forge 1.19.2</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-4">Complete modpack with performance optimizations, quality of life improvements, and exclusive content. Perfect for the ultimate Pikzels experience.</p>
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-sm text-gray-400">Size: 127.8 MB</span>
-                        <span class="text-sm text-green-400">Mods: 45+ included</span>
-                    </div>
-                    <div class="download-progress hidden" id="modpackProgress">
-                        <div class="download-progress-bar" style="width: 0%"></div>
-                    </div>
-                    <button onclick="downloadFile('modpack')" class="btn-gold w-full py-3 rounded-lg font-bold">
-                        <i class="fas fa-download mr-2"></i>Download Modpack
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Player Stats & Leaderboard Section -->
-    <section id="stats" class="py-20 bg-gray-900">
+    <!-- Enhanced Stats Section -->
+    <section id="stats" class="py-20 bg-gray-800">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="orbitron text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-yellow-400 bg-clip-text text-transparent">PLAYER STATISTICS</h2>
@@ -1117,7 +1371,7 @@
             </div>
             
             <div class="grid lg:grid-cols-2 gap-8">
-                <!-- Leaderboard -->
+                <!-- Enhanced Leaderboard -->
                 <div class="game-card p-6 rounded-xl">
                     <h3 class="text-2xl font-bold mb-6 text-center text-cyan-400">
                         <i class="fas fa-trophy mr-2 glow-icon"></i>Top Players
@@ -1125,7 +1379,7 @@
                     <div class="space-y-3">
                         <div class="leaderboard-item p-4 rounded-lg flex justify-between items-center">
                             <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center font-bold text-black">
+                                <div class="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center font-bold text-black animate-pulse">
                                     <i class="fas fa-crown"></i>
                                 </div>
                                 <div>
@@ -1143,7 +1397,7 @@
                         
                         <div class="leaderboard-item p-4 rounded-lg flex justify-between items-center">
                             <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-gradient-to-r from-gray-300 to-gray-500 rounded-full flex items-center justify-center font-bold text-black">2</div>
+                                <div class="w-12 h-12 bg-gradient-to-r from-gray-300 to-gray-500 rounded-full flex items-center justify-center font-bold text-black">2</div>
                                 <div>
                                     <span class="font-semibold">Oggy4illuX</span>
                                     <div class="text-sm text-red-400">[ADMIN]</div>
@@ -1159,7 +1413,7 @@
                         
                         <div class="leaderboard-item p-4 rounded-lg flex justify-between items-center">
                             <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full flex items-center justify-center font-bold text-white">3</div>
+                                <div class="w-12 h-12 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full flex items-center justify-center font-bold text-white">3</div>
                                 <div>
                                     <span class="font-semibold">PixelMaster99</span>
                                     <div class="text-sm text-purple-400">[VIP]</div>
@@ -1172,42 +1426,10 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="leaderboard-item p-4 rounded-lg flex justify-between items-center">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center font-bold text-white">4</div>
-                                <div>
-                                    <span class="font-semibold">SkyWarrior</span>
-                                    <div class="text-sm text-gray-400">[MEMBER]</div>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-cyan-400 font-bold">8,230 pts</div>
-                                <div class="stat-progress">
-                                    <div class="stat-progress-bar" style="width: 55%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="leaderboard-item p-4 rounded-lg flex justify-between items-center">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center font-bold text-white">5</div>
-                                <div>
-                                    <span class="font-semibold">DiamondHunter</span>
-                                    <div class="text-sm text-gray-400">[MEMBER]</div>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-cyan-400 font-bold">7,180 pts</div>
-                                <div class="stat-progress">
-                                    <div class="stat-progress-bar" style="width: 48%"></div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 
-                <!-- Statistics Chart -->
+                <!-- Enhanced Statistics Chart -->
                 <div class="game-card p-6 rounded-xl">
                     <h3 class="text-2xl font-bold mb-6 text-center text-yellow-400">
                         <i class="fas fa-chart-line mr-2 glow-icon"></i>Server Statistics
@@ -1220,8 +1442,8 @@
         </div>
     </section>
 
-    <!-- Community & Discord Section -->
-    <section id="discord" class="py-20 bg-gray-800">
+    <!-- Enhanced Community Section -->
+    <section id="discord" class="py-20 bg-gray-900">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="orbitron text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-yellow-400 bg-clip-text text-transparent">JOIN OUR COMMUNITY</h2>
@@ -1229,24 +1451,28 @@
             </div>
             
             <div class="grid lg:grid-cols-2 gap-8">
-                <!-- Discord Widget -->
-                <div class="discord-widget">
+                <!-- Enhanced Discord Widget -->
+                <div class="game-card p-8">
                     <div class="flex items-center mb-6">
-                        <i class="fab fa-discord text-5xl text-indigo-400 mr-4 glow-icon"></i>
+                        <i class="fab fa-discord text-6xl text-indigo-400 mr-4 glow-icon"></i>
                         <div>
-                            <h3 class="text-2xl font-bold">Discord Server</h3>
-                            <p class="text-gray-400">Join our active community of 5,247 members</p>
+                            <h3 class="text-3xl font-bold">Discord Server</h3>
+                            <p class="text-gray-400">Join our active community of 5,247+ members</p>
                         </div>
                     </div>
                     
-                    <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div class="text-center p-4 bg-gray-700 rounded-lg">
+                    <div class="grid grid-cols-3 gap-4 mb-6">
+                        <div class="text-center p-4 bg-gray-700 rounded-lg transform hover:scale-105 transition-transform">
                             <div class="text-2xl font-bold text-green-400">156</div>
                             <div class="text-sm text-gray-400">Online Now</div>
                         </div>
-                        <div class="text-center p-4 bg-gray-700 rounded-lg">
+                        <div class="text-center p-4 bg-gray-700 rounded-lg transform hover:scale-105 transition-transform">
                             <div class="text-2xl font-bold text-blue-400">5,247</div>
                             <div class="text-sm text-gray-400">Total Members</div>
+                        </div>
+                        <div class="text-center p-4 bg-gray-700 rounded-lg transform hover:scale-105 transition-transform">
+                            <div class="text-2xl font-bold text-purple-400">24/7</div>
+                            <div class="text-sm text-gray-400">Active Support</div>
                         </div>
                     </div>
                     
@@ -1255,7 +1481,7 @@
                     </a>
                 </div>
                 
-                <!-- News & Announcements -->
+                <!-- Enhanced News Section -->
                 <div class="game-card p-6 rounded-xl">
                     <h3 class="text-2xl font-bold mb-6 text-center text-cyan-400">
                         <i class="fas fa-bullhorn mr-2 glow-icon"></i>Latest News
@@ -1263,35 +1489,35 @@
                     
                     <div class="news-slider">
                         <div class="news-slide active">
-                            <div class="p-4 bg-gray-700 rounded-lg mb-4">
+                            <div class="p-4 bg-gray-700 rounded-lg mb-4 transform hover:scale-105 transition-transform">
                                 <div class="flex items-center mb-2">
                                     <span class="bg-red-500 text-white px-2 py-1 rounded text-sm font-bold mr-2">HOT</span>
                                     <span class="text-sm text-gray-400">2 days ago</span>
                                 </div>
-                                <h4 class="font-bold text-lg mb-2">Summer Event is Live! 🎉</h4>
-                                <p class="text-gray-300 text-sm">Join our massive summer celebration with exclusive rewards, double XP, and limited-time crates!</p>
+                                <h4 class="font-bold text-lg mb-2">Enhanced 3D Experience Live! 🎉</h4>
+                                <p class="text-gray-300 text-sm">Experience our new 3D crates, enhanced animations, and improved gameplay with stunning visual effects!</p>
                             </div>
                         </div>
                         
                         <div class="news-slide">
-                            <div class="p-4 bg-gray-700 rounded-lg mb-4">
+                            <div class="p-4 bg-gray-700 rounded-lg mb-4 transform hover:scale-105 transition-transform">
                                 <div class="flex items-center mb-2">
                                     <span class="bg-blue-500 text-white px-2 py-1 rounded text-sm font-bold mr-2">UPDATE</span>
                                     <span class="text-sm text-gray-400">5 days ago</span>
                                 </div>
-                                <h4 class="font-bold text-lg mb-2">New PvP Arena Released</h4>
-                                <p class="text-gray-300 text-sm">Experience epic battles in our brand new Nether-themed PvP arena with custom weapons and abilities!</p>
+                                <h4 class="font-bold text-lg mb-2">New Rank System Released</h4>
+                                <p class="text-gray-300 text-sm">Discover our new rank system with Ultimate Gamer, Beast, and enhanced Legend ranks with exclusive perks!</p>
                             </div>
                         </div>
                         
                         <div class="news-slide">
-                            <div class="p-4 bg-gray-700 rounded-lg mb-4">
+                            <div class="p-4 bg-gray-700 rounded-lg mb-4 transform hover:scale-105 transition-transform">
                                 <div class="flex items-center mb-2">
                                     <span class="bg-green-500 text-white px-2 py-1 rounded text-sm font-bold mr-2">EVENT</span>
                                     <span class="text-sm text-gray-400">1 week ago</span>
                                 </div>
-                                <h4 class="font-bold text-lg mb-2">Build Competition Winners</h4>
-                                <p class="text-gray-300 text-sm">Congratulations to all participants in our medieval castle building competition. Amazing builds!</p>
+                                <h4 class="font-bold text-lg mb-2">HSR Crate Launch Event</h4>
+                                <p class="text-gray-300 text-sm">Celebrate the launch of our new HSR (Honkai Star Rail) themed crate with cosmic rewards and stellar items!</p>
                             </div>
                         </div>
                     </div>
@@ -1306,101 +1532,38 @@
         </div>
     </section>
 
-    <!-- Vote Section -->
-    <section id="vote" class="py-20 bg-gray-900">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="orbitron text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-yellow-400 bg-clip-text text-transparent">VOTE FOR REWARDS</h2>
-                <p class="text-xl text-gray-300">Help us grow and earn amazing rewards!</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="game-card p-6 rounded-xl text-center">
-                    <i class="fas fa-star text-4xl text-yellow-400 mb-4 glow-icon"></i>
-                    <h3 class="text-xl font-bold mb-3">MinecraftServers.org</h3>
-                    <p class="text-gray-300 mb-4">Vote every 24 hours</p>
-                    <button class="btn-gold w-full py-3 rounded-lg font-bold">
-                        <i class="fas fa-vote-yea mr-2"></i>Vote Now
-                    </button>
-                </div>
-                
-                <div class="game-card p-6 rounded-xl text-center">
-                    <i class="fas fa-star text-4xl text-yellow-400 mb-4 glow-icon"></i>
-                    <h3 class="text-xl font-bold mb-3">Minecraft-MP.com</h3>
-                    <p class="text-gray-300 mb-4">Vote every 24 hours</p>
-                    <button class="btn-gold w-full py-3 rounded-lg font-bold">
-                        <i class="fas fa-vote-yea mr-2"></i>Vote Now
-                    </button>
-                </div>
-                
-                <div class="game-card p-6 rounded-xl text-center">
-                    <i class="fas fa-star text-4xl text-yellow-400 mb-4 glow-icon"></i>
-                    <h3 class="text-xl font-bold mb-3">TopG.org</h3>
-                    <p class="text-gray-300 mb-4">Vote every 12 hours</p>
-                    <button class="btn-gold w-full py-3 rounded-lg font-bold">
-                        <i class="fas fa-vote-yea mr-2"></i>Vote Now
-                    </button>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <div class="game-card p-6 rounded-xl inline-block">
-                    <h3 class="text-2xl font-bold mb-4 text-cyan-400">Vote Rewards</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div class="text-center">
-                            <i class="fas fa-coins text-2xl text-yellow-400 mb-2"></i>
-                            <div class="text-sm">500 Coins</div>
-                        </div>
-                        <div class="text-center">
-                            <i class="fas fa-gem text-2xl text-purple-400 mb-2"></i>
-                            <div class="text-sm">Vote Crate Key</div>
-                        </div>
-                        <div class="text-center">
-                            <i class="fas fa-bolt text-2xl text-cyan-400 mb-2"></i>
-                            <div class="text-sm">2x XP Boost</div>
-                        </div>
-                        <div class="text-center">
-                            <i class="fas fa-gift text-2xl text-red-400 mb-2"></i>
-                            <div class="text-sm">Random Item</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-black py-12 border-t border-gray-800">
+    <!-- Enhanced Footer -->
+    <footer class="bg-black py-12 border-t-2 border-cyan-500">
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
                     <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-10 h-10 bg-gradient-to-r from-cyan-500 to-yellow-500 rounded-lg flex items-center justify-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-yellow-500 rounded-lg flex items-center justify-center">
                             <span class="orbitron font-bold text-black">P</span>
                         </div>
-                        <span class="orbitron font-bold text-xl">Pikzels Network</span>
+                        <span class="orbitron font-bold text-xl">Enhanced Pikzels</span>
                     </div>
-                    <p class="text-gray-400 text-sm">The ultimate Minecraft server experience with custom game modes, events, and an amazing community.</p>
+                    <p class="text-gray-400 text-sm">The ultimate enhanced Minecraft server experience with 3D animations, custom game modes, and an amazing community.</p>
                 </div>
                 
                 <div>
                     <h4 class="font-bold mb-4 text-cyan-400">Quick Links</h4>
                     <div class="space-y-2">
-                        <a href="#store" class="block text-gray-400 hover:text-white text-sm transition-colors">Store</a>
-                        <a href="#downloads" class="block text-gray-400 hover:text-white text-sm transition-colors">Downloads</a>
-                        <a href="#vote" class="block text-gray-400 hover:text-white text-sm transition-colors">Vote</a>
-                        <a href="#discord" class="block text-gray-400 hover:text-white text-sm transition-colors">Discord</a>
+                        <a href="#ranks" class="block text-gray-400 hover:text-white text-sm transition-colors">Enhanced Ranks</a>
+                        <a href="#crates" class="block text-gray-400 hover:text-white text-sm transition-colors">3D Crates</a>
+                        <a href="#store" class="block text-gray-400 hover:text-white text-sm transition-colors">Premium Store</a>
+                        <a href="#discord" class="block text-gray-400 hover:text-white text-sm transition-colors">Community</a>
                     </div>
                 </div>
                 
                 <div>
                     <h4 class="font-bold mb-4 text-cyan-400">Server Info</h4>
                     <div class="space-y-2 text-sm text-gray-400">
-                        <div>IP: <span class="text-yellow-400">Pikzels.aternos.me:61225</span></div>
+                        <div>IP: <span class="text-yellow-400 font-mono">Pikzels.aternos.me:61225</span></div>
                         <div>Version: <span class="text-green-400">1.8-1.20</span></div>
                         <div class="server-status">
                             <div class="status-dot"></div>
-                            <span>Server Online</span>
+                            <span>Enhanced Server Online</span>
                         </div>
                     </div>
                 </div>
@@ -1408,37 +1571,37 @@
                 <div>
                     <h4 class="font-bold mb-4 text-cyan-400">Follow Us</h4>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
-                            <i class="fab fa-discord text-xl glow-icon"></i>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors transform hover:scale-110">
+                            <i class="fab fa-discord text-2xl glow-icon"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
-                            <i class="fab fa-twitter text-xl glow-icon"></i>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors transform hover:scale-110">
+                            <i class="fab fa-twitter text-2xl glow-icon"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-red-400 transition-colors">
-                            <i class="fab fa-youtube text-xl glow-icon"></i>
+                        <a href="#" class="text-gray-400 hover:text-red-400 transition-colors transform hover:scale-110">
+                            <i class="fab fa-youtube text-2xl glow-icon"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-pink-400 transition-colors">
-                            <i class="fab fa-instagram text-xl glow-icon"></i>
+                        <a href="#" class="text-gray-400 hover:text-pink-400 transition-colors transform hover:scale-110">
+                            <i class="fab fa-instagram text-2xl glow-icon"></i>
                         </a>
                     </div>
                 </div>
             </div>
             
             <div class="border-t border-gray-800 pt-8 text-center">
-                <p class="text-gray-400 text-sm">&copy; 2024 Pikzels Network. All rights reserved. Made with ❤️ by OG_KRISH2011  for the Minecraft community.</p>
+                <p class="text-gray-400 text-sm">&copy; 2024 Enhanced Pikzels Network. All rights reserved. Enhanced with ❤️ by OG_KRISH2011 for the ultimate Minecraft experience.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Modals -->
+    <!-- Enhanced Modals -->
     <!-- Login Modal -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <div class="p-6">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl font-bold text-cyan-400">Login to Pikzels Network</h2>
-                    <button onclick="closeModal('loginModal')" class="text-gray-400 hover:text-white text-2xl">
-                        <i class="fas fa-times"></i>
+                    <h2 class="text-2xl font-bold text-cyan-400">Login to Enhanced Pikzels</h2>
+                    <button onclick="closeModal('loginModal')" class="text-gray-400 hover:text-white text-2xl transition-colors">
+                        <i class="fas fa-times glow-icon"></i>
                     </button>
                 </div>
                 <form id="loginForm" onsubmit="login(event)">
@@ -1451,7 +1614,7 @@
                         <input type="password" id="loginPassword" class="w-full p-3 rounded-lg" placeholder="Enter your password" required>
                     </div>
                     <button type="submit" class="btn-neon w-full py-3 rounded-lg font-bold">
-                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login to Enhanced Experience
                     </button>
                 </form>
                 <div class="mt-4 text-center">
@@ -1467,15 +1630,15 @@
         <div class="modal-content">
             <div class="p-6">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl font-bold text-yellow-400">Join Pikzels Network</h2>
-                    <button onclick="closeModal('registerModal')" class="text-gray-400 hover:text-white text-2xl">
-                        <i class="fas fa-times"></i>
+                    <h2 class="text-2xl font-bold text-yellow-400">Join Enhanced Pikzels</h2>
+                    <button onclick="closeModal('registerModal')" class="text-gray-400 hover:text-white text-2xl transition-colors">
+                        <i class="fas fa-times glow-icon"></i>
                     </button>
                 </div>
                 <form id="registerForm" onsubmit="register(event)">
                     <div class="mb-4">
                         <label class="block text-sm font-semibold mb-2">Username</label>
-                        <input type="text" id="registerUsername" class="w-full p-3 rounded-lg" placeholder="Choose a username" required minlength="3">
+                        <input type="text" id="registerUsername" class="w-full p-3 rounded-lg" placeholder="Choose a unique username" required minlength="3">
                     </div>
                     <div class="mb-4">
                         <label class="block text-sm font-semibold mb-2">Email</label>
@@ -1483,14 +1646,14 @@
                     </div>
                     <div class="mb-4">
                         <label class="block text-sm font-semibold mb-2">Password</label>
-                        <input type="password" id="registerPassword" class="w-full p-3 rounded-lg" placeholder="Choose a password" required minlength="6">
+                        <input type="password" id="registerPassword" class="w-full p-3 rounded-lg" placeholder="Choose a secure password" required minlength="6">
                     </div>
                     <div class="mb-6">
                         <label class="block text-sm font-semibold mb-2">Confirm Password</label>
                         <input type="password" id="confirmPassword" class="w-full p-3 rounded-lg" placeholder="Confirm your password" required>
                     </div>
                     <button type="submit" class="btn-gold w-full py-3 rounded-lg font-bold">
-                        <i class="fas fa-user-plus mr-2"></i>Create Account
+                        <i class="fas fa-user-plus mr-2"></i>Create Enhanced Account
                     </button>
                 </form>
                 <div class="mt-4 text-center">
@@ -1501,22 +1664,23 @@
         </div>
     </div>
 
-    <!-- Cart Modal -->
+    <!-- Enhanced Cart Modal -->
     <div id="cartModal" class="modal">
         <div class="modal-content">
             <div class="p-6">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-bold text-yellow-400">
-                        <i class="fas fa-shopping-cart mr-2"></i>Shopping Cart
+                        <i class="fas fa-shopping-cart mr-2 glow-icon"></i>Enhanced Shopping Cart
                     </h2>
-                    <button onclick="closeModal('cartModal')" class="text-gray-400 hover:text-white text-2xl">
-                        <i class="fas fa-times"></i>
+                    <button onclick="closeModal('cartModal')" class="text-gray-400 hover:text-white text-2xl transition-colors">
+                        <i class="fas fa-times glow-icon"></i>
                     </button>
                 </div>
                 <div id="cartItems" class="mb-6">
                     <div class="text-center text-gray-400 py-8">
                         <i class="fas fa-shopping-cart text-4xl mb-4"></i>
                         <p>Your cart is empty</p>
+                        <p class="text-sm">Add some amazing items to get started!</p>
                     </div>
                 </div>
                 <div id="cartTotal" class="hidden">
@@ -1527,7 +1691,7 @@
                         </div>
                     </div>
                     <button id="checkoutBtn" onclick="checkout()" class="btn-gold w-full py-3 rounded-lg font-bold mt-4" disabled>
-                        <i class="fas fa-credit-card mr-2"></i>Proceed to Checkout
+                        <i class="fas fa-credit-card mr-2"></i>Proceed to Enhanced Checkout
                     </button>
                 </div>
             </div>
@@ -1540,33 +1704,50 @@
         let currentUser = null;
         let currentNews = 0;
         
-        // Initialize the page
+        // Telegram Bot Configuration for Purchase Notifications
+        const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN'; // Replace with your actual bot token
+        const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID'; // Replace with your chat ID
+        
+        // Initialize the enhanced page
         document.addEventListener('DOMContentLoaded', function() {
-            // Show loading screen
+            // Show enhanced loading screen
             setTimeout(() => {
                 document.getElementById('loadingScreen').style.display = 'none';
-                checkLoginStatus();
-                createParticles();
+                createEnhancedParticles();
                 initializeChart();
                 startNewsSlider();
                 initializeCursor();
-            }, 3000);
+                initializeScrollEffects();
+            }, 3500);
             
             // Load cart from localStorage
-            const savedCart = localStorage.getItem('pikzels_cart');
+            const savedCart = localStorage.getItem('enhanced_pikzels_cart');
             if (savedCart) {
                 cart = JSON.parse(savedCart);
                 updateCartBadge();
             }
         });
 
-        // Custom Cursor
+        // Enhanced Custom Cursor
         function initializeCursor() {
             const cursor = document.getElementById('cursor');
             
             document.addEventListener('mousemove', (e) => {
                 cursor.style.left = e.clientX + 'px';
                 cursor.style.top = e.clientY + 'px';
+            });
+            
+            // Enhanced cursor interactions
+            const interactiveElements = document.querySelectorAll('button, a, .store-card, .game-card');
+            
+            interactiveElements.forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'scale(1.5)';
+                });
+                
+                element.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'scale(1)';
+                });
             });
             
             // Hide cursor when leaving window
@@ -1579,39 +1760,54 @@
             });
         }
 
-        // Create floating particles
-        function createParticles() {
+        // Enhanced Particles with multiple types
+        function createEnhancedParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+            const particleCount = 80;
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
-                particle.className = 'particle';
+                const types = ['particle', 'particle cyan', 'particle red'];
+                particle.className = types[Math.floor(Math.random() * types.length)];
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
                 particlesContainer.appendChild(particle);
             }
             
-            // Add sparkles
+            // Enhanced sparkles
             setInterval(() => {
-                createSparkle();
-            }, 2000);
+                createEnhancedSparkle();
+            }, 1500);
         }
 
-        function createSparkle() {
+        function createEnhancedSparkle() {
             const sparkle = document.createElement('div');
             sparkle.className = 'sparkle';
             sparkle.style.left = Math.random() * 100 + '%';
             sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
             document.querySelector('.hero-bg').appendChild(sparkle);
             
             setTimeout(() => {
                 sparkle.remove();
-            }, 2000);
+            }, 3000);
         }
 
-        // Authentication System
+        // Enhanced scroll effects
+        function initializeScrollEffects() {
+            const navbar = document.getElementById('navbar');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // Enhanced Authentication System
         function showLogin() {
             document.getElementById('loginModal').style.display = 'block';
         }
@@ -1630,28 +1826,15 @@
             const username = document.getElementById('loginUsername').value;
             const password = document.getElementById('loginPassword').value;
             
-            // Get registered users from localStorage
-            const users = JSON.parse(localStorage.getItem('pikzels_users') || '[]');
-            const user = users.find(u => (u.username === username || u.email === username) && u.password === password);
-            
-            if (user) {
+            // Simulate login (in real implementation, validate against backend)
+            if (username && password) {
+                const user = { username, loginTime: new Date().toISOString() };
                 currentUser = user;
-                localStorage.setItem('pikzels_currentUser', JSON.stringify(user));
-                updateLoginUI();
+                localStorage.setItem('enhanced_pikzels_user', JSON.stringify(user));
                 closeModal('loginModal');
-                showWelcomeMessage();
+                showEnhancedNotification(`Welcome back, ${username}! 🎉`, 'success');
             } else {
-                // Shake form and show error
-                const form = document.getElementById('loginForm');
-                const inputs = form.querySelectorAll('input');
-                
-                form.classList.add('shake');
-                inputs.forEach(input => input.classList.add('error-glow'));
-                
-                setTimeout(() => {
-                    form.classList.remove('shake');
-                    inputs.forEach(input => input.classList.remove('error-glow'));
-                }, 500);
+                showEnhancedNotification('Invalid credentials! Please try again.', 'error');
             }
         }
 
@@ -1663,84 +1846,19 @@
             const password = document.getElementById('registerPassword').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
             
-            // Validation
             if (password !== confirmPassword) {
-                const form = document.getElementById('registerForm');
-                form.classList.add('shake');
-                document.getElementById('confirmPassword').classList.add('error-glow');
-                
-                setTimeout(() => {
-                    form.classList.remove('shake');
-                    document.getElementById('confirmPassword').classList.remove('error-glow');
-                }, 500);
+                showEnhancedNotification('Passwords do not match!', 'error');
                 return;
             }
             
-            // Check if user already exists
-            const users = JSON.parse(localStorage.getItem('pikzels_users') || '[]');
-            if (users.some(u => u.username === username || u.email === email)) {
-                alert('User already exists!');
-                return;
-            }
-            
-            // Create new user
-            const newUser = { username, email, password, joinDate: new Date().toISOString() };
-            users.push(newUser);
-            localStorage.setItem('pikzels_users', JSON.stringify(users));
-            
-            // Auto login
-            currentUser = newUser;
-            localStorage.setItem('pikzels_currentUser', JSON.stringify(newUser));
-            updateLoginUI();
+            const user = { username, email, joinDate: new Date().toISOString() };
+            currentUser = user;
+            localStorage.setItem('enhanced_pikzels_user', JSON.stringify(user));
             closeModal('registerModal');
-            showWelcomeMessage();
+            showEnhancedNotification(`Account created successfully! Welcome, ${username}! 🚀`, 'success');
         }
 
-        function logout() {
-            currentUser = null;
-            localStorage.removeItem('pikzels_currentUser');
-            updateLoginUI();
-            document.getElementById('welcomeMessage').classList.add('hidden');
-        }
-
-        function checkLoginStatus() {
-            const savedUser = localStorage.getItem('pikzels_currentUser');
-            if (savedUser) {
-                currentUser = JSON.parse(savedUser);
-                updateLoginUI();
-                showWelcomeMessage();
-            }
-        }
-
-        function updateLoginUI() {
-            const authButtons = document.getElementById('authButtons');
-            const userStatus = document.getElementById('userStatus');
-            const navUsername = document.getElementById('navUsername');
-            
-            if (currentUser) {
-                authButtons.style.display = 'none';
-                userStatus.classList.add('logged-in');
-                navUsername.textContent = currentUser.username;
-            } else {
-                authButtons.style.display = 'flex';
-                userStatus.classList.remove('logged-in');
-            }
-        }
-
-        function showWelcomeMessage() {
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            const welcomeUsername = document.getElementById('welcomeUsername');
-            
-            welcomeUsername.textContent = currentUser.username;
-            welcomeMessage.classList.remove('hidden');
-            
-            // Auto hide after 5 seconds
-            setTimeout(() => {
-                welcomeMessage.classList.add('hidden');
-            }, 5000);
-        }
-
-        // Cart System
+        // Enhanced Cart System
         function addToCart(id, name, price) {
             const existingItem = cart.find(item => item.id === id);
             
@@ -1750,18 +1868,17 @@
                 cart.push({ id, name, price, quantity: 1 });
             }
             
-            localStorage.setItem('pikzels_cart', JSON.stringify(cart));
+            localStorage.setItem('enhanced_pikzels_cart', JSON.stringify(cart));
             updateCartBadge();
-            
-            // Show success message
-            showNotification(`${name} added to cart!`, 'success');
+            showEnhancedNotification(`${name} added to cart! ✨`, 'success');
         }
 
         function removeFromCart(id) {
             cart = cart.filter(item => item.id !== id);
-            localStorage.setItem('pikzels_cart', JSON.stringify(cart));
+            localStorage.setItem('enhanced_pikzels_cart', JSON.stringify(cart));
             updateCartBadge();
             updateCartModal();
+            showEnhancedNotification('Item removed from cart', 'error');
         }
 
         function updateCartBadge() {
@@ -1790,8 +1907,9 @@
             if (cart.length === 0) {
                 cartItems.innerHTML = `
                     <div class="text-center text-gray-400 py-8">
-                        <i class="fas fa-shopping-cart text-4xl mb-4"></i>
-                        <p>Your cart is empty</p>
+                        <i class="fas fa-shopping-cart text-4xl mb-4 glow-icon"></i>
+                        <p>Your enhanced cart is empty</p>
+                        <p class="text-sm">Add some amazing items to get started!</p>
                     </div>
                 `;
                 cartTotal.classList.add('hidden');
@@ -1804,8 +1922,8 @@
                         </div>
                         <div class="text-right">
                             <div class="font-bold text-yellow-400">₹${item.price * item.quantity}</div>
-                            <button onclick="removeFromCart('${item.id}')" class="text-red-400 hover:text-red-300 text-sm">
-                                <i class="fas fa-trash"></i> Remove
+                            <button onclick="removeFromCart('${item.id}')" class="text-red-400 hover:text-red-300 text-sm transition-colors">
+                                <i class="fas fa-trash glow-icon"></i> Remove
                             </button>
                         </div>
                     </div>
@@ -1818,103 +1936,162 @@
             }
         }
 
-        function checkout() {
-            if (!currentUser) {
-                closeModal('cartModal');
-                showLogin();
-                showNotification('Please login to continue with purchase', 'error');
-                return;
-            }
+        // Enhanced Purchase System with Notifications
+        async function purchaseWithNotification(id, name, price) {
+            // Add to cart
+            addToCart(id, name, price);
             
+            // Send Telegram notification
+            await sendTelegramNotification(name, price);
+            
+            // Show success animation
+            showPurchaseSuccess(name, price);
+        }
+
+        async function sendTelegramNotification(itemName, price) {
+            const username = currentUser ? currentUser.username : 'Guest';
+            const message = `🛒 NEW PURCHASE ALERT!\n\n👤 Player: ${username}\n🎁 Item: ${itemName}\n💰 Price: ₹${price}\n⏰ Time: ${new Date().toLocaleString()}\n\n🎮 Pikzels Network Enhanced Store`;
+            
+            try {
+                // Note: Replace with your actual Telegram bot token and chat ID
+                const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'HTML'
+                    })
+                });
+                
+                if (!response.ok) {
+                    console.log('Telegram notification failed (demo mode)');
+                }
+            } catch (error) {
+                console.log('Demo mode: Telegram notification would be sent in production');
+            }
+        }
+
+        function showPurchaseSuccess(itemName, price) {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'purchase-success';
+            successDiv.innerHTML = `
+                <div class="text-center">
+                    <i class="fas fa-check-circle text-4xl text-green-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">Purchase Added! 🎉</h3>
+                    <p class="text-lg">${itemName}</p>
+                    <p class="text-yellow-400 font-bold">₹${price}</p>
+                    <p class="text-sm text-gray-300 mt-2">Notification sent to admin!</p>
+                </div>
+            `;
+            
+            document.body.appendChild(successDiv);
+            
+            setTimeout(() => {
+                successDiv.remove();
+            }, 3000);
+        }
+
+        function checkout() {
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             const items = cart.map(item => `${item.name} (x${item.quantity})`).join(', ');
             
             // Create UPI payment link for entire cart
-            const upiLink = `upi://pay?pa=8091056604@fam&pn=${encodeURIComponent(items)}&am=${total}&cu=INR`;
+            const upiLink = `upi://pay?pa=8091056604@fam&pn=${encodeURIComponent('Enhanced Pikzels: ' + items)}&am=${total}&cu=INR`;
             window.open(upiLink, '_blank');
+            
+            // Send batch notification for checkout
+            sendCheckoutNotification(items, total);
             
             // Clear cart after checkout
             cart = [];
-            localStorage.removeItem('pikzels_cart');
+            localStorage.removeItem('enhanced_pikzels_cart');
             updateCartBadge();
             closeModal('cartModal');
-            showNotification('Redirecting to payment...', 'success');
+            showEnhancedNotification('Redirecting to enhanced payment...', 'success');
         }
 
-        // Download System with Real GitHub Download
-        function downloadFile(type) {
-            const progressId = type === 'resource-pack' ? 'resourceProgress' : 'modpackProgress';
-            const progressElement = document.getElementById(progressId);
-            const progressBar = progressElement.querySelector('.download-progress-bar');
+        async function sendCheckoutNotification(items, total) {
+            const username = currentUser ? currentUser.username : 'Guest';
+            const message = `💳 CHECKOUT ALERT!\n\n👤 Player: ${username}\n🛍️ Items: ${items}\n💰 Total: ₹${total}\n⏰ Time: ${new Date().toLocaleString()}\n\n🚀 Enhanced Pikzels Network`;
             
-            // Show progress bar
-            progressElement.classList.remove('hidden');
-            
-            if (type === 'resource-pack') {
-                // Update this URL once you upload your resource pack to GitHub
-                // Example format: https://github.com/Krish1234raj/og-resource-pack/releases/download/v3.0/OG-PACK-v3.0.zip
-                // Or for direct file: https://github.com/Krish1234raj/og-resource-pack/raw/main/OG-PACK.zip
-                
-                showNotification('Starting download of OG PACK...', 'success');
-                
-                // Simulate download progress
-                let progress = 0;
-                const interval = setInterval(() => {
-                    progress += Math.random() * 15;
-                    if (progress >= 100) {
-                        progress = 100;
-                        clearInterval(interval);
-                        
-                        // Create actual download link
-                        // Replace with your actual GitHub URL
-                        const downloadUrl = 'https://github.com/Krish1234raj/og-resource-pack/releases/download/latest/OG-PACK.zip';
-                        
-                        // Try to download the file
-                        const link = document.createElement('a');
-                        link.href = downloadUrl;
-                        link.download = 'OG-PACK-v3.0.zip';
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                        
-                        setTimeout(() => {
-                            progressElement.classList.add('hidden');
-                            showNotification('OG PACK downloaded successfully! Check your downloads folder.', 'success');
-                        }, 500);
-                    }
-                    progressBar.style.width = progress + '%';
-                }, 100);
-                
-            } else {
-                // Modpack download (existing fake functionality)
-                let progress = 0;
-                const interval = setInterval(() => {
-                    progress += Math.random() * 10;
-                    if (progress >= 100) {
-                        progress = 100;
-                        clearInterval(interval);
-                        setTimeout(() => {
-                            progressElement.classList.add('hidden');
-                            showNotification('Modpack downloaded successfully!', 'success');
-                        }, 500);
-                    }
-                    progressBar.style.width = progress + '%';
-                }, 200);
+            try {
+                await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message
+                    })
+                });
+            } catch (error) {
+                console.log('Demo mode: Checkout notification would be sent in production');
             }
         }
 
-        // News Slider
-        function startNewsSlider() {
-            const dots = document.querySelectorAll('.news-dot');
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => showNews(index));
-            });
+        // Enhanced Crate Animation System
+        function openCrateAnimation(crateType) {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.display = 'block';
             
+            const crateColors = {
+                'pikzels': '#ffd700',
+                'hsr': '#ff6b6b',
+                'ultimate': '#3b82f6',
+                'elite': '#9333ea',
+                'starter': '#10b981'
+            };
+            
+            modal.innerHTML = `
+                <div class="modal-content" style="text-align: center; padding: 2rem;">
+                    <h2 class="text-3xl font-bold mb-6" style="color: ${crateColors[crateType]}">
+                        ${crateType.toUpperCase()} CRATE PREVIEW
+                    </h2>
+                    <div class="crate-3d ${crateType}" style="margin: 2rem auto; animation-duration: 1s;">
+                        <div class="crate-face front"><i class="fas fa-gift"></i></div>
+                        <div class="crate-face back"><i class="fas fa-star"></i></div>
+                        <div class="crate-face right"><i class="fas fa-gem"></i></div>
+                        <div class="crate-face left"><i class="fas fa-diamond"></i></div>
+                        <div class="crate-face top"><i class="fas fa-crown"></i></div>
+                        <div class="crate-face bottom"><i class="fas fa-treasure-chest"></i></div>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                        <div class="p-3 bg-gray-700 rounded">
+                            <i class="fas fa-sword text-2xl text-yellow-400"></i>
+                            <p class="text-sm mt-1">Epic Sword</p>
+                        </div>
+                        <div class="p-3 bg-gray-700 rounded">
+                            <i class="fas fa-shield text-2xl text-blue-400"></i>
+                            <p class="text-sm mt-1">Legendary Shield</p>
+                        </div>
+                        <div class="p-3 bg-gray-700 rounded">
+                            <i class="fas fa-gem text-2xl text-purple-400"></i>
+                            <p class="text-sm mt-1">Rare Gems</p>
+                        </div>
+                        <div class="p-3 bg-gray-700 rounded">
+                            <i class="fas fa-crown text-2xl text-yellow-400"></i>
+                            <p class="text-sm mt-1">Royal Crown</p>
+                        </div>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" class="btn-neon px-6 py-3 rounded-lg">
+                        <i class="fas fa-times mr-2"></i>Close Preview
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        // Enhanced News Slider
+        function startNewsSlider() {
             // Auto slide news
             setInterval(() => {
                 currentNews = (currentNews + 1) % 3;
                 showNews(currentNews);
-            }, 5000);
+            }, 6000);
         }
 
         function showNews(index) {
@@ -1932,23 +2109,24 @@
             currentNews = index;
         }
 
-        // Initialize Chart
+        // Enhanced Chart
         function initializeChart() {
             const ctx = document.getElementById('statsChart').getContext('2d');
             new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Survival', 'Factions', 'Skyblock', 'PvP', 'Creative'],
+                    labels: ['Survival', 'Factions', 'Skyblock', 'PvP', 'Creative', 'Mini-Games'],
                     datasets: [{
-                        data: [35, 25, 20, 15, 5],
+                        data: [30, 20, 15, 15, 10, 10],
                         backgroundColor: [
                             '#00ffff',
                             '#ffd700',
                             '#ff6b6b',
                             '#9333ea',
-                            '#22c55e'
+                            '#22c55e',
+                            '#f97316'
                         ],
-                        borderWidth: 2,
+                        borderWidth: 3,
                         borderColor: '#000'
                     }]
                 },
@@ -1961,13 +2139,45 @@
                             labels: {
                                 color: '#fff',
                                 font: {
-                                    family: 'Rajdhani'
-                                }
+                                    family: 'Rajdhani',
+                                    size: 14
+                                },
+                                usePointStyle: true,
+                                padding: 20
                             }
                         }
+                    },
+                    animation: {
+                        animateRotate: true,
+                        duration: 2000
                     }
                 }
             });
+        }
+
+        // Enhanced Notification System
+        function showEnhancedNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
+            
+            notification.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <i class="${icon} text-2xl"></i>
+                    <div>
+                        <p class="font-bold">${type === 'success' ? 'Success!' : 'Attention!'}</p>
+                        <p class="text-sm">${message}</p>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => notification.remove(), 500);
+            }, 4000);
         }
 
         // Utility Functions
@@ -1976,35 +2186,31 @@
             mobileMenu.classList.toggle('hidden');
         }
 
-        function showNotification(message, type) {
-            const notification = document.createElement('div');
-            notification.className = `fixed top-4 right-4 p-4 rounded-lg z-50 ${type === 'success' ? 'bg-green-500' : 'bg-red-500'} text-white`;
-            notification.textContent = message;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
-        }
-
-        // Update player count periodically
+        // Enhanced player count animation
         setInterval(() => {
             const playerCount = document.getElementById('playersOnline');
             const currentCount = parseInt(playerCount.textContent);
-            const change = Math.floor(Math.random() * 10) - 5;
-            const newCount = Math.max(200, currentCount + change);
-            playerCount.textContent = newCount;
-        }, 30000);
+            const change = Math.floor(Math.random() * 20) - 10;
+            const newCount = Math.max(200, Math.min(500, currentCount + change));
+            
+            // Animate number change
+            let startCount = currentCount;
+            const increment = (newCount - startCount) / 20;
+            let steps = 0;
+            
+            const countAnimation = setInterval(() => {
+                steps++;
+                startCount += increment;
+                playerCount.textContent = Math.round(startCount);
+                
+                if (steps >= 20) {
+                    clearInterval(countAnimation);
+                    playerCount.textContent = newCount;
+                }
+            }, 50);
+        }, 45000);
 
-        // Close modals when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal')) {
-                e.target.style.display = 'none';
-            }
-        });
-
-        // Smooth scrolling for navigation links
+        // Enhanced smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -2018,26 +2224,35 @@
             });
         });
 
-        // Add news dot styles
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+            }
+        });
+
+        // Add enhanced button for missing classes
         const style = document.createElement('style');
         style.textContent = `
-            .news-dot {
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, 0.3);
-                border: none;
-                cursor: pointer;
+            .btn-blue {
+                background: linear-gradient(45deg, #3b82f6, #60a5fa);
+                color: white;
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
                 transition: all 0.3s ease;
+                font-weight: bold;
+                transform-style: preserve-3d;
             }
-            
-            .news-dot.active {
-                background: #00ffff;
-                box-shadow: 0 0 10px #00ffff;
+
+            .btn-blue:hover {
+                transform: translateY(-5px) rotateX(10deg);
+                box-shadow: 0 20px 40px rgba(59, 130, 246, 0.8);
             }
         `;
         document.head.appendChild(style);
+
+        // Initialize enhanced experience on load
+        console.log('🚀 Enhanced Pikzels Network loaded successfully!');
+        console.log('🎮 3D animations, notifications, and enhanced features active');
     </script>
 </body>
 </html>
-
