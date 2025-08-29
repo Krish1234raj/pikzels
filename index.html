@@ -1394,7 +1394,7 @@
             </div>
             
             <div class="space-y-3">
-                <button id="checkoutBtn" class="btn-3d btn-gold w-full py-4 rounded-lg text-xl font-bold" onclick="directPayment()" disabled>
+                <button id="payNowBtn" class="btn-3d btn-gold w-full py-4 rounded-lg text-xl font-bold" onclick="payNow()" disabled>
                     <i class="fas fa-credit-card mr-2"></i>Pay Now
                 </button>
                 <button class="btn-3d btn-red w-full py-3 rounded-lg" onclick="clearCart()">
@@ -1474,7 +1474,7 @@
             <div class="p-8">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-3xl font-bold bg-gradient-to-r from-green-400 to-yellow-400 bg-clip-text text-transparent">
-                        <i class="fas fa-credit-card mr-2"></i>Direct Payment
+                        <i class="fas fa-credit-card mr-2"></i>Payment
                     </h2>
                     <button onclick="closeModal('paymentModal')" class="text-2xl text-red-400 hover:text-red-300">
                         <i class="fas fa-times"></i>
@@ -1485,7 +1485,7 @@
                     <div class="text-center">
                         <div class="text-6xl mb-4">💳</div>
                         <h3 class="text-2xl font-bold mb-2">UPI Payment</h3>
-                        <p class="text-gray-300 mb-4">Complete your purchase</p>
+                        <p class="text-gray-300 mb-4">Pay using UPI ID</p>
                         <div class="bg-gray-800 p-4 rounded-lg border border-yellow-400">
                             <p class="text-yellow-400 font-mono text-xl font-bold">8091056604@fam</p>
                         </div>
@@ -1664,12 +1664,12 @@
             const cartItems = document.getElementById('cartItems');
             const cartBadge = document.getElementById('cartBadge');
             const cartTotal = document.getElementById('cartTotal');
-            const checkoutBtn = document.getElementById('checkoutBtn');
+            const payNowBtn = document.getElementById('payNowBtn');
             
             if (cart.length === 0) {
                 cartItems.innerHTML = '<p class="text-gray-400 text-center py-8">Your cart is empty</p>';
                 cartBadge.classList.add('hidden');
-                checkoutBtn.disabled = true;
+                payNowBtn.disabled = true;
                 totalAmount = 0;
             } else {
                 cartItems.innerHTML = cart.map((item, index) => `
@@ -1694,7 +1694,7 @@
                 const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
                 cartBadge.textContent = itemCount;
                 cartBadge.classList.remove('hidden');
-                checkoutBtn.disabled = false;
+                payNowBtn.disabled = false;
             }
             
             totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -1707,8 +1707,7 @@
             showNotification('Cart cleared', 'success');
         }
 
-        // Direct Payment Function (replaces checkout)
-        function directPayment() {
+        function payNow() {
             if (cart.length === 0) {
                 showNotification('Your cart is empty!', 'error');
                 return;
@@ -1718,25 +1717,25 @@
             showModal('paymentModal');
         }
 
-        // Streamlined Payment Processing
+        // UPI Payment Functions
         function processPayment() {
             const upiUrl = `upi://pay?pa=8091056604@fam&pn=Pikzels Network&am=${totalAmount}&cu=INR&tn=Pikzels Network Purchase`;
             
-            // Direct UPI app launch
+            // Try to open UPI app
             window.location.href = upiUrl;
             
-            // Immediate success flow
+            // Show success message after a delay
             setTimeout(() => {
-                showNotification('Payment initiated! Complete in your UPI app.', 'success');
+                showNotification('Payment initiated! Complete the payment in your UPI app.', 'success');
                 closeModal('paymentModal');
                 
-                // Clear cart and show success
+                // Clear cart after successful payment initiation
                 setTimeout(() => {
                     clearCart();
                     toggleCart();
-                    showNotification('Thank you for your purchase! Items will be added within 24 hours.', 'success');
-                }, 1500);
-            }, 800);
+                    showNotification('Thank you for your purchase! Items will be added to your account within 24 hours.', 'success');
+                }, 2000);
+            }, 1000);
         }
 
         // Preview Functions
